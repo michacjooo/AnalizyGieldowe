@@ -1,0 +1,5 @@
+{
+  "GPW": ["PKN", "CDR", "PKO", "DNP", "ALE"],
+  "USA": ["NVDA", "MSFT", "AMZN", "META"],
+  "ETF": ["VWO", "VXUS", "CSPX"]
+}
