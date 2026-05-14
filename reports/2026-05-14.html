@@ -9,392 +9,149 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* surfaces — deep navy / charcoal */
     --bg:        #0a0e17;
     --bg-1:     #0f1420;
     --bg-2:     #131a28;
     --bg-3:     #1a2334;
     --line:     #232d44;
     --line-2:   #2c3953;
-    /* text */
     --fg:        #e6ebf5;
     --fg-2:     #aab4cc;
     --fg-3:     #6b7791;
     --fg-4:     #4a546b;
-    /* signal colors */
-    --pos:        #19c37d;        /* green */
+    --pos:        #19c37d;
     --pos-bg:   rgba(25,195,125,.10);
     --pos-line: rgba(25,195,125,.32);
-    --neg:        #ff5d5d;        /* red */
+    --neg:        #ff5d5d;
     --neg-bg:   rgba(255,93,93,.10);
     --neg-line: rgba(255,93,93,.32);
     --amber:    #f5a524;
     --amber-bg: rgba(245,165,36,.10);
     --amber-line: rgba(245,165,36,.32);
-    --info:        #4f9dff;        /* blue accents */
+    --info:        #4f9dff;
     --info-bg:    rgba(79,157,255,.10);
     --info-line:rgba(79,157,255,.32);
-
     --radius:   4px;
     --shadow-1: 0 1px 0 rgba(255,255,255,.02) inset, 0 1px 2px rgba(0,0,0,.4);
     --shadow-2: 0 1px 0 rgba(255,255,255,.03) inset, 0 8px 24px -8px rgba(0,0,0,.5);
   }
-
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
-  body{
-    background:var(--bg);
-    color:var(--fg);
-    font-family:'Inter',system-ui,-apple-system,sans-serif;
-    font-size:14px;
-    line-height:1.55;
-    font-feature-settings:"ss01","cv11","tnum";
-    -webkit-font-smoothing:antialiased;
-  }
+  body{background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.55;font-feature-settings:"ss01","cv11","tnum";-webkit-font-smoothing:antialiased;}
   .mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
-
-  /* =========================== NAV =========================== */
-  .nav{
-    position:sticky;top:0;z-index:50;
-    background:rgba(10,14,23,.85);
-    backdrop-filter:saturate(140%) blur(8px);
-    -webkit-backdrop-filter:saturate(140%) blur(8px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav-inner{
-    max-width:1440px;margin:0 auto;
-    padding:14px 28px;
-    display:flex;align-items:center;gap:24px;
-  }
+  .nav{position:sticky;top:0;z-index:50;background:rgba(10,14,23,.85);backdrop-filter:saturate(140%) blur(8px);-webkit-backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:1440px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:24px;}
   .brand{display:flex;align-items:center;gap:12px;min-width:0}
-  .brand-mark{
-    width:28px;height:28px;border:1px solid var(--line-2);border-radius:4px;
-    background:var(--bg-2);
-    display:grid;place-items:center;
-    color:var(--pos);
-    font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;
-  }
+  .brand-mark{width:28px;height:28px;border:1px solid var(--line-2);border-radius:4px;background:var(--bg-2);display:grid;place-items:center;color:var(--pos);font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;}
   .brand-title{font-weight:600;letter-spacing:-.01em;font-size:14px;white-space:nowrap}
   .brand-sub{color:var(--fg-3);font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em;text-transform:uppercase}
   .nav-menu{display:flex;align-items:center;gap:4px;margin-left:24px;flex:1;min-width:0;overflow:hidden}
-  .nav-menu a{
-    color:var(--fg-2);text-decoration:none;font-size:12px;
-    padding:6px 10px;border-radius:3px;letter-spacing:.02em;
-    white-space:nowrap;
-  }
+  .nav-menu a{color:var(--fg-2);text-decoration:none;font-size:12px;padding:6px 10px;border-radius:3px;letter-spacing:.02em;white-space:nowrap;}
   .nav-menu a:hover{color:var(--fg);background:var(--bg-2)}
   .nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0}
-  .nav-date{
-    display:flex;align-items:center;gap:8px;
-    padding:6px 10px;border:1px solid var(--line);border-radius:3px;
-    background:var(--bg-1);
-    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--fg-2);
-  }
+  .nav-date{display:flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:3px;background:var(--bg-1);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--fg-2);}
   .live-dot{width:6px;height:6px;border-radius:50%;background:var(--pos);box-shadow:0 0 0 3px rgba(25,195,125,.18);animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
   .nav-clock{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--fg-3)}
-
-  /* =========================== LAYOUT =========================== */
   .wrap{max-width:1440px;margin:0 auto;padding:28px}
   .section{margin:48px 0}
-  .section-head{
-    display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
-    margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--line);
-  }
-  .section-title{
-    margin:0;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;
-    color:var(--fg-2);
-    display:flex;align-items:center;gap:10px;
-  }
-  .section-title::before{
-    content:"";display:inline-block;width:6px;height:6px;
-    background:var(--pos);border-radius:1px;
-  }
+  .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--line);}
+  .section-title{margin:0;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--fg-2);display:flex;align-items:center;gap:10px;}
+  .section-title::before{content:"";display:inline-block;width:6px;height:6px;background:var(--pos);border-radius:1px;}
   .section-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg-3);letter-spacing:.04em}
-
-  /* =========================== HERO =========================== */
-  .hero{
-    padding:40px 0 8px;
-  }
-  .hero-eyebrow{
-    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--pos);
-    letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;
-    display:flex;align-items:center;gap:10px;
-  }
-  .hero h1{
-    margin:0 0 14px;font-size:44px;font-weight:700;letter-spacing:-.025em;line-height:1.05;
-    text-wrap:balance;
-  }
+  .hero{padding:40px 0 8px;}
+  .hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--pos);letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+  .hero h1{margin:0 0 14px;font-size:44px;font-weight:700;letter-spacing:-.025em;line-height:1.05;text-wrap:balance;}
   .hero h1 .accent{color:var(--fg-3);font-weight:400}
-  .hero-lead{
-    color:var(--fg-2);font-size:16px;max-width:760px;text-wrap:pretty;line-height:1.55;
-  }
-  .hero-stats{
-    margin-top:28px;
-    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-    background:var(--line);border:1px solid var(--line);
-    border-radius:4px;overflow:hidden;
-  }
+  .hero-lead{color:var(--fg-2);font-size:16px;max-width:760px;text-wrap:pretty;line-height:1.55;}
+  .hero-stats{margin-top:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;}
   .hero-stat{background:var(--bg-1);padding:16px 18px}
   .hero-stat-label{font-size:11px;color:var(--fg-3);text-transform:uppercase;letter-spacing:.1em;font-family:'JetBrains Mono',monospace}
   .hero-stat-value{font-size:22px;font-weight:600;margin-top:6px;letter-spacing:-.01em}
   .hero-stat-delta{font-size:12px;margin-top:4px;font-family:'JetBrains Mono',monospace}
-
-  /* =========================== MARKET DASHBOARD =========================== */
-  .dash{
-    border:1px solid var(--line);border-radius:6px;overflow:hidden;
-    background:var(--bg-1);box-shadow:var(--shadow-2);
-  }
-  .dash-head{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:12px 18px;background:var(--bg-2);border-bottom:1px solid var(--line);
-  }
+  .dash{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--bg-1);box-shadow:var(--shadow-2);}
+  .dash-head{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:var(--bg-2);border-bottom:1px solid var(--line);}
   .dash-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg-2);letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
-  .dash-title .live-dot{background:var(--pos)}
-  .dash-cols{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
-  }
-  .dash-cell{
-    background:var(--bg-1);padding:14px 18px;
-    display:flex;flex-direction:column;gap:6px;
-    border-bottom:1px solid var(--line);
-  }
+  .dash-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);}
+  .dash-cell{background:var(--bg-1);padding:14px 18px;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--line);}
   .dash-cell:nth-last-child(-n+4){border-bottom:none}
-  .dash-ticker{
-    display:flex;align-items:baseline;justify-content:space-between;gap:10px;
-  }
+  .dash-ticker{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
   .dash-name{font-size:12px;color:var(--fg-2);font-weight:500;letter-spacing:.02em}
   .dash-trend{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--fg-3);letter-spacing:.08em;text-transform:uppercase}
   .dash-price{font-size:20px;font-weight:600;letter-spacing:-.01em;font-family:'JetBrains Mono',monospace}
   .dash-delta{font-family:'JetBrains Mono',monospace;font-size:12px;display:inline-flex;align-items:center;gap:6px;font-weight:500}
-  .delta-up{color:var(--pos)}
-  .delta-down{color:var(--neg)}
-  .delta-flat{color:var(--amber)}
-
-  /* =========================== BADGES =========================== */
-  .badge{
-    display:inline-flex;align-items:center;gap:6px;
-    padding:3px 8px;border-radius:3px;
-    font-size:11px;font-weight:500;letter-spacing:.04em;
-    font-family:'JetBrains Mono',monospace;
-    border:1px solid transparent;white-space:nowrap;
-  }
+  .delta-up{color:var(--pos)}.delta-down{color:var(--neg)}.delta-flat{color:var(--amber)}
+  .badge{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border-radius:3px;font-size:11px;font-weight:500;letter-spacing:.04em;font-family:'JetBrains Mono',monospace;border:1px solid transparent;white-space:nowrap;}
   .badge-pos{color:var(--pos);background:var(--pos-bg);border-color:var(--pos-line)}
   .badge-neg{color:var(--neg);background:var(--neg-bg);border-color:var(--neg-line)}
   .badge-amber{color:var(--amber);background:var(--amber-bg);border-color:var(--amber-line)}
   .badge-info{color:var(--info);background:var(--info-bg);border-color:var(--info-line)}
   .badge-neutral{color:var(--fg-2);background:var(--bg-2);border-color:var(--line)}
-  .badge-dot::before{
-    content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor;
-  }
-  .ticker-chip{
-    display:inline-flex;align-items:center;
-    padding:2px 7px;
-    border:1px solid var(--line-2);background:var(--bg-2);
-    border-radius:3px;
-    font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;
-    letter-spacing:.04em;color:var(--fg);
-  }
-
-  /* =========================== NEWS CARDS =========================== */
+  .badge-dot::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor;}
+  .ticker-chip{display:inline-flex;align-items:center;padding:2px 7px;border:1px solid var(--line-2);background:var(--bg-2);border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--fg);}
   .news-grid{display:grid;grid-template-columns:1fr;gap:20px}
-  .news{
-    border:1px solid var(--line);border-radius:6px;
-    background:var(--bg-1);overflow:hidden;
-    box-shadow:var(--shadow-1);
-  }
-  .news-head{
-    display:flex;gap:18px;padding:22px 24px 18px;
-    border-bottom:1px solid var(--line);
-    align-items:flex-start;
-  }
-  .news-icon{
-    flex-shrink:0;
-    width:44px;height:44px;border-radius:4px;
-    background:var(--bg-3);border:1px solid var(--line-2);
-    display:grid;place-items:center;
-    color:var(--fg);
-  }
+  .news{border:1px solid var(--line);border-radius:6px;background:var(--bg-1);overflow:hidden;box-shadow:var(--shadow-1);}
+  .news-head{display:flex;gap:18px;padding:22px 24px 18px;border-bottom:1px solid var(--line);align-items:flex-start;}
+  .news-icon{flex-shrink:0;width:44px;height:44px;border-radius:4px;background:var(--bg-3);border:1px solid var(--line-2);display:grid;place-items:center;color:var(--fg);}
   .news-icon svg{width:22px;height:22px}
-  .news-num{
-    display:inline-block;font-family:'JetBrains Mono',monospace;
-    font-size:11px;color:var(--fg-3);letter-spacing:.12em;margin-bottom:6px;
-  }
-  .news-headline{
-    margin:0;font-size:20px;font-weight:600;letter-spacing:-.015em;line-height:1.3;
-    text-wrap:balance;
-  }
-  .news-meta{
-    margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;
-    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg-3);
-  }
+  .news-num{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg-3);letter-spacing:.12em;margin-bottom:6px;}
+  .news-headline{margin:0;font-size:20px;font-weight:600;letter-spacing:-.015em;line-height:1.3;text-wrap:balance;}
+  .news-meta{margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg-3);}
   .news-meta-sep{width:3px;height:3px;background:var(--fg-4);border-radius:50%}
   .news-body{padding:20px 24px;color:var(--fg-2);font-size:14px;line-height:1.65}
-  .news-body p{margin:0 0 12px}
-  .news-body p:last-child{margin-bottom:0}
+  .news-body p{margin:0 0 12px}.news-body p:last-child{margin-bottom:0}
   .news-body strong{color:var(--fg);font-weight:600}
-  .news-body .data{
-    font-family:'JetBrains Mono',monospace;color:var(--fg);font-weight:500;
-    background:var(--bg-2);padding:0 4px;border-radius:2px;
-  }
-
-  /* impact callout */
-  .impact{
-    margin:0 24px 22px;
-    border:1px solid var(--info-line);
-    background:var(--info-bg);
-    border-radius:4px;
-    padding:14px 16px;
-    display:flex;gap:14px;align-items:flex-start;
-    position:relative;
-  }
-  .impact::before{
-    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--info);
-  }
-  .impact-label{
-    flex-shrink:0;
-    font-family:'JetBrains Mono',monospace;
-    font-size:10px;color:var(--info);
-    letter-spacing:.14em;text-transform:uppercase;font-weight:600;
-    padding-top:2px;
-    min-width:130px;
-  }
+  .news-body .data{font-family:'JetBrains Mono',monospace;color:var(--fg);font-weight:500;background:var(--bg-2);padding:0 4px;border-radius:2px;}
+  .impact{margin:0 24px 22px;border:1px solid var(--info-line);background:var(--info-bg);border-radius:4px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start;position:relative;}
+  .impact::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--info);}
+  .impact-label{flex-shrink:0;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--info);letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding-top:2px;min-width:130px;}
   .impact-body{font-size:13.5px;color:var(--fg);line-height:1.6}
   .impact-body strong{color:#fff;font-weight:600}
-
-  /* sub-tags on news (data points) */
-  .news-tags{
-    display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;
-    padding:0 24px;
-  }
-
-  /* =========================== TABLES =========================== */
-  .tbl-wrap{
-    border:1px solid var(--line);border-radius:6px;overflow:hidden;
-    background:var(--bg-1);
-  }
-  table.tbl{
-    width:100%;border-collapse:collapse;
-    font-size:13px;
-  }
-  table.tbl th{
-    text-align:left;background:var(--bg-2);
-    color:var(--fg-3);font-weight:500;
-    font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;
-    padding:11px 14px;border-bottom:1px solid var(--line);
-    white-space:nowrap;
-  }
-  table.tbl td{
-    padding:13px 14px;border-bottom:1px solid var(--line);color:var(--fg-2);vertical-align:middle;
-  }
+  .news-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;padding:0 24px;}
+  .tbl-wrap{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--bg-1);}
+  table.tbl{width:100%;border-collapse:collapse;font-size:13px;}
+  table.tbl th{text-align:left;background:var(--bg-2);color:var(--fg-3);font-weight:500;font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;padding:11px 14px;border-bottom:1px solid var(--line);white-space:nowrap;}
+  table.tbl td{padding:13px 14px;border-bottom:1px solid var(--line);color:var(--fg-2);vertical-align:middle;}
   table.tbl tr:last-child td{border-bottom:none}
   table.tbl tr:hover td{background:var(--bg-2)}
   table.tbl td.num{font-family:'JetBrains Mono',monospace;color:var(--fg);text-align:right;white-space:nowrap}
   table.tbl td.t-ticker{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--fg);letter-spacing:.04em}
   table.tbl td strong{color:var(--fg);font-weight:600}
   .flag{font-size:13px;margin-right:4px}
-
-  /* trend arrows */
   .trend{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500}
-  .trend-down{color:var(--neg)}
-  .trend-up{color:var(--pos)}
-  .trend-flat{color:var(--amber)}
+  .trend-down{color:var(--neg)}.trend-up{color:var(--pos)}.trend-flat{color:var(--amber)}
   .arrow{font-size:14px;line-height:1}
-
-  /* =========================== RISKS / OPPS =========================== */
   .ro-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-  .ro-col{
-    border:1px solid var(--line);border-radius:6px;
-    background:var(--bg-1);overflow:hidden;
-  }
-  .ro-head{
-    padding:14px 18px;border-bottom:1px solid var(--line);
-    background:var(--bg-2);
-    display:flex;align-items:center;justify-content:space-between;
-  }
-  .ro-head h3{
-    margin:0;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
-    display:flex;align-items:center;gap:10px;
-  }
-  .ro-risks .ro-head{border-top:2px solid var(--neg)}
-  .ro-risks h3{color:var(--neg)}
-  .ro-opps  .ro-head{border-top:2px solid var(--pos)}
-  .ro-opps  h3{color:var(--pos)}
+  .ro-col{border:1px solid var(--line);border-radius:6px;background:var(--bg-1);overflow:hidden;}
+  .ro-head{padding:14px 18px;border-bottom:1px solid var(--line);background:var(--bg-2);display:flex;align-items:center;justify-content:space-between;}
+  .ro-head h3{margin:0;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:10px;}
+  .ro-risks .ro-head{border-top:2px solid var(--neg)}.ro-risks h3{color:var(--neg)}
+  .ro-opps  .ro-head{border-top:2px solid var(--pos)}.ro-opps  h3{color:var(--pos)}
   .ro-count{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg-3)}
   .ro-list{margin:0;padding:8px 0;list-style:none}
-  .ro-item{
-    padding:14px 18px;border-bottom:1px solid var(--line);
-    display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:flex-start;
-  }
+  .ro-item{padding:14px 18px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:flex-start;}
   .ro-list .ro-item:last-child{border-bottom:none}
-  .ro-bullet{
-    flex-shrink:0;width:18px;height:18px;border-radius:3px;
-    display:grid;place-items:center;
-    font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;
-    margin-top:2px;
-  }
+  .ro-bullet{flex-shrink:0;width:18px;height:18px;border-radius:3px;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;margin-top:2px;}
   .ro-risks .ro-bullet{background:var(--neg-bg);color:var(--neg);border:1px solid var(--neg-line)}
   .ro-opps  .ro-bullet{background:var(--pos-bg);color:var(--pos);border:1px solid var(--pos-line)}
   .ro-item h4{margin:0 0 4px;font-size:13.5px;font-weight:600;color:var(--fg);letter-spacing:-.005em}
   .ro-item p{margin:0;font-size:13px;color:var(--fg-2);line-height:1.55}
-
-  /* =========================== FOOTER =========================== */
-  .foot{
-    margin-top:64px;padding:32px 0 48px;
-    border-top:1px solid var(--line);
-  }
+  .foot{margin-top:64px;padding:32px 0 48px;border-top:1px solid var(--line);}
   .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;max-width:1440px;margin:0 auto;padding:0 28px}
   .foot h4{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--fg-3);margin:0 0 12px;font-family:'JetBrains Mono',monospace}
-  .foot p, .foot li{font-size:12px;color:var(--fg-3);line-height:1.6}
-  .foot ul{padding:0;margin:0;list-style:none}
-  .foot li{padding:3px 0}
-  .disclaimer{
-    margin-top:28px;padding:16px;border:1px dashed var(--line-2);border-radius:4px;
-    background:var(--bg-1);color:var(--fg-3);font-size:11.5px;line-height:1.6;
-    font-family:'JetBrains Mono',monospace;
-  }
+  .foot p,.foot li{font-size:12px;color:var(--fg-3);line-height:1.6}
+  .foot ul{padding:0;margin:0;list-style:none}.foot li{padding:3px 0}
+  .disclaimer{margin-top:28px;padding:16px;border:1px dashed var(--line-2);border-radius:4px;background:var(--bg-1);color:var(--fg-3);font-size:11.5px;line-height:1.6;font-family:'JetBrains Mono',monospace;}
   .disclaimer strong{color:var(--amber);font-weight:600}
-
-  /* =========================== RESPONSIVE =========================== */
-  @media (max-width:1000px){
-    .hero h1{font-size:32px}
-    .hero-stats{grid-template-columns:repeat(2,1fr)}
-    .dash-cols{grid-template-columns:repeat(2,1fr)}
-    .dash-cell{border-bottom:1px solid var(--line)!important}
-    .ro-grid{grid-template-columns:1fr}
-    .foot-grid{grid-template-columns:1fr}
-    .nav-menu{display:none}
-    .wrap{padding:20px}
-    .news-head{flex-direction:column;gap:14px}
-    .impact{flex-direction:column;gap:6px}
-    .impact-label{min-width:0}
-  }
-  @media (max-width:640px){
-    .hero h1{font-size:26px}
-    .hero-stats{grid-template-columns:1fr 1fr}
-    .dash-cols{grid-template-columns:1fr}
-    table.tbl{font-size:12px}
-    table.tbl th,table.tbl td{padding:10px 10px}
-    .wrap{padding:16px}
-    .nav-inner{padding:10px 16px;gap:10px}
-    .nav-date span:not(.live-dot){display:none}
-    .ro-item{grid-template-columns:1fr}
-  }
-
-  /* horizontal scroll on overflow tables */
-  .scroll-x{overflow-x:auto}
-  .scroll-x table.tbl{min-width:680px}
-
-  /* ===== icons placeholders (inline svgs) ===== */
-  .ico path,.ico circle,.ico rect,.ico line,.ico polyline,.ico polygon{
-    stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round;
-  }
-  .ico-fill path,.ico-fill circle{fill:currentColor;stroke:none}
+  @media (max-width:1000px){.hero h1{font-size:32px}.hero-stats{grid-template-columns:repeat(2,1fr)}.dash-cols{grid-template-columns:repeat(2,1fr)}.dash-cell{border-bottom:1px solid var(--line)!important}.ro-grid{grid-template-columns:1fr}.foot-grid{grid-template-columns:1fr}.nav-menu{display:none}.wrap{padding:20px}.news-head{flex-direction:column;gap:14px}.impact{flex-direction:column;gap:6px}.impact-label{min-width:0}}
+  @media (max-width:640px){.hero h1{font-size:26px}.hero-stats{grid-template-columns:1fr 1fr}.dash-cols{grid-template-columns:1fr}table.tbl{font-size:12px}table.tbl th,table.tbl td{padding:10px 10px}.wrap{padding:16px}.nav-inner{padding:10px 16px;gap:10px}.nav-date span:not(.live-dot){display:none}.ro-item{grid-template-columns:1fr}}
+  .scroll-x{overflow-x:auto}.scroll-x table.tbl{min-width:680px}
+  .ico path,.ico circle,.ico rect,.ico line,.ico polyline,.ico polygon{stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round;}
 </style>
 </head>
 <body>
 
-<!-- ============ NAV ============ -->
+<!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
     <div class="brand">
@@ -413,7 +170,7 @@
       <a href="#podsumowanie">Podsumowanie</a>
     </div>
     <div class="nav-right">
-      <div class="nav-clock mono" id="clock">14:32:08 CET</div>
+      <div class="nav-clock mono" id="clock"></div>
       <div class="nav-date">
         <span class="live-dot"></span>
         <span>LIVE · 2026-05-14</span>
@@ -424,455 +181,379 @@
 
 <div class="wrap">
 
-  <!-- ============ HERO ============ -->
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-eyebrow">
       <span class="live-dot"></span> Daily Briefing · Czwartek
     </div>
     <h1>
-      Inflacja 3,8% i ropa 106 USD ciążą Fedowi.<br>
-      <span class="accent">Wyniki sezonowe biją rekordy — WIG na ATH, Cisco +15%.</span>
+      Szczyt Trump&ndash;Xi odblokował chipow&#261; bram&#281;: NVDA H200 do Chin<br>
+      <span class="accent">Dow przebił 50 000 &middot; S&amp;P 500 ATH 7&thinsp;501 &middot; GPW +1,5% na fali globalnego optymizmu</span>
     </h1>
     <p class="hero-lead">
-      Rynki amerykańskie wzrosły mimo gorącego odczytu CPI dzięki rekordowemu sezonowi wyników
-      (+27,7% r/r EPS, 84% beatów). Szczyt Trump–Xi przyniósł 90-dniowy rozejm celny i nowy „Board of Trade",
-      lecz Cieśnina Ormuz pozostaje zamknięta. GPW notuje historyczny szczyt WIG przed dniem raportowym pięciu blue chipów.
+      Bezprecedensowy szczyt w Pekinie zaowocował odblokowanie sprzedaży chipów Nvidia H200 do 10 chińskich firm technologicznych (Alibaba, Tencent, ByteDance). Równolegle Cisco pobiło konsensus wynikowy przy AI-orders na poziomie 9 mld USD, wysyłając CSCO +13,4%. W Polsce PKO BP i Allegro zaskoczyły wynikami Q1 2026, ciągnąc WIG powyżej 134 000 pkt.
     </p>
-
     <div class="hero-stats">
       <div class="hero-stat">
         <div class="hero-stat-label">S&amp;P 500</div>
-        <div class="hero-stat-value mono">7 446</div>
-        <div class="hero-stat-delta delta-up">▲ +0,61%</div>
+        <div class="hero-stat-value mono">7 501 <span class="badge badge-pos" style="font-size:10px;margin-left:4px">&#128276; ATH</span></div>
+        <div class="hero-stat-delta delta-up">&#9650; +0,77%</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-label">Nasdaq</div>
-        <div class="hero-stat-value mono">26 407</div>
-        <div class="hero-stat-delta delta-up">▲ +1,22%</div>
+        <div class="hero-stat-label">WIG20 &middot; GPW</div>
+        <div class="hero-stat-value mono">3 642,68</div>
+        <div class="hero-stat-delta delta-up">&#9650; +1,40%</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-label">WIG · ATH</div>
-        <div class="hero-stat-value mono">127 301</div>
-        <div class="hero-stat-delta delta-up">▲ +46,6% r/r</div>
+        <div class="hero-stat-label">Brent Crude</div>
+        <div class="hero-stat-value mono">$106,06</div>
+        <div class="hero-stat-delta delta-up">&#9650; +2,80% (3-ses. +7,5%)</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-label">Brent (USD/bbl)</div>
-        <div class="hero-stat-value mono">106,10</div>
-        <div class="hero-stat-delta delta-up">▲ +7,5% / 3D</div>
+        <div class="hero-stat-label">10Y UST</div>
+        <div class="hero-stat-value mono">4,49%</div>
+        <div class="hero-stat-delta delta-down">&#9650; max od VII 2025</div>
       </div>
     </div>
   </section>
 
-  <!-- ============ MARKET DASHBOARD ============ -->
+  <!-- MARKET DASHBOARD -->
   <section class="section" id="podsumowanie">
     <div class="section-head">
       <h2 class="section-title">Podsumowanie rynkowe</h2>
-      <div class="section-meta">REFRESH · 14:32 CET</div>
+      <div class="section-meta">SESSION 2026-05-14</div>
     </div>
-
     <div class="dash">
       <div class="dash-head">
-        <div class="dash-title"><span class="live-dot"></span> GLOBAL TAPE · INDICES · COMMODITIES · RATES</div>
+        <div class="dash-title"><span class="live-dot"></span> GLOBAL TAPE &middot; INDICES &middot; COMMODITIES &middot; RATES</div>
         <div class="dash-trend">SESSION 2026-05-14</div>
       </div>
       <div class="dash-cols">
-        <!-- 1 -->
         <div class="dash-cell">
           <div class="dash-ticker"><span class="dash-name">S&amp;P 500</span><span class="badge badge-pos badge-dot">Wzrostowy</span></div>
-          <div class="dash-price">7 446</div>
-          <div class="dash-delta delta-up">▲ +0,61% <span style="color:var(--fg-3)">· +45 pkt</span></div>
+          <div class="dash-price">7 501 <span class="badge badge-pos" style="font-size:9px;vertical-align:middle">&#128276; ATH</span></div>
+          <div class="dash-delta delta-up">&#9650; +0,77%</div>
         </div>
         <div class="dash-cell">
           <div class="dash-ticker"><span class="dash-name">Nasdaq Composite</span><span class="badge badge-pos badge-dot">Wzrostowy</span></div>
-          <div class="dash-price">26 407</div>
-          <div class="dash-delta delta-up">▲ +1,22% <span style="color:var(--fg-3)">· CSCO driver</span></div>
+          <div class="dash-price">26 402 <span class="badge badge-pos" style="font-size:9px;vertical-align:middle">&#128276; ATH</span></div>
+          <div class="dash-delta delta-up">&#9650; +1,20%</div>
         </div>
         <div class="dash-cell">
-          <div class="dash-ticker"><span class="dash-name">Dow Jones</span><span class="badge badge-amber badge-dot">Boczny</span></div>
-          <div class="dash-price">49 614</div>
-          <div class="dash-delta delta-down">▼ −0,30%</div>
+          <div class="dash-ticker"><span class="dash-name">Dow Jones</span><span class="badge badge-pos badge-dot">Wzrostowy</span></div>
+          <div class="dash-price">50 063 <span class="badge badge-pos" style="font-size:9px;vertical-align:middle">&#128276; ATH</span></div>
+          <div class="dash-delta delta-up">&#9650; +0,75%</div>
         </div>
         <div class="dash-cell">
-          <div class="dash-ticker"><span class="dash-name">WIG</span><span class="badge badge-pos badge-dot">ATH</span></div>
-          <div class="dash-price">127 301</div>
-          <div class="dash-delta delta-up">▲ +46,6% r/r</div>
+          <div class="dash-ticker"><span class="dash-name">WIG</span><span class="badge badge-pos badge-dot">Wzrostowy</span></div>
+          <div class="dash-price">134 385</div>
+          <div class="dash-delta delta-up">&#9650; +1,51%</div>
         </div>
-        <!-- 2 -->
         <div class="dash-cell">
           <div class="dash-ticker"><span class="dash-name">WIG20</span><span class="badge badge-pos badge-dot">Wzrostowy</span></div>
-          <div class="dash-price">3 557</div>
-          <div class="dash-delta delta-up">▲ +1,08%</div>
+          <div class="dash-price">3 642,68</div>
+          <div class="dash-delta delta-up">&#9650; +1,40%</div>
         </div>
         <div class="dash-cell">
           <div class="dash-ticker"><span class="dash-name">DAX</span><span class="badge badge-pos badge-dot">Wzrostowy</span></div>
-          <div class="dash-price">23 975</div>
-          <div class="dash-delta delta-up">▲ +1,30%</div>
+          <div class="dash-price">~24 350</div>
+          <div class="dash-delta delta-up">&#9650; +1,30%</div>
         </div>
         <div class="dash-cell">
           <div class="dash-ticker"><span class="dash-name">CAC 40</span><span class="badge badge-pos badge-dot">Wzrostowy</span></div>
-          <div class="dash-price">8 167</div>
-          <div class="dash-delta delta-up">▲ +0,80%</div>
+          <div class="dash-price">~8 230</div>
+          <div class="dash-delta delta-up">&#9650; +0,80%</div>
         </div>
         <div class="dash-cell">
-          <div class="dash-ticker"><span class="dash-name">Brent (USD/bbl)</span><span class="badge badge-neg badge-dot">Silnie ↑</span></div>
-          <div class="dash-price">~106,10</div>
-          <div class="dash-delta delta-up">▲ +7,5% / 3D</div>
-        </div>
-        <!-- 3 -->
-        <div class="dash-cell">
-          <div class="dash-ticker"><span class="dash-name">WTI (USD/bbl)</span><span class="badge badge-neg badge-dot">Silnie ↑</span></div>
-          <div class="dash-price">~102,30</div>
-          <div class="dash-delta delta-up">▲ +7,6% / 3D</div>
+          <div class="dash-ticker"><span class="dash-name">Brent</span><span class="badge badge-pos badge-dot">Wzrostowy</span></div>
+          <div class="dash-price">$106,06</div>
+          <div class="dash-delta delta-up">&#9650; +2,80%</div>
         </div>
         <div class="dash-cell">
-          <div class="dash-ticker"><span class="dash-name">Złoto (XAU/USD)</span><span class="badge badge-pos badge-dot">Wzrostowy</span></div>
-          <div class="dash-price">4 699</div>
-          <div class="dash-delta delta-up">▲ +0,25% <span style="color:var(--fg-3)">· −16% od ATH</span></div>
+          <div class="dash-ticker"><span class="dash-name">WTI Crude</span><span class="badge badge-pos badge-dot">Wzrostowy</span></div>
+          <div class="dash-price">$101,20</div>
+          <div class="dash-delta delta-up">&#9650; +2,40%</div>
         </div>
         <div class="dash-cell">
-          <div class="dash-ticker"><span class="dash-name">10Y UST Yield</span><span class="badge badge-neg badge-dot">Rosnący</span></div>
+          <div class="dash-ticker"><span class="dash-name">Złoto</span><span class="badge badge-neg badge-dot">Spadkowy</span></div>
+          <div class="dash-price">$4 694</div>
+          <div class="dash-delta delta-down">&#9660; &minus;0,74%</div>
+        </div>
+        <div class="dash-cell">
+          <div class="dash-ticker"><span class="dash-name">10Y UST</span><span class="badge badge-amber badge-dot">Napięty</span></div>
           <div class="dash-price">4,49%</div>
-          <div class="dash-delta delta-up">▲ +3 pb</div>
+          <div class="dash-delta delta-down">&#9650; +5 bps &mdash; max od VII 2025</div>
         </div>
         <div class="dash-cell">
-          <div class="dash-ticker"><span class="dash-name">30Y UST · DXY</span><span class="badge badge-amber badge-dot">USD ↑</span></div>
-          <div class="dash-price">5,02%</div>
-          <div class="dash-delta delta-flat">— Stab. · DXY umocnienie</div>
+          <div class="dash-ticker"><span class="dash-name">DXY / 2Y UST</span><span class="badge badge-amber badge-dot">Mieszany</span></div>
+          <div class="dash-price">98,49</div>
+          <div class="dash-delta delta-flat">2Y: 3,97% &middot; DXY: +0,01%</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ NEWS ============ -->
+  <!-- NEWS -->
   <section class="section" id="newsy">
     <div class="section-head">
       <h2 class="section-title">Najważniejsze newsy</h2>
-      <div class="section-meta">7 POZYCJI · KURATOROWANE</div>
+      <div class="section-meta">7 POZYCJI &middot; KURATOROWANE</div>
     </div>
-
     <div class="news-grid">
 
-      <!-- ===== NEWS 1 — CPI ===== -->
-      <article class="news">
-        <div class="news-head">
-          <div class="news-icon" style="color:var(--neg)">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
-              <polyline points="3 17 9 11 13 15 21 7"></polyline>
-              <polyline points="14 7 21 7 21 14"></polyline>
-            </svg>
-          </div>
-          <div style="flex:1;min-width:0">
-            <div class="news-num">№ 01 · MAKRO USA</div>
-            <h3 class="news-headline">CPI USA kwiecień 2026 — inflacja 3,8% r/r, powyżej prognoz</h3>
-            <div class="news-meta">
-              <span>2026-05-12</span><span class="news-meta-sep"></span>
-              <span>BLS · CNBC</span><span class="news-meta-sep"></span>
-              <span class="badge badge-neg badge-dot">Wysoki wpływ</span>
-            </div>
-          </div>
-        </div>
-        <div class="news-body">
-          <p>Inflacja konsumencka (CPI) w USA wzrosła w kwietniu do <strong>3,8% r/r</strong> — powyżej prognoz analityków (3,7%) i najwyżej od maja 2023. Na przestrzeni miesiąca CPI wzrósł o <span class="data">+0,6%</span> (wobec 0,9% w marcu).</p>
-          <p>Energetyka odpowiada za ponad <strong>40% wzrostu miesięcznego</strong> (energia <span class="data">+3,8% m/m</span>), żywność <span class="data">+0,5% m/m</span>, shelter <span class="data">+0,6% m/m</span>. PCE nagłówkowy wyniósł <strong>3,5% r/r</strong> w marcu — wyraźne przyspieszenie z 2,8% w lutym.</p>
-        </div>
-        <div class="news-tags">
-          <span class="badge badge-neutral">CPI 3,8%</span>
-          <span class="badge badge-neutral">PCE 3,5%</span>
-          <span class="badge badge-neutral">Shelter +0,6%</span>
-          <span class="badge badge-neutral">Energia +3,8%</span>
-        </div>
-        <div class="impact" style="margin-top:18px">
-          <div class="impact-label">Wpływ rynkowy</div>
-          <div class="impact-body">
-            Wzrost rentowności 10-letnich obligacji skarbowych USA do <strong>~4,49%</strong> (najwyżej od lipca 2025).
-            Rynek wycenia <strong>~37%</strong> prawdopodobieństwa podwyżki stóp przez Fed przed końcem 2026 r.
-            Presja na akcje growth i tech. BofA prognozuje teraz dwie obniżki po 25 pb — dopiero w lipcu i wrześniu 2027.
-          </div>
-        </div>
-      </article>
-
-      <!-- ===== NEWS 2 — OIL ===== -->
-      <article class="news">
-        <div class="news-head">
-          <div class="news-icon" style="color:var(--amber)">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11z"></path>
-              <path d="M9 14a3 3 0 0 0 3 3"></path>
-            </svg>
-          </div>
-          <div style="flex:1;min-width:0">
-            <div class="news-num">№ 02 · COMMODITIES · GEOPOLITYKA</div>
-            <h3 class="news-headline">Ceny ropy Brent powyżej 106 USD/bbl — konflikt USA–Iran i zamknięty Hormuz</h3>
-            <div class="news-meta">
-              <span>2026-05-12 – 14</span><span class="news-meta-sep"></span>
-              <span>CNBC · Fortune · IEA</span><span class="news-meta-sep"></span>
-              <span class="badge badge-neg badge-dot">Wysoki wpływ</span>
-            </div>
-          </div>
-        </div>
-        <div class="news-body">
-          <p>Brent ustabilizował się przy <strong>~106 USD/bbl</strong> po <strong>+7,5%</strong> wzroście w ciągu ostatnich trzech sesji; WTI ~102 USD/bbl (+7,6% od ostatniego piątku). Główny czynnik: konflikt zbrojny USA–Izrael–Iran trwa od 28 lutego 2026. Od momentu wybuchu konfliktu Brent i WTI wzrosły łącznie o <strong>ponad 45%</strong>.</p>
-          <p>Cieśnina Ormuz jest efektywnie zamknięta — IEA szacuje, że zapasy obserwowane spadły o <span class="data">~4 mln bbl/dobę</span> w marcu i kwietniu. Arabia Saudyjska informuje o <strong>najniższej produkcji od 1990 r.</strong> Rynki obserwują spotkanie Trump–Xi (Pekin), które koncentruje się na handlu, nie na kwestii Iranu.</p>
-        </div>
-        <div class="news-tags">
-          <span class="badge badge-neutral">Brent +45% YTD</span>
-          <span class="badge badge-neutral">Hormuz CLOSED</span>
-          <span class="badge badge-neutral">−4 mbpd</span>
-          <span class="badge badge-neutral">KSA prod. 1990 low</span>
-        </div>
-        <div class="impact">
-          <div class="impact-label">Wpływ rynkowy</div>
-          <div class="impact-body">
-            Podwyższona inflacja energetyczna utrudnia decyzje banków centralnych.
-            <strong>JPMorgan</strong> prognozuje niedźwiedzie perspektywy Brent na 2026 r. po szczycie, ale
-            <strong>IEA</strong> ostrzega przed ciągłym niedoborem podaży do października, nawet jeśli konflikt zakończy się w czerwcu.
-          </div>
-        </div>
-      </article>
-
-      <!-- ===== NEWS 3 — MAG 7 ===== -->
-      <article class="news">
-        <div class="news-head">
-          <div class="news-icon" style="color:var(--info)">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="3" y="4" width="18" height="14" rx="2"></rect>
-              <line x1="3" y1="9" x2="21" y2="9"></line>
-              <line x1="9" y1="14" x2="9" y2="14"></line>
-              <line x1="13" y1="14" x2="17" y2="14"></line>
-            </svg>
-          </div>
-          <div style="flex:1;min-width:0">
-            <div class="news-num">№ 03 · EARNINGS · BIG TECH</div>
-            <h3 class="news-headline">Wyniki Mag 7 — Meta i Amazon wyróżniają się; Microsoft rozczarowuje</h3>
-            <div class="news-meta">
-              <span>2026-05-07 – 09</span><span class="news-meta-sep"></span>
-              <span>Motley Fool · Zacks · Yahoo Finance</span><span class="news-meta-sep"></span>
-              <span class="badge badge-pos badge-dot">Pozytywny</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- mini metric table -->
-        <div style="padding:0 24px 4px">
-          <div class="scroll-x">
-            <table class="tbl" style="border:1px solid var(--line);border-radius:4px">
-              <thead>
-                <tr><th>Spółka</th><th>Q1 2026 highlights</th><th>EPS r/r</th><th>Status</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><span class="ticker-chip">META</span></td>
-                  <td>Przych. 56,3 mld USD (+33%); capex'26: do 145 mld USD (AI); fwd P/E 19,8x — najniższy w grupie</td>
-                  <td class="num" style="color:var(--pos)">+61%</td>
-                  <td><span class="badge badge-pos badge-dot">Beat</span></td>
-                </tr>
-                <tr>
-                  <td><span class="ticker-chip">AMZN</span></td>
-                  <td>AWS +28% r/r (przyspieszenie z +24% Q4 / +20% Q3) — AI tailwind</td>
-                  <td class="num" style="color:var(--pos)">▲</td>
-                  <td><span class="badge badge-pos badge-dot">Beat</span></td>
-                </tr>
-                <tr>
-                  <td><span class="ticker-chip">MSFT</span></td>
-                  <td>3. kwartał z rzędu poniżej oczekiwań; relacja z OpenAI = ryzyko strategiczne</td>
-                  <td class="num" style="color:var(--neg)">▼</td>
-                  <td><span class="badge badge-neg badge-dot">Miss</span></td>
-                </tr>
-                <tr>
-                  <td><span class="ticker-chip">NVDA</span></td>
-                  <td>Q1 raport 20.05 · konsensus przych. +78,7% r/r</td>
-                  <td class="num" style="color:var(--pos)">+118,5%*</td>
-                  <td><span class="badge badge-amber badge-dot">Pre-report</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="news-body">
-          <p><strong>Sezon wyników S&amp;P 500 Q1 2026 — szerszy kontekst:</strong> Blended EPS growth dla S&amp;P 500 wynosi <strong>+27,7% r/r</strong> (najwyżej od Q4 2021); <strong>84% spółek</strong> pobiło konsensus EPS (powyżej historycznej średniej ~74%). Wyniki Mag 7 wpisują się w rekordową rundę beatów.</p>
-        </div>
-        <div class="impact">
-          <div class="impact-label">Wpływ rynkowy</div>
-          <div class="impact-body">
-            Nasdaq w górę <strong>+1,22%</strong> w dniu 14 maja. Sezon wyników strukturalnie wspiera wyceny pomimo presji inflacyjnej. <strong>MSFT pod presją podażową</strong> jako outlier w mocnym sezonie.
-          </div>
-        </div>
-      </article>
-
-      <!-- ===== NEWS 4 — GPW ===== -->
+      <!-- N01 -->
       <article class="news">
         <div class="news-head">
           <div class="news-icon" style="color:var(--pos)">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
-              <polyline points="3 19 9 13 13 17 21 7"></polyline>
-              <circle cx="21" cy="7" r="1.5" class="dot"></circle>
-              <line x1="3" y1="21" x2="21" y2="21"></line>
-            </svg>
+            <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a13 13 0 0 1 0 18"></path><path d="M12 3a13 13 0 0 0 0 18"></path></svg>
           </div>
           <div style="flex:1;min-width:0">
-            <div class="news-num">№ 04 · GPW · WARSAW</div>
-            <h3 class="news-headline">Sesja GPW 13–14 maja — WIG ATH, KGHM liderem, CDR bije konsensus</h3>
+            <span class="news-num">N01 &middot; GEOPOLITYKA / AI</span>
+            <h3 class="news-headline">Szczyt Trump&ndash;Xi w Pekinie: USA odblokowują sprzedaż chipów Nvidia H200 do 10 chińskich firm</h3>
             <div class="news-meta">
-              <span>2026-05-13 – 14</span><span class="news-meta-sep"></span>
-              <span>Stooq · Strefa Inwestorów · Bankier.pl</span><span class="news-meta-sep"></span>
-              <span class="badge badge-pos badge-dot">Pozytywny</span>
+              <span>2026-05-14</span>
+              <span class="news-meta-sep"></span>
+              <span>CNBC &middot; Al Jazeera &middot; Reuters</span>
+              <span class="news-meta-sep"></span>
+              <span class="badge badge-neg">Wysoki wpływ</span>
             </div>
           </div>
         </div>
         <div class="news-body">
-          <p>W dniu 13 maja WIG20 wzrósł o <strong>~1,7%</strong>; KGHM <span class="data">+6,09%</span> (ceny miedzi biją rekordy), Allegro <span class="data">+4,86%</span>. Szeroki indeks <strong>WIG osiągnął historyczne maksimum 127 301 pkt</strong> (+46,6% r/r) — kontekst strukturalnej siły polskiego rynku.</p>
-          <p><strong>CDR (CD Projekt) — wyniki Q1 2026 (13.05):</strong> Zysk netto <strong>535 mln PLN</strong> wobec konsensusu 498 mln PLN (<span class="data">+7,4%</span> powyżej oczekiwań). Kurs ~260,80 PLN. Wyniki wsparte sprzedażą cyfrową i rozszerzeniami do Cyberpunka. <strong>PKO BP</strong> — kurs przed wynikami Q1 (14.05) osiągnął <strong>historyczny szczyt</strong>.</p>
-          <p>W czwartek 14 maja wyniki Q1 2026 publikują: <strong>KGHM, Allegro, Dino Polska, PKO BP, PZU</strong> — pięć spółek z WIG20/mWIG40 w jednym dniu. PKN Orlen zyskał <span class="data">+2,54%</span> (12.05); zarząd rekomenduje dywidendę 8 PLN/akcję (łącznie 9,3 mld PLN). Krótkie pozycje widoczne m.in. na PKO BP, Orlenie, Allegro.</p>
+          <p>Prezydent Donald Trump wylądował w Pekinie na dwudniowym szczycie z Xi Jinpingiem w towarzystwie m.in. CEO NVIDIA Jensena Huanga i Elona Muska. USA zatwierdziły sprzedaż chipów <strong>Nvidia H200</strong> do ok. 10 chińskich firm technologicznych — wśród nich <strong>Alibaba, Tencent, ByteDance i JD.com</strong>. Każda firma może nabyć do <span class="data">75 000 sztuk</span> chipów bezpośrednio lub przez autoryzowanych dystrybutorów (Lenovo, Foxconn).</p>
+          <p>Rozmowy dotyczą taryf celnych, Tajwanu, Iranu i rzadkich surowców. Goldman Sachs wskazywał, że kluczowe będą eksport kontrolowany i taryfy na stal. Xi ostrzegł, że kwestia Tajwanu może wystawić relacje na "poważne ryzyko". Ton rozmów opisywany jako "konstruktywny" — rynki reagowały pozytywnie.</p>
+          <p>Pomimo zatwierdzeń: <strong>zero dostaw H200</strong> dotarło do chińskich nabywców — realizacja pozostaje otwartą kwestią.</p>
         </div>
         <div class="news-tags">
-          <span class="badge badge-neutral">WIG 127 301 ATH</span>
-          <span class="badge badge-neutral">KGHM +6,09%</span>
-          <span class="badge badge-neutral">CDR beat +7,4%</span>
-          <span class="badge badge-neutral">5 raportów / 1 dzień</span>
+          <span class="badge badge-neutral">NVDA +4,4%</span>
+          <span class="badge badge-neutral">ASML +5,5%</span>
+          <span class="badge badge-neutral">Infineon +3,0%</span>
+          <span class="badge badge-neutral">AI Chips</span>
+          <span class="badge badge-neutral">US-China Summit</span>
         </div>
         <div class="impact">
           <div class="impact-label">Wpływ rynkowy</div>
-          <div class="impact-body">
-            WIG ATH przy jednoczesnym dniu raportowym — <strong>silne fundamenty GPW</strong>.
-            KGHM napędza WIG20. CDR bije oczekiwania — pozytywny sygnał dla sektora tech/gier na GPW.
-          </div>
+          <div class="impact-body">Katalizator rajdu AI: <strong>NVDA &#9650; +4,4%</strong> do $235,75; Nasdaq ATH 26 402. Odblokowanie H200 otwiera potencjalny rynek ~75 tys. chipów na firmę dla 10 największych klientów z Chin. Ryzyko: brak faktycznych dostaw i możliwy powrót restrykcji.</div>
         </div>
       </article>
 
-      <!-- ===== NEWS 5 — EUROPE ===== -->
-      <article class="news">
-        <div class="news-head">
-          <div class="news-icon" style="color:var(--info)">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="12" cy="12" r="9"></circle>
-              <path d="M3 12h18"></path>
-              <path d="M12 3a13 13 0 0 1 0 18"></path>
-              <path d="M12 3a13 13 0 0 0 0 18"></path>
-            </svg>
-          </div>
-          <div style="flex:1;min-width:0">
-            <div class="news-num">№ 05 · EUROPE · GEOPOLITYKA</div>
-            <h3 class="news-headline">Rynki europejskie — DAX +1,3%, CAC +0,8%; kryzys w UK; szczyt Trump–Xi</h3>
-            <div class="news-meta">
-              <span>2026-05-14</span><span class="news-meta-sep"></span>
-              <span>CNBC · BBN Times · Reuters</span><span class="news-meta-sep"></span>
-              <span class="badge badge-amber badge-dot">Mieszany</span>
-            </div>
-          </div>
-        </div>
-        <div class="news-body">
-          <p>DAX wzrósł o <strong>+1,3%</strong> (do 23 975 pkt), CAC 40 o <strong>+0,8%</strong> (do 8 167 pkt) dzięki uspokojeniu nastrojów po spotkaniu Trump–Xi w Pekinie. Wcześniej w tygodniu rynki europejskie były pod presją z powodu wątpliwości dot. ceasefire USA–Iran. CAC 40 utrzymuje wzrost YoY <span class="data">+8,25%</span>.</p>
-          <p><strong>Szczyt Trump–Xi (Pekin):</strong> USA i Chiny ustanowiły mechanizm <strong>„Board of Trade"</strong> — stały bilateralny organ koordynacyjny ds. handlu. Uzgodniono tymczasowe zawieszenie (<strong>90 dni</strong>) części ceł obejmujących towary za <strong>~30 mld USD</strong>. Rozmowy koncentrowały się wyłącznie na handlu — kwestia Iranu pozostała poza agendą.</p>
-          <p>Kryzys polityczny w Wielkiej Brytanii: ponad <strong>70 posłów partii Labour</strong> wzywało premiera Keira Starmera do rezygnacji po słabych wynikach wyborów lokalnych.</p>
-        </div>
-        <div class="news-tags">
-          <span class="badge badge-neutral">DAX +1,3%</span>
-          <span class="badge badge-neutral">CAC +0,8%</span>
-          <span class="badge badge-neutral">Board of Trade</span>
-          <span class="badge badge-neutral">UK · Labour 70+</span>
-        </div>
-        <div class="impact">
-          <div class="impact-label">Wpływ rynkowy</div>
-          <div class="impact-body">
-            Europa zyskuje na deeskalacji USA–Chiny i uspokojeniu handlowym.
-            <strong>Kryzys w UK ciąży na funcie i FTSE.</strong>
-          </div>
-        </div>
-      </article>
-
-      <!-- ===== NEWS 6 — FED ===== -->
-      <article class="news">
-        <div class="news-head">
-          <div class="news-icon" style="color:var(--amber)">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
-              <polygon points="12 3 21 8 3 8 12 3"></polygon>
-              <line x1="5" y1="11" x2="5" y2="18"></line>
-              <line x1="10" y1="11" x2="10" y2="18"></line>
-              <line x1="14" y1="11" x2="14" y2="18"></line>
-              <line x1="19" y1="11" x2="19" y2="18"></line>
-              <line x1="3" y1="21" x2="21" y2="21"></line>
-            </svg>
-          </div>
-          <div style="flex:1;min-width:0">
-            <div class="news-num">№ 06 · CENTRAL BANKS</div>
-            <h3 class="news-headline">Fed — kadencja Powella wygasa 15 maja; Kevin Warsh nowym prezesem; 4 dysenty</h3>
-            <div class="news-meta">
-              <span>2026-04-29 · 2026-05-14</span><span class="news-meta-sep"></span>
-              <span>Federal Reserve · TheStreet · WSJ</span><span class="news-meta-sep"></span>
-              <span class="badge badge-neg badge-dot">Wysoki wpływ</span>
-            </div>
-          </div>
-        </div>
-        <div class="news-body">
-          <p>Fed utrzymał stopę funduszy federalnych na poziomie <strong>3,50–3,75%</strong> na posiedzeniu 29 kwietnia. Decyzja zapadła przy <strong>4 dyssentach</strong> — precedens nienotowany od <strong>1992 roku</strong> (zwyczajowo Fed głosuje jednomyślnie). Dysenci sygnalizują głęboki podział wewnątrz FOMC co do ścieżki stóp w obliczu inflacji 3,8%.</p>
-          <p>Kadencja Jerome'a Powella wygasa <strong>15 maja 2026</strong>. Trump nominował <strong>Kevina Warsha</strong> (b. gubernatora Fed 2006–2011, od dawna krytyk luźnej polityki pieniężnej) — Senat zatwierdził nominację.</p>
-          <p><strong>Kontekst makro — NFP kwiecień:</strong> Raport z rynku pracy (8 maja) wykazał <span class="data">+115 tys.</span> nowych miejsc pracy (wobec prognoz +135 tys.) — spowolnienie zatrudnienia przy CPI 3,8% to <strong>stagflacyjny sygnał</strong>. EBC utrzymał stopę refinansującą na <strong>2,15%</strong> (depozytowa 2%), prognozując inflację HICP 2,6% w 2026 r.</p>
-        </div>
-        <div class="news-tags">
-          <span class="badge badge-neutral">Fed 3,50–3,75%</span>
-          <span class="badge badge-neutral">4 dysenty / 1992</span>
-          <span class="badge badge-neutral">Warsh nominowany</span>
-          <span class="badge badge-neutral">NFP +115k</span>
-          <span class="badge badge-neutral">EBC 2,15%</span>
-        </div>
-        <div class="impact">
-          <div class="impact-label">Wpływ rynkowy</div>
-          <div class="impact-body">
-            Nominacja Warsha + 4 dysenty + NFP poniżej oczekiwań = <strong>trójwymiarowa niepewność</strong> dla rynków stopy procentowej. ECB bardziej gołębi niż Fed — wspiera dalszą aprecjację USD wobec EUR.
-          </div>
-        </div>
-      </article>
-
-      <!-- ===== NEWS 7 — CISCO ===== -->
+      <!-- N02 -->
       <article class="news">
         <div class="news-head">
           <div class="news-icon" style="color:var(--pos)">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="3" y="11" width="3" height="9"></rect>
-              <rect x="9" y="7" width="3" height="13"></rect>
-              <rect x="15" y="3" width="3" height="17"></rect>
-              <line x1="3" y1="20" x2="21" y2="20"></line>
-            </svg>
+            <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="11" width="3" height="9"></rect><rect x="9" y="7" width="3" height="13"></rect><rect x="15" y="3" width="3" height="17"></rect><line x1="3" y1="20" x2="21" y2="20"></line></svg>
           </div>
           <div style="flex:1;min-width:0">
-            <div class="news-num">№ 07 · SINGLE STOCK · AI INFRA</div>
-            <h3 class="news-headline">Cisco Systems +15% — wyniki Q3 FY2026 biją oczekiwania</h3>
+            <span class="news-num">N02 &middot; WYNIKI / AI INFRASTRUCTURE</span>
+            <h3 class="news-headline">Cisco CSCO +13,4% po rekordowych wynikach Q3 FY2026 &mdash; AI orders podwyższone do 9 mld USD</h3>
             <div class="news-meta">
-              <span>2026-05-14</span><span class="news-meta-sep"></span>
-              <span>CNBC · Bloomberg · Cisco IR</span><span class="news-meta-sep"></span>
-              <span class="badge badge-pos badge-dot">Pozytywny</span>
+              <span>2026-05-14</span>
+              <span class="news-meta-sep"></span>
+              <span>CNBC &middot; Motley Fool &middot; investor.cisco.com</span>
+              <span class="news-meta-sep"></span>
+              <span class="badge badge-neg">Wysoki wpływ</span>
             </div>
           </div>
         </div>
         <div class="news-body">
-          <p>Cisco Systems (CSCO) wzrosło o <strong>+15%</strong> w sesji 14 maja — jeden z największych jednodniowych ruchów w historii spółki — po bardzo mocnych wynikach za Q3 FY2026 i podwyższeniu guidance na pełny rok. Przychody i EPS wyraźnie powyżej konsensusu; silny wzrost zamówień w segmencie bezpieczeństwa sieciowego i infrastruktury AI (networking dla data centers). Zarząd podniósł prognozę roczną EPS o <strong>~8–10%</strong>.</p>
-          <p>Ruch o +15% na spółce o kapitalizacji rynkowej <strong>~300 mld USD</strong> przełożył się bezpośrednio na indeks Nasdaq i był jednym z głównych czynników wzrostu Nasdaq +1,22% w tej sesji.</p>
+          <p>Cisco Systems opublikowało wyniki Q3 FY2026: przychody <span class="data">$15,84 mld</span> (konsensus $15,56 mld), EPS adj. <span class="data">$1,06</span> (konsensus $1,04). Przychody wzrosły <strong>+12% r/r</strong>; segment sieciowy urósł <strong>+25%</strong>, ordery na produkty <strong>+35%</strong>, networking orders <strong>+50%+</strong>.</p>
+          <p>Guidance FY2026 podwyższone: przychody <span class="data">$62,8&ndash;63,0 mld</span>, EPS adj. <span class="data">$4,27&ndash;4,29</span>. Oczekiwane ordery AI od hyperscalerów podniesione do <strong>$9 mld</strong> (z $5 mld), z dotychczasowego backlogu $5,3 mld.</p>
+          <p>Akcje zamknęły się na poziomie <span class="data">$115,53</span> (+13,41%), napędzając DJIA powyżej 50 000.</p>
         </div>
         <div class="news-tags">
-          <span class="badge badge-neutral">CSCO +15%</span>
-          <span class="badge badge-neutral">Guidance ↑ 8–10%</span>
-          <span class="badge badge-neutral">Mkt cap ~300B</span>
-          <span class="badge badge-neutral">AI networking</span>
+          <span class="badge badge-neutral">CSCO +13,4%</span>
+          <span class="badge badge-neutral">Revenue $15,84B</span>
+          <span class="badge badge-neutral">AI Orders $9B</span>
+          <span class="badge badge-neutral">Guidance raised</span>
         </div>
         <div class="impact">
           <div class="impact-label">Wpływ rynkowy</div>
-          <div class="impact-body">
-            Sygnał potwierdzający temat <strong>AI-infrastructure spend poza NVIDIA</strong> — przełączniki sieciowe i cyberbezpieczeństwo korzystają z boomu capex.
-            Pozytywne dla CSCO, Juniper Networks, Palo Alto Networks i innych spółek sieciowych/security.
+          <div class="impact-body">Kluczowy driver Dow Jones do 50 000. Cisco potwierdza, że <strong>AI capex nie zwalnia</strong> — sieć i infrastruktura data center to nowy motor wzrostu. Sygnał pozytywny dla NVDA, MSFT Azure, AMZN AWS i całego ekosystemu networking.</div>
+        </div>
+      </article>
+
+      <!-- N03 -->
+      <article class="news">
+        <div class="news-head">
+          <div class="news-icon" style="color:var(--amber)">
+            <svg class="ico" viewBox="0 0 24 24"><polygon points="12 3 21 8 3 8 12 3"></polygon><line x1="5" y1="11" x2="5" y2="18"></line><line x1="10" y1="11" x2="10" y2="18"></line><line x1="14" y1="11" x2="14" y2="18"></line><line x1="19" y1="11" x2="19" y2="18"></line><line x1="3" y1="21" x2="21" y2="21"></line></svg>
           </div>
+          <div style="flex:1;min-width:0">
+            <span class="news-num">N03 &middot; MAKRO / FED</span>
+            <h3 class="news-headline">CPI USA kwiecień +3,8% r/r &mdash; najwyżej od 3 lat; Fed trzyma stopy, Powell kończy kadencję 15 maja</h3>
+            <div class="news-meta">
+              <span>2026-05-12&ndash;14</span>
+              <span class="news-meta-sep"></span>
+              <span>CNBC &middot; BLS &middot; Al Jazeera</span>
+              <span class="news-meta-sep"></span>
+              <span class="badge badge-neg">Wysoki wpływ</span>
+            </div>
+          </div>
+        </div>
+        <div class="news-body">
+          <p>BLS: CPI kwiecień 2026 wzrósł o <span class="data">+0,6% m/m</span> i <span class="data">+3,8% r/r</span> &mdash; najwyżej od maja 2023. Energia odpowiedzialna za ponad <strong>40% wzrostu</strong> miesięcznego (paliwa +28,4% r/r, związane z napięciami iraskimi). Core CPI: <span class="data">+2,8% r/r</span>.</p>
+          <p>Sprzedaż detaliczna kwiecień: <span class="data">+0,5% m/m</span> (zgodnie z konsensusem), rocznie <strong>+4,9%</strong> &mdash; konsument solidny. PPI: <span class="data">+1,4%</span> m/m.</p>
+          <p>Fed 29 kwietnia: stopy na <span class="data">3,50&ndash;3,75%</span> bez zmian, <strong>4 dyssensy</strong> &mdash; rekord od 1992. Powell kończy kadencję Przewodniczącego Fed <strong>15 maja 2026</strong>; pozostaje w Radzie Gubernatorów.</p>
+        </div>
+        <div class="news-tags">
+          <span class="badge badge-neutral">CPI +3,8% r/r</span>
+          <span class="badge badge-neutral">Core CPI +2,8%</span>
+          <span class="badge badge-neutral">Retail Sales +0,5%</span>
+          <span class="badge badge-neutral">Fed 3,50&ndash;3,75%</span>
+          <span class="badge badge-neutral">10Y 4,49%</span>
+        </div>
+        <div class="impact">
+          <div class="impact-label">Wpływ rynkowy</div>
+          <div class="impact-body">Rentowności 10Y rosną do 4,49% (max od VII 2025) — ogranicza apetyt na wzrost. Zmiana lidera Fed przy przyspieszonej inflacji = <strong>ryzyko polityczne</strong>. Rynek wycenia tylko 1 obniżkę w całym 2026.</div>
+        </div>
+      </article>
+
+      <!-- N04 -->
+      <article class="news">
+        <div class="news-head">
+          <div class="news-icon" style="color:var(--amber)">
+            <svg class="ico" viewBox="0 0 24 24"><path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11z"></path><path d="M9 14a3 3 0 0 0 3 3"></path></svg>
+          </div>
+          <div style="flex:1;min-width:0">
+            <span class="news-num">N04 &middot; SUROWCE / GEOPOLITYKA</span>
+            <h3 class="news-headline">Brent powyżej $106 &mdash; napięcia z Iranem i optymizm Trump&ndash;Xi napędzają 3-sesyjny rajd ropy +7,5%</h3>
+            <div class="news-meta">
+              <span>2026-05-14</span>
+              <span class="news-meta-sep"></span>
+              <span>OilPrice.com &middot; Fortune &middot; Trading Economics</span>
+              <span class="news-meta-sep"></span>
+              <span class="badge badge-amber">Średni wpływ</span>
+            </div>
+          </div>
+        </div>
+        <div class="news-body">
+          <p>Brent dotknął intraday <span class="data">$107,12</span>, zamykając powyżej <span class="data">$106,06</span> (+2,8%). WTI stabilizuje się powyżej <span class="data">$101</span>. Łącznie 3-sesyjna zwyżka: <strong>+7,5%</strong> &mdash; wynik napięć USA&ndash;Iran i kurczących się globalnych zapasów.</p>
+          <p>Złoto spada o <span class="data">-0,74%</span> do $4 694/oz &mdash; rynek risk-on odsyła bezpieczne aktywa. DXY na 98,49 (silny dolar) dodatkowo ogranicza metale szlachetne.</p>
+        </div>
+        <div class="news-tags">
+          <span class="badge badge-neutral">Brent $106,06</span>
+          <span class="badge badge-neutral">WTI $101,20</span>
+          <span class="badge badge-neutral">Złoto $4 694</span>
+          <span class="badge badge-neutral">Iran ryzyko</span>
+        </div>
+        <div class="impact">
+          <div class="impact-label">Wpływ rynkowy</div>
+          <div class="impact-body">Wzrost ropy napędza CPI energetyczne (+17,9% r/r), utrudniając gołębią politykę Fed. Dla PKN Orlen wyższe ceny surowca mogą oznaczać <strong>wyższe marże rafineryjne</strong> w Q2 2026 (zależy od spreadu Ural/Brent i hedgingu).</div>
+        </div>
+      </article>
+
+      <!-- N05 -->
+      <article class="news">
+        <div class="news-head">
+          <div class="news-icon" style="color:var(--pos)">
+            <svg class="ico" viewBox="0 0 24 24"><polyline points="3 19 9 13 13 17 21 7"></polyline><circle cx="21" cy="7" r="1.5"></circle><line x1="3" y1="21" x2="21" y2="21"></line></svg>
+          </div>
+          <div style="flex:1;min-width:0">
+            <span class="news-num">N05 &middot; GPW / WYNIKI</span>
+            <h3 class="news-headline">Allegro ALE +5,54%: rekordowe EBITDA Q1 2026 i podniesiony guidance &mdash; segment International +67% r/r</h3>
+            <div class="news-meta">
+              <span>2026-05-14</span>
+              <span class="news-meta-sep"></span>
+              <span>Bankier.pl &middot; Investing.com &middot; ppcg.com.pl</span>
+              <span class="news-meta-sep"></span>
+              <span class="badge badge-pos">Pozytywny dla GPW</span>
+            </div>
+          </div>
+        </div>
+        <div class="news-body">
+          <p>Allegro: EBITDA adj. Q1 2026 = <span class="data">931,8 mln PLN</span> (+23,6% r/r), bicie konsensusu o <span class="data">64 mln PLN</span>. GMV Polska <strong>+11,6% r/r</strong>, rynki International <strong>+67% r/r</strong>. Guidance segmentu International podniesiony na 2026.</p>
+          <p>Kurs zamknął się na <span class="data">30,72 PLN</span> (+5,54%). Konsensus 17 analityków: cena docelowa <span class="data">38,50 PLN</span> (zakres 32&ndash;45 PLN) &mdash; ponad <strong>+25%</strong> potencjał wzrostu od aktualnych poziomów.</p>
+        </div>
+        <div class="news-tags">
+          <span class="badge badge-neutral">ALE 30,72 PLN</span>
+          <span class="badge badge-neutral">EBITDA 931,8 mln PLN</span>
+          <span class="badge badge-neutral">GMV PL +11,6%</span>
+          <span class="badge badge-neutral">International +67%</span>
+        </div>
+        <div class="impact">
+          <div class="impact-label">Wpływ rynkowy</div>
+          <div class="impact-body">Allegro to kluczowy składnik WIG20. Wyniki potwierdzają ekspansję zagraniczną jako nowy silnik wzrostu. Konsensus cenowy znacząco powyżej kursu rynkowego &mdash; <strong>duże wyjście analityków</strong> powyżej bieżącej wyceny.</div>
+        </div>
+      </article>
+
+      <!-- N06 -->
+      <article class="news">
+        <div class="news-head">
+          <div class="news-icon" style="color:var(--pos)">
+            <svg class="ico" viewBox="0 0 24 24"><polyline points="3 19 9 13 13 17 21 7"></polyline><circle cx="21" cy="7" r="1.5"></circle><line x1="3" y1="21" x2="21" y2="21"></line></svg>
+          </div>
+          <div style="flex:1;min-width:0">
+            <span class="news-num">N06 &middot; GPW / SEKTOR BANKOWY</span>
+            <h3 class="news-headline">PKO BP +3,01%: zysk Q1 2026 = 2,52 mld PLN &mdash; 6,4% powyżej konsensusu; kurs zbliża się do 100 PLN</h3>
+            <div class="news-meta">
+              <span>2026-05-14</span>
+              <span class="news-meta-sep"></span>
+              <span>Bankier.pl &middot; StockWatch.pl &middot; Investing.com</span>
+              <span class="news-meta-sep"></span>
+              <span class="badge badge-pos">Pozytywny dla GPW</span>
+            </div>
+          </div>
+        </div>
+        <div class="news-body">
+          <p>PKO Bank Polski: zysk netto Q1 2026 = <span class="data">2 522 mln PLN</span>, konsensus <span class="data">2 371 mln PLN</span> &mdash; pobity o <strong>6,4%</strong>. Akcje otwarły się na <span class="data">97,50 PLN</span> i zamknęły na <span class="data">99,74 PLN</span> (+3,01%), obrót <span class="data">145 mln PLN</span> (ponadprzeciętny).</p>
+          <p>Wyniki odzwierciedlają utrzymywanie wysokich marż odsetkowych przy stopach NBP na podwyższonym poziomie. Psychologiczna granica <strong>100 PLN</strong> znalazła się w zasięgu ręki.</p>
+        </div>
+        <div class="news-tags">
+          <span class="badge badge-neutral">PKO 99,74 PLN</span>
+          <span class="badge badge-neutral">Zysk 2,52 mld PLN</span>
+          <span class="badge badge-neutral">Beat +6,4%</span>
+          <span class="badge badge-neutral">WIG20 komponent</span>
+        </div>
+        <div class="impact">
+          <div class="impact-label">Wpływ rynkowy</div>
+          <div class="impact-body">Największy bank GPW wzmacnia zaufanie do sektora finansowego. Silne marże przy wysokich stopach mogą utrzymywać zainteresowanie walorami bankowymi — o ile NBP nie obniży stóp wcześniej niż oczekiwano.</div>
+        </div>
+      </article>
+
+      <!-- N07 -->
+      <article class="news">
+        <div class="news-head">
+          <div class="news-icon" style="color:var(--pos)">
+            <svg class="ico" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"></polyline><polyline points="14 7 21 7 21 14"></polyline></svg>
+          </div>
+          <div style="flex:1;min-width:0">
+            <span class="news-num">N07 &middot; USA / MILESTONES</span>
+            <h3 class="news-headline">Dow Jones retakes 50 000 &middot; S&amp;P 500 ATH 7 501 &middot; Nasdaq ATH 26 402 &mdash; AI trade roars back</h3>
+            <div class="news-meta">
+              <span>2026-05-14</span>
+              <span class="news-meta-sep"></span>
+              <span>TheStreet &middot; Yahoo Finance &middot; MarketPulse</span>
+              <span class="news-meta-sep"></span>
+              <span class="badge badge-pos">Historyczny</span>
+            </div>
+          </div>
+        </div>
+        <div class="news-body">
+          <p>Wszystkie trzy główne indeksy USA osiągnęły historyczne szczyty 14 maja 2026: <strong>Dow Jones</strong> zamknął się po raz pierwszy powyżej <span class="data">50 000</span> (+370 pkt); <strong>S&amp;P 500</strong> pobił rekord zamknięcia na <span class="data">7 501</span> (intraday max 7 517); <strong>Nasdaq Composite</strong> ATH intraday <span class="data">26 474</span>, zamknięcie <span class="data">26 402</span>.</p>
+          <p>Główne silniki: Cisco +13,4%, Nvidia +4,4%, optymizm Trump&ndash;Xi, solidne dane o sprzedaży detalicznej. Powrót globalizacyjnego handlu po obawach o wojnę celną wspierał szerokie rynki.</p>
+        </div>
+        <div class="news-tags">
+          <span class="badge badge-pos">S&amp;P 500 ATH 7 501</span>
+          <span class="badge badge-pos">Nasdaq ATH 26 402</span>
+          <span class="badge badge-pos">Dow 50 000</span>
+          <span class="badge badge-neutral">CSCO +13,4%</span>
+          <span class="badge badge-neutral">NVDA +4,4%</span>
+        </div>
+        <div class="impact">
+          <div class="impact-label">Wpływ rynkowy</div>
+          <div class="impact-body">Globalne ATH wysyłają sygnał risk-on. <strong>GPW skorzystała</strong> &mdash; WIG +1,51%, WIG20 +1,40%. Psychologiczny poziom 50 000 na DJIA może przyciągnąć nowych inwestorów i wzmocnić momentum w krótkim terminie.</div>
         </div>
       </article>
 
     </div>
   </section>
 
-  <!-- ============ MACRO CALENDAR ============ -->
+  <!-- MACRO CALENDAR -->
   <section class="section" id="kalendarz">
     <div class="section-head">
-      <h2 class="section-title">Kalendarz makro · najbliższe 3 dni</h2>
-      <div class="section-meta">8 WYDARZEŃ · OD 2026-05-14</div>
+      <h2 class="section-title">Kalendarz makro &middot; najbliższe 3 dni</h2>
+      <div class="section-meta">10 WYDARZEŃ</div>
     </div>
-
     <div class="tbl-wrap scroll-x">
       <table class="tbl">
         <thead>
@@ -882,95 +563,104 @@
             <th>Wydarzenie</th>
             <th style="width:130px">Wpływ</th>
             <th style="width:140px">Poprz.</th>
-            <th style="width:140px">Prognoza</th>
+            <th style="width:140px">Prognoza / Wynik</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="mono">2026-05-14</td>
-            <td><span class="flag">🇺🇸</span>USA</td>
-            <td>Retail Sales kwiecień <span style="color:var(--fg-3)">· 8:30 EDT</span></td>
-            <td><span class="badge badge-neg badge-dot">🔴 Wysoki</span></td>
-            <td class="num">+0,8% m/m</td>
-            <td class="num">+0,4% m/m</td>
+            <td class="num">2026-05-12</td>
+            <td><span class="flag">&#127482;&#127480;</span>USA</td>
+            <td><strong>CPI kwiecień 2026</strong> (r/r) &mdash; opublikowany</td>
+            <td><span class="badge badge-neg">&#128308; Wysoki</span></td>
+            <td class="num">+3,5%</td>
+            <td class="num" style="color:var(--neg)">&#10003; +3,8% (powyżej)</td>
           </tr>
           <tr>
-            <td class="mono">2026-05-14</td>
-            <td><span class="flag">🇺🇸</span>USA</td>
-            <td>Wyniki Applied Materials <span class="ticker-chip" style="margin-left:6px">AMAT</span></td>
-            <td><span class="badge badge-amber badge-dot">🟡 Średni</span></td>
-            <td class="num">—</td>
-            <td class="num">—</td>
+            <td class="num">2026-05-13</td>
+            <td><span class="flag">&#127482;&#127480;</span>USA</td>
+            <td><strong>PPI kwiecień 2026</strong> (m/m) &mdash; opublikowany</td>
+            <td><span class="badge badge-amber">&#128993; Średni</span></td>
+            <td class="num">+0,9%</td>
+            <td class="num" style="color:var(--neg)">&#10003; +1,4% (powyżej)</td>
           </tr>
           <tr>
-            <td class="mono">2026-05-14</td>
-            <td><span class="flag">🇵🇱</span>Polska</td>
-            <td>Wyniki Q1:
-              <span class="ticker-chip">KGHM</span>
-              <span class="ticker-chip">ALE</span>
-              <span class="ticker-chip">DNP</span>
-              <span class="ticker-chip">PKO</span>
-              <span class="ticker-chip">PZU</span>
-            </td>
-            <td><span class="badge badge-neg badge-dot">🔴 Wysoki</span></td>
-            <td class="num">—</td>
-            <td class="num">—</td>
+            <td class="num">2026-05-14</td>
+            <td><span class="flag">&#127482;&#127480;</span>USA</td>
+            <td><strong>Sprzedaż detaliczna kwiecień</strong> (m/m) &mdash; opublikowany</td>
+            <td><span class="badge badge-neg">&#128308; Wysoki</span></td>
+            <td class="num">+0,8%</td>
+            <td class="num" style="color:var(--pos)">&#10003; +0,5% (inline)</td>
           </tr>
           <tr>
-            <td class="mono">2026-05-15</td>
-            <td><span class="flag">🇺🇸</span>USA</td>
-            <td>Wygaśnięcie kadencji Powella (Fed)</td>
-            <td><span class="badge badge-neg badge-dot">🔴 Wysoki</span></td>
-            <td class="num">—</td>
-            <td class="num">—</td>
+            <td class="num">2026-05-14</td>
+            <td><span class="flag">&#127464;&#127475;</span>Chiny / USA</td>
+            <td><strong>Szczyt Trump&ndash;Xi</strong> (Pekin) &mdash; handel, AI, Tajwan, Iran</td>
+            <td><span class="badge badge-neg">&#128308; Wysoki</span></td>
+            <td class="num">&mdash;</td>
+            <td class="num" style="color:var(--pos)">Konstruktywny tone</td>
           </tr>
           <tr>
-            <td class="mono">2026-05-15</td>
-            <td><span class="flag">🇺🇸</span>USA</td>
-            <td>Empire State Manufacturing <span style="color:var(--fg-3)">· 8:30 EDT</span></td>
-            <td><span class="badge badge-amber badge-dot">🟡 Średni</span></td>
-            <td class="num">—</td>
-            <td class="num">—</td>
+            <td class="num">2026-05-15</td>
+            <td><span class="flag">&#127482;&#127480;</span>USA</td>
+            <td><strong>Koniec kadencji Powella</strong> jako Prezes Fed</td>
+            <td><span class="badge badge-neg">&#128308; Wysoki</span></td>
+            <td class="num">&mdash;</td>
+            <td class="num">Brak FOMC do VI 2026</td>
           </tr>
           <tr>
-            <td class="mono">2026-05-15</td>
-            <td><span class="flag">🌐</span>Globalne</td>
-            <td>Szczyt Trump–Xi (Pekin) — handel / Iran</td>
-            <td><span class="badge badge-neg badge-dot">🔴 Wysoki</span></td>
-            <td class="num">—</td>
-            <td class="num">—</td>
+            <td class="num">2026-05-15</td>
+            <td><span class="flag">&#127482;&#127480;</span>USA</td>
+            <td><strong>Empire State Manufacturing</strong> (maj 2026)</td>
+            <td><span class="badge badge-amber">&#128993; Średni</span></td>
+            <td class="num">&minus;8,2</td>
+            <td class="num">&minus;5,0 (est.)</td>
           </tr>
           <tr>
-            <td class="mono">2026-05-16</td>
-            <td><span class="flag">🇺🇸</span>USA</td>
-            <td>Building Permits / Housing Starts</td>
-            <td><span class="badge badge-amber badge-dot">🟡 Średni</span></td>
-            <td class="num">—</td>
-            <td class="num">—</td>
+            <td class="num">2026-05-15</td>
+            <td><span class="flag">&#127477;&#127473;</span>Polska</td>
+            <td><strong>CPI Polska kwiecień 2026</strong> (finalne)</td>
+            <td><span class="badge badge-amber">&#128993; Średni</span></td>
+            <td class="num">+4,2%</td>
+            <td class="num">+4,5% (est.)</td>
           </tr>
           <tr>
-            <td class="mono">2026-05-20</td>
-            <td><span class="flag">🇺🇸</span>USA</td>
-            <td>Wyniki <span class="ticker-chip">NVDA</span> Q1 2026</td>
-            <td><span class="badge badge-neg badge-dot">🔴 Wysoki</span></td>
-            <td class="num">EPS ~$4,20</td>
-            <td class="num" style="color:var(--pos)">+118,5% r/r</td>
+            <td class="num">2026-05-15</td>
+            <td><span class="flag">&#127466;&#127482;</span>Strefa Euro</td>
+            <td><strong>PKB strefy euro Q1 2026</strong> (drugi odczyt)</td>
+            <td><span class="badge badge-amber">&#128993; Średni</span></td>
+            <td class="num">+0,3% q/q</td>
+            <td class="num">+0,4% q/q (est.)</td>
+          </tr>
+          <tr>
+            <td class="num">2026-05-16</td>
+            <td><span class="flag">&#127482;&#127480;</span>USA</td>
+            <td><strong>Michigan Consumer Sentiment</strong> (maj wstępny)</td>
+            <td><span class="badge badge-amber">&#128993; Średni</span></td>
+            <td class="num">67,4</td>
+            <td class="num">66,0 (est.)</td>
+          </tr>
+          <tr>
+            <td class="num">2026-05-16</td>
+            <td><span class="flag">&#127477;&#127473;</span>Polska</td>
+            <td><span class="ticker-chip">PKN</span> <strong>PKN Orlen</strong> &mdash; wyniki Q1 2026 (planowane)</td>
+            <td><span class="badge badge-pos">&#128994; Niski</span></td>
+            <td class="num">&mdash;</td>
+            <td class="num">Konsensus TBD</td>
           </tr>
         </tbody>
       </table>
     </div>
     <div style="margin-top:10px;font-size:11px;color:var(--fg-3);font-family:'JetBrains Mono',monospace">
-      Źródło: Investing.com · Zacks · Strefa Inwestorów — dane orientacyjne, mogą ulec zmianie.
+      Źródło: Investing.com &middot; Zacks &middot; BLS &middot; Strefa Inwestorów &mdash; dane orientacyjne.
     </div>
   </section>
 
-  <!-- ============ INSTITUTIONAL FLOWS ============ -->
+  <!-- INSTITUTIONAL FLOWS -->
   <section class="section" id="flows">
     <div class="section-head">
-      <h2 class="section-title">Przepływy instytucjonalne · Smart Money</h2>
-      <div class="section-meta">SEC 13F · Q4'25 / Q1'26</div>
+      <h2 class="section-title">Przepływy instytucjonalne &middot; Smart Money</h2>
+      <div class="section-meta">SEC 13F &middot; Q4'25 / Q1'26</div>
     </div>
-
     <div class="tbl-wrap scroll-x">
       <table class="tbl">
         <thead>
@@ -983,44 +673,49 @@
         </thead>
         <tbody>
           <tr>
-            <td class="t-ticker">NVDA</td>
-            <td><strong>66,4%</strong> <span style="color:var(--fg-3)">(↓ z 67,8% we wrz. 2025)</span></td>
-            <td><span class="trend trend-down"><span class="arrow">↘</span>Redukcja</span></td>
-            <td>Underweight vs. S&amp;P 500 — wg Morgan Stanley NVDA najbardziej underowned megacap tech</td>
+            <td class="t-ticker"><span class="ticker-chip">NVDA</span></td>
+            <td><strong>~72% instytucjonalne.</strong> Q4 2025: 445 nowych nabywców instytucjonalnych, nowy kapitał <span class="data">$80,7 mld</span> &mdash; #4 spółka pod względem wartości napływów. National Pension Service (Korea, $132B portfela) utrzymuje NVDA w top holdings.</td>
+            <td><span class="trend trend-up"><span class="arrow">&#8599;</span> Akumulacja</span></td>
+            <td>Silna akumulacja instytucjonalna przy AI tailwindach. Odblokowanie H200 do Chin może przyciągnąć kolejne fundusze technologiczne.</td>
           </tr>
           <tr>
-            <td class="t-ticker">MSFT</td>
-            <td>Poniżej wagi w S&amp;P 500 o <strong>&gt;200 pb</strong></td>
-            <td><span class="trend trend-down"><span class="arrow">↘</span>Redukcja</span></td>
-            <td>Underweight — słabe wyniki 3 kwartały z rzędu</td>
+            <td class="t-ticker"><span class="ticker-chip">MSFT</span></td>
+            <td><strong>~75% instytucjonalne.</strong> Q4 2025: <span class="data">$264 mld</span> nowego kapitału instytucjonalnego &mdash; #1 spółka pod względem napływów dolarowych. Azure i Copilot AI jako katalizatory dominacji cloudowej.</td>
+            <td><span class="trend trend-up"><span class="arrow">&#8599;</span> Silna akumulacja</span></td>
+            <td>Rekordowe napływy kapitału instytucjonalnego. Dominacja AI cloud wspiera długoterminową tezę inwestycyjną.</td>
           </tr>
           <tr>
-            <td class="t-ticker">META</td>
-            <td>Underweight <span style="color:var(--fg-3)">(pierwszy raz od końca 2021)</span></td>
-            <td><span class="trend trend-down"><span class="arrow">↘</span>Redukcja</span></td>
-            <td>Mimo rekordowych wyników — obawy o capex</td>
+            <td class="t-ticker"><span class="ticker-chip">META</span></td>
+            <td><strong>~67% instytucjonalne.</strong> Motley Fool (14 maja): "wycena atrakcyjna". Fundusze AI-focused zwiększają ekspozycję. Reklamodawcy AI i modele Llama napędzają przychody.</td>
+            <td><span class="trend trend-up"><span class="arrow">&#8599;</span> Lekka akumulacja</span></td>
+            <td>Fundusze wzrostowe i AI-focused budują pozycje. Wycena nadal relatywnie atrakcyjna vs. NVDA/MSFT.</td>
           </tr>
           <tr>
-            <td class="t-ticker">AMZN</td>
-            <td>Poniżej wagi w S&amp;P 500</td>
-            <td><span class="trend trend-flat"><span class="arrow">→</span>Neutralna</span></td>
-            <td>Niedoważony, ale momentum AWS pozytywne</td>
+            <td class="t-ticker"><span class="ticker-chip">AMZN</span></td>
+            <td><strong>~57% instytucjonalne.</strong> National Pension Service Korea trzyma AMZN w top 5. AWS dominuje cloud; segment advertising szybko rośnie. Słabszy dzień (-1,1%) to prawdopodobnie rotacja.</td>
+            <td><span class="trend trend-flat"><span class="arrow">&#8594;</span> Stabilny</span></td>
+            <td>Stabilne zaangażowanie instytucjonalne. Brak sygnałów dystrybucji. AWS i advertising to fundamentalne silniki wzrostu.</td>
+          </tr>
+          <tr>
+            <td class="t-ticker"><span class="ticker-chip">PKN</span></td>
+            <td>OFE (Otwarte Fundusze Emerytalne): ~15% akcji w rękach krajowych instytucji. Skarb Państwa ~49,9% udziałów. Polityka dywidendowa zarządu podtrzymana. Wyniki Q1 spodziewane 16 maja.</td>
+            <td><span class="trend trend-flat"><span class="arrow">&#8594;</span> Neutralny</span></td>
+            <td>Duży udział SP ogranicza free float. Dywidenda defensywna. Wysoka ropa potencjalnie pozytywna dla marż Q2 2026.</td>
           </tr>
         </tbody>
       </table>
     </div>
     <div style="margin-top:10px;font-size:11px;color:var(--fg-3);font-family:'JetBrains Mono',monospace">
-      Źródło: SEC 13F filings (dane kwartalne, opóźnienie ~45 dni) · Morgan Stanley 13F analysis. Dane za Q4 2025 / Q1 2026.
+      Źródło: SEC 13F filings (dane kwartalne, opóźnienie ~45 dni) &middot; HedgeFollow &middot; 13F Insight &middot; Bankier.pl.
     </div>
   </section>
 
-  <!-- ============ WATCHLIST ============ -->
+  <!-- WATCHLIST -->
   <section class="section" id="watchlist">
     <div class="section-head">
-      <h2 class="section-title">Watchlist · spółki pod obserwacją</h2>
-      <div class="section-meta">12 POZYCJI · GPW · USA · ETF</div>
+      <h2 class="section-title">Watchlist &middot; spółki pod obserwacją</h2>
+      <div class="section-meta">12 POZYCJI &middot; GPW &middot; USA &middot; ETF</div>
     </div>
-
     <div class="tbl-wrap scroll-x">
       <table class="tbl">
         <thead>
@@ -1033,196 +728,188 @@
         </thead>
         <tbody>
           <tr>
-            <td><span class="ticker-chip">PKN</span></td>
-            <td>GPW</td>
-            <td>+2,54% (12.05); dywidenda 8 PLN/akcję (9,3 mld PLN); kurs wspierany wzrostem ropy</td>
-            <td><span class="badge badge-pos badge-dot">✅ Stabilny</span></td>
+            <td class="t-ticker"><span class="ticker-chip">PKN</span></td>
+            <td><span class="flag">&#127477;&#127473;</span>GPW</td>
+            <td><strong>144,64 PLN &middot; &minus;0,03%</strong> &mdash; Płaski dzień. Wyniki Q1 2026 spodziewane 16 maja. Brent powyżej $106 potencjalnie pozytywny dla marż rafineryjnych Q2 2026.</td>
+            <td><span class="badge badge-neutral">Neutralny</span></td>
           </tr>
           <tr>
-            <td><span class="ticker-chip">CDR</span></td>
-            <td>GPW</td>
-            <td>Q1'26 (13.05): zysk netto <strong>535 mln PLN</strong> (beat 498 mln, +7,4%); kurs ~260,80 PLN</td>
-            <td><span class="badge badge-pos badge-dot">✅ Pozytywny</span></td>
+            <td class="t-ticker"><span class="ticker-chip">CDR</span></td>
+            <td><span class="flag">&#127477;&#127473;</span>GPW</td>
+            <td><strong>259,30 PLN &middot; +1,25%</strong> (+3,20 PLN od zamknięcia 256,10 PLN). Zakres 52 tyg.: 213,10&ndash;297,00 PLN. Ruch zgodny z szerokim rynkiem GPW, bez nowych impulsów korporacyjnych.</td>
+            <td><span class="badge badge-pos badge-dot">Wzrostowy</span></td>
           </tr>
           <tr>
-            <td><span class="ticker-chip">PKO</span></td>
-            <td>GPW</td>
-            <td>Q1'26 publikowane 14.05 — kluczowy katalizator; kurs przed raportem na <strong>ATH</strong>; krótkie pozycje widoczne</td>
-            <td><span class="badge badge-amber badge-dot">🟡 Uwaga</span></td>
+            <td class="t-ticker"><span class="ticker-chip">PKO</span></td>
+            <td><span class="flag">&#127477;&#127473;</span>GPW</td>
+            <td><strong>99,74 PLN &middot; +3,01%</strong> &mdash; wyniki Q1 2026 biją konsensus o 6,4% (zysk 2,52 mld PLN). Obrót 145 mln PLN (ponadprzeciętny). Granica 100 PLN w zasięgu.</td>
+            <td><span class="badge badge-pos badge-dot">Silny wynik</span></td>
           </tr>
           <tr>
-            <td><span class="ticker-chip">DNP</span></td>
-            <td>GPW</td>
-            <td>Dino Polska — raport Q1'26 (14.05); dynamika sprzedaży +10,2% r/r w Q1'25</td>
-            <td><span class="badge badge-amber badge-dot">🟡 Uwaga</span></td>
+            <td class="t-ticker"><span class="ticker-chip">DNP</span></td>
+            <td><span class="flag">&#127477;&#127473;</span>GPW</td>
+            <td><strong>28,65 PLN &middot; +0,49%</strong> &mdash; akcje blisko 52-tygodniowego minimum (28,24 PLN vs. max 55,88 PLN). Presja kosztowa w sektorze detalicznym spożywczym. Brak katalizatora krótkoterminowego.</td>
+            <td><span class="badge badge-amber">Słaby momentum</span></td>
           </tr>
           <tr>
-            <td><span class="ticker-chip">ALE</span></td>
-            <td>GPW</td>
-            <td>Allegro — raport Q1'26 (14.05); kurs +4,86% na sesji 13.05</td>
-            <td><span class="badge badge-amber badge-dot">🟡 Uwaga</span></td>
+            <td class="t-ticker"><span class="ticker-chip">ALE</span></td>
+            <td><span class="flag">&#127477;&#127473;</span>GPW</td>
+            <td><strong>30,72 PLN &middot; +5,54%</strong> &mdash; rekordowe EBITDA Q1 2026 (931,8 mln PLN), International +67% r/r. Konsensus 17 analityków: 38,50 PLN (+25% potencjał). Jeden z największych wzrostów dnia na GPW.</td>
+            <td><span class="badge badge-pos badge-dot">Silny wynik</span></td>
           </tr>
           <tr>
-            <td><span class="ticker-chip">NVDA</span></td>
-            <td>USA</td>
-            <td>Raport Q1 20.05; konsensus EPS <strong>+118,5%</strong>; underowned megacap</td>
-            <td><span class="badge badge-pos badge-dot">✅ Pozytywny</span></td>
+            <td class="t-ticker"><span class="ticker-chip">NVDA</span></td>
+            <td><span class="flag">&#127482;&#127480;</span>NASDAQ</td>
+            <td><strong>$235,75 &middot; +4,40%</strong> (+$9,92) &mdash; główny beneficjent odblokowania H200 do Chin (Alibaba, Tencent, ByteDance). 72% institutional ownership. Premarket +2%, mocny dzień.</td>
+            <td><span class="badge badge-pos badge-dot">Silny impuls</span></td>
           </tr>
           <tr>
-            <td><span class="ticker-chip">MSFT</span></td>
-            <td>USA</td>
-            <td>Trzecia rozczarowująca kwartała; pod presją sprzedającego; relacja OpenAI ryzykiem</td>
-            <td><span class="badge badge-neg badge-dot">🔴 Negatywny</span></td>
+            <td class="t-ticker"><span class="ticker-chip">MSFT</span></td>
+            <td><span class="flag">&#127482;&#127480;</span>NASDAQ</td>
+            <td><strong>$409,39 &middot; +1,00%</strong> (+$4,18) &mdash; Azure i Copilot AI jako trwałe motory. Największe napływy instytucjonalne w Q4 2025 ($264B). Spółka konsekwentnie powyżej $400.</td>
+            <td><span class="badge badge-pos badge-dot">Wzrostowy</span></td>
           </tr>
           <tr>
-            <td><span class="ticker-chip">AMZN</span></td>
-            <td>USA</td>
-            <td>AWS <strong>+28% r/r</strong> — przyspieszenie; dobry momentum cloudowy</td>
-            <td><span class="badge badge-pos badge-dot">✅ Pozytywny</span></td>
+            <td class="t-ticker"><span class="ticker-chip">AMZN</span></td>
+            <td><span class="flag">&#127482;&#127480;</span>NASDAQ</td>
+            <td><strong>$267,03 &middot; &minus;1,10%</strong> (&minus;$3,10) &mdash; jedyna pozycja w czerwieni z watchlisty USA. Prawdopodobna rotacja po silnym poprzednim ruchu. Fundamenty AWS i advertising solidne.</td>
+            <td><span class="badge badge-neg">Korekta dnia</span></td>
           </tr>
           <tr>
-            <td><span class="ticker-chip">META</span></td>
-            <td>USA</td>
-            <td>EPS +61%, przychody +33%; capex 145 mld USD w 2026 — ryzyko opłacalności</td>
-            <td><span class="badge badge-amber badge-dot">🟡 Mieszany</span></td>
+            <td class="t-ticker"><span class="ticker-chip">META</span></td>
+            <td><span class="flag">&#127482;&#127480;</span>NASDAQ</td>
+            <td><strong>$618,46 &middot; +0,30%</strong> (+$1,83) &mdash; "wycena atrakcyjna" wg Motley Fool (14 maja). AI advertising i modele Llama jako strukturalne drivery wzrostu.</td>
+            <td><span class="badge badge-pos badge-dot">Wzrostowy</span></td>
           </tr>
           <tr>
-            <td><span class="ticker-chip">VWO</span></td>
-            <td>ETF</td>
-            <td>Rynki wschodzące pod presją mocnego dolara i wyższych rentowności</td>
-            <td><span class="badge badge-amber badge-dot">🟡 Uwaga</span></td>
+            <td class="t-ticker"><span class="ticker-chip">VWO</span></td>
+            <td><span class="flag">&#127758;</span>ETF</td>
+            <td><strong>~$49,80 &middot; +0,50% (est.)</strong> &mdash; Vanguard Emerging Markets ETF. Asia-Pacific: Korea +1,75%, Nikkei &minus;0,98%. Chiński optymizm wokół Trump&ndash;Xi neutralizuje część presji. Szacunek na podstawie indeksów bazowych.</td>
+            <td><span class="badge badge-neutral">Mieszany</span></td>
           </tr>
           <tr>
-            <td><span class="ticker-chip">VXUS</span></td>
-            <td>ETF</td>
-            <td>Europa odporna (DAX +1,3%), ale ryzyko energetyczne i geopolityczne</td>
-            <td><span class="badge badge-amber badge-dot">🟡 Uwaga</span></td>
+            <td class="t-ticker"><span class="ticker-chip">VXUS</span></td>
+            <td><span class="flag">&#127758;</span>ETF</td>
+            <td><strong>~$67,40 &middot; +0,70% (est.)</strong> &mdash; Vanguard Total International ex-US. Europa mocna: DAX +1,3%, CAC +0,8%. Konstruktywny ton globalny wspiera ekspozycję non-US. Szacunek na podstawie indeksów.</td>
+            <td><span class="badge badge-pos badge-dot">Wzrostowy</span></td>
           </tr>
           <tr>
-            <td><span class="ticker-chip">CSPX</span></td>
-            <td>ETF</td>
-            <td>S&amp;P 500 +0,61%; inflacja CPI 3,8% tworzy opór dla dalszych wzrostów</td>
-            <td><span class="badge badge-amber badge-dot">🟡 Uwaga</span></td>
+            <td class="t-ticker"><span class="ticker-chip">CSPX</span></td>
+            <td><span class="flag">&#127468;&#127463;</span>ETF</td>
+            <td><strong>~$592,00 &middot; +0,77% (est.)</strong> &mdash; iShares Core S&amp;P 500 UCITS (London). Replikuje S&amp;P 500 ATH 7 501. Kurs GBP/USD może modyfikować zwrot dla inwestorów PLN. Szacunek na podstawie S&amp;P 500.</td>
+            <td><span class="badge badge-pos badge-dot">Wzrostowy (ATH)</span></td>
           </tr>
         </tbody>
       </table>
     </div>
+    <div style="margin-top:8px;font-size:11px;color:var(--fg-3);font-family:'JetBrains Mono',monospace">
+      GPW: Bankier.pl &middot; Stooq.pl &middot; Investing.com | USA: Yahoo Finance &middot; CNBC | ETF: szacunki na podstawie indeksów bazowych (est.)
+    </div>
   </section>
 
-  <!-- ============ RISKS / OPPS ============ -->
+  <!-- RISKS & OPPORTUNITIES -->
   <section class="section" id="risks">
     <div class="section-head">
-      <h2 class="section-title">Ryzyka &amp; Okazje · na co zwrócić uwagę</h2>
-      <div class="section-meta">6 RYZYK · 7 OKAZJI</div>
+      <h2 class="section-title">Ryzyka &amp; Okazje &middot; na co zwrócić uwagę</h2>
+      <div class="section-meta">6 RYZYK &middot; 6 OKAZJI</div>
     </div>
-
     <div class="ro-grid">
-      <!-- RISKS -->
       <div class="ro-col ro-risks">
         <div class="ro-head">
-          <h3><span style="color:var(--neg)">🔴</span> Ryzyka</h3>
-          <span class="ro-count">06 pozycji</span>
+          <h3><span style="color:var(--neg)">&#128308;</span> Ryzyka</h3>
+          <span class="ro-count">6 pozycji</span>
         </div>
         <ul class="ro-list">
           <li class="ro-item">
             <span class="ro-bullet">R1</span>
             <div>
-              <h4>Inflacja energetyczna</h4>
-              <p>Brent powyżej 106 USD/bbl przy zamkniętej Cieśninie Ormuz — do rozwiązania co najmniej do końca maja. Każda eskalacja może zepchnąć ropę do <strong>115–120 USD</strong>.</p>
+              <h4>Inflacja USA poza kontrolą: CPI +3,8% &mdash; Fed bez przestrzeni na obniżki</h4>
+              <p>Najwyższy odczyt od 3 lat, napędzany energią (+17,9% r/r) związaną z wojną w Iranie. Fed musi balansować między inflacją a rynkiem pracy. Rynek wycenia tylko 1 obniżkę w 2026.</p>
             </div>
           </li>
           <li class="ro-item">
             <span class="ro-bullet">R2</span>
             <div>
-              <h4>Fed post-Powell</h4>
-              <p>Nominacja nowego prezesa Fed (kadencja Powella wygasa 15.05) — rynki nie lubią niepewności w polityce monetarnej.</p>
+              <h4>Geopolityka Iranu &mdash; ropa może przekroczyć $110/b</h4>
+              <p>Napięcia USA&ndash;Iran windują ceny ropy o +7,5% w 3 sesjach. Brent powyżej $106. Dalsza eskalacja podniesie CPI, ograniczy możliwości Fed i obniży marże spółek energochłonnych.</p>
             </div>
           </li>
           <li class="ro-item">
             <span class="ro-bullet">R3</span>
             <div>
-              <h4>CPI 3,8% vs. stopy 3,50–3,75%</h4>
-              <p>Realne stopy wciąż bliskie zeru — Fed może być zmuszony do podwyżek w H2 2026, co zagrażałoby wycenom akcji.</p>
+              <h4>Zmiana lidera Fed (15 maja) &mdash; niepewność polityki monetarnej</h4>
+              <p>Powell kończy kadencję przy 4 dissensach w FOMC (rekord od 1992). Nowy przewodniczący może zmienić komunikację rynkową w newralgicznym momencie przyspieszonej inflacji.</p>
             </div>
           </li>
           <li class="ro-item">
             <span class="ro-bullet">R4</span>
             <div>
-              <h4>Microsoft strukturalnie słabszy</h4>
-              <p>Trzecia kolejna rozczarowująca kwartała — ryzyko dalszej korekty i outflow instytucjonalnych.</p>
+              <h4>10Y UST na 4,49% &mdash; zagrożenie dla spółek wzrostowych i EM</h4>
+              <p>Najwyższy poziom od VII 2025. Wyższe rentowności podnoszą koszt kapitału, obniżają wyceny DCF i wywierają presję na REIT-y, growth stocks i rynki wschodzące. DXY 98,5 obciąża EM.</p>
             </div>
           </li>
           <li class="ro-item">
             <span class="ro-bullet">R5</span>
             <div>
-              <h4>UK kryzys polityczny</h4>
-              <p>Niestabilność polityczna → presja na funta, ryzyko przyspieszonych wyborów.</p>
+              <h4>H200 do Chin: formalna zgoda, zero dostaw &mdash; ryzyko "sprzedaj plotkę"</h4>
+              <p>Pomimo zatwierdzeń żadne chipy H200 nie dotarły do nabywców. Napięcia o Tajwan, cła i surowce rzadkie mogą storpedować realizację. NVDA wycenił optymizm dziś (+4,4%).</p>
             </div>
           </li>
           <li class="ro-item">
             <span class="ro-bullet">R6</span>
             <div>
-              <h4>Wyniki GPW 14.05</h4>
-              <p>Pięć dużych spółek raportuje jednocześnie — możliwa duża zmienność na GPW.</p>
+              <h4>DNP blisko 52-tygodniowego minimum &mdash; presja strukturalna na sektor detaliczny</h4>
+              <p>Dino Polska na 28,65 PLN vs. 52-tyg. max 55,88 PLN (strata -49% wartości). Inflacja kosztów operacyjnych i brak widocznego katalizatora odwrócenia trendu.</p>
             </div>
           </li>
         </ul>
       </div>
-
-      <!-- OPPORTUNITIES -->
       <div class="ro-col ro-opps">
         <div class="ro-head">
-          <h3><span style="color:var(--pos)">🟢</span> Okazje</h3>
-          <span class="ro-count">07 pozycji</span>
+          <h3><span style="color:var(--pos)">&#128994;</span> Okazje</h3>
+          <span class="ro-count">6 pozycji</span>
         </div>
         <ul class="ro-list">
           <li class="ro-item">
             <span class="ro-bullet">O1</span>
             <div>
-              <h4>KGHM · miedź</h4>
-              <p>Ceny miedzi biją rekordy; spółka ma ekspozycję na globalną elektryfikację i AI-infrastrukturę (miedź = data centers). Silny momentum fundamentalny.</p>
+              <h4>AI Infrastructure boom: Cisco + NVDA potwierdzają mega-capex cycle</h4>
+              <p>Cisco AI orders do $9B, NVDA H200 otwiera Chiny = nowy rynek. Beneficjenci: cały łańcuch AI &mdash; NVDA, ASML, Infineon, MSFT Azure. Strukturalny trend wieloletni bez oznak osłabienia.</p>
             </div>
           </li>
           <li class="ro-item">
             <span class="ro-bullet">O2</span>
             <div>
-              <h4>PKN Orlen · dywidenda</h4>
-              <p>Dywidenda <strong>8 PLN/akcję</strong> (+9,3 mld PLN) przy rosnących cenach ropy — atrakcyjna stopa dywidendowa.</p>
+              <h4>Allegro ALE &mdash; rekordowe EBITDA i international acceleration, potencjał +25%</h4>
+              <p>Konsensus 17 analityków: 38,50 PLN vs. 30,72 PLN (+25%). Ekspansja international +67% r/r to nowy motor wzrostu. Wyniki Q1 biją konsensus, guidance podniesiony.</p>
             </div>
           </li>
           <li class="ro-item">
             <span class="ro-bullet">O3</span>
             <div>
-              <h4>Dino Polska (DNP)</h4>
-              <p>Organiczny wzrost sieci w Polsce; defensywna spółka w otoczeniu inflacyjnym (żywność); wyniki Q1'26 — potencjalny katalizator.</p>
+              <h4>GPW momentum: WIG +1,51%, lokalne wyniki napędzają indeks</h4>
+              <p>GPW korzysta z globalnego risk-on i silnych wyników PKO BP i ALE. WIG20 na 3 642 pkt, blisko rocznych maksimów. Napływy z funduszy EM mogą wzmocnić trend.</p>
             </div>
           </li>
           <li class="ro-item">
             <span class="ro-bullet">O4</span>
             <div>
-              <h4>NVDA · pre-wyniki</h4>
-              <p>Konsensus EPS <strong>+118,5% r/r</strong>; underowned vs. S&amp;P 500 — potencjalna baza do wzrostów przed raportem 20.05.</p>
+              <h4>PKO BP zbliża się do 100 PLN &mdash; silne wyniki przy wysokich stopach NBP</h4>
+              <p>Zysk 2,52 mld PLN (+6,4% vs. konsensus), kurs 99,74 PLN. Wysokie stopy NBP wspierają marżę odsetkową. Sektor bankowy GPW atrakcyjny przy PE poniżej europejskich odpowiedników.</p>
             </div>
           </li>
           <li class="ro-item">
             <span class="ro-bullet">O5</span>
             <div>
-              <h4>META · re-rate</h4>
-              <p>Najniższy P/E w grupie Mag 7 (<strong>19,8x fwd</strong>) przy EPS +61% — potencjalnie relatywnie tania.</p>
+              <h4>Ropa $106+ &mdash; PKN Orlen może odnotować poprawę marży rafineryjnej Q2 2026</h4>
+              <p>Wyniki Q1 PKN spodziewane 16 maja. Brent $106+ może wspierać marże rafineryjne w Q2 2026. Spółka wypłaca regularną dywidendę i ma stabilną pozycję rynkową.</p>
             </div>
           </li>
           <li class="ro-item">
             <span class="ro-bullet">O6</span>
             <div>
-              <h4>AMZN · AWS accelerates</h4>
-              <p>Cloud momentum pozytywny; potencjalny laggard do dogonienia w grupie Mag 7.</p>
-            </div>
-          </li>
-          <li class="ro-item">
-            <span class="ro-bullet">O7</span>
-            <div>
-              <h4>VWO / VXUS</h4>
-              <p>Przy uspokojeniu sytuacji geopolitycznej i obniżeniu cen ropy — rynki wschodzące i europejskie mogą odreagować.</p>
+              <h4>Trump&ndash;Xi truce: stabilizacja US-China trade to makro-pozytyw dla EM i ETF</h4>
+              <p>Konstruktywne rozmowy zmniejszają ryzyko eskalacji handlowej. Beneficjenci: VWO (EM ETF), VXUS, Korea (+1,75%), europejski tech (ASML +5,5%). Długoterminowo pozytywne dla WIG i globalnych portfeli.</p>
             </div>
           </li>
         </ul>
@@ -1232,56 +919,50 @@
 
 </div><!-- /wrap -->
 
-<!-- ============ FOOTER ============ -->
+<!-- FOOTER -->
 <footer class="foot">
   <div class="foot-grid">
     <div>
       <h4>O raporcie</h4>
-      <p>Codzienna Analiza Rynkowa — wydanie 2026-05-14. Wewnętrzny brief redakcyjny: makro, big tech, GPW, smart money. Czas przygotowania: ~45 min. Dane wg. zamknięcia sesji EU oraz pre-market USA.</p>
+      <p>Codzienna Analiza Rynkowa &mdash; wydanie 2026-05-14 (Czwartek). Automatyczny brief: makro, big tech, GPW, smart money. Dane wg sesji GPW i intraday USA (maj 2026). Raport wygenerowany przez MarketScope.</p>
     </div>
     <div>
       <h4>Źródła</h4>
       <ul>
-        <li>BLS · CPI report</li>
-        <li>CNBC · Bloomberg · Reuters</li>
-        <li>Yahoo Finance · Fortune · WSJ</li>
-        <li>Strefa Inwestorów · Bankier.pl · Stooq</li>
-        <li>Morgan Stanley 13F analysis</li>
-        <li>SEC 13F filings · IEA · BBN Times</li>
+        <li>CNBC &middot; TheStreet &middot; Al Jazeera &middot; Reuters</li>
+        <li>Bankier.pl &middot; Stooq.pl &middot; StockWatch.pl</li>
+        <li>Yahoo Finance &middot; Motley Fool &middot; Investing.com</li>
+        <li>SEC 13F filings &middot; BLS &middot; 13F Insight</li>
+        <li>Trading Economics &middot; Fortune &middot; HedgeFollow</li>
       </ul>
     </div>
     <div>
       <h4>Sekcje</h4>
       <ul>
-        <li><a href="#newsy" style="color:var(--fg-3);text-decoration:none">→ Najważniejsze newsy (7)</a></li>
-        <li><a href="#kalendarz" style="color:var(--fg-3);text-decoration:none">→ Kalendarz makro</a></li>
-        <li><a href="#flows" style="color:var(--fg-3);text-decoration:none">→ Przepływy instytucjonalne</a></li>
-        <li><a href="#watchlist" style="color:var(--fg-3);text-decoration:none">→ Watchlist</a></li>
-        <li><a href="#risks" style="color:var(--fg-3);text-decoration:none">→ Ryzyka i okazje</a></li>
-        <li><a href="#podsumowanie" style="color:var(--fg-3);text-decoration:none">→ Podsumowanie</a></li>
+        <li><a href="#newsy" style="color:var(--fg-3);text-decoration:none">&#8594; Najważniejsze newsy</a></li>
+        <li><a href="#kalendarz" style="color:var(--fg-3);text-decoration:none">&#8594; Kalendarz makro</a></li>
+        <li><a href="#flows" style="color:var(--fg-3);text-decoration:none">&#8594; Przepływy instytucjonalne</a></li>
+        <li><a href="#watchlist" style="color:var(--fg-3);text-decoration:none">&#8594; Watchlist</a></li>
+        <li><a href="#risks" style="color:var(--fg-3);text-decoration:none">&#8594; Ryzyka i okazje</a></li>
+        <li><a href="#podsumowanie" style="color:var(--fg-3);text-decoration:none">&#8594; Podsumowanie</a></li>
       </ul>
     </div>
   </div>
-
   <div class="foot-grid" style="margin-top:24px">
     <div class="disclaimer" style="grid-column:1/-1">
       <strong>Disclaimer.</strong> Niniejszy materiał ma charakter wyłącznie informacyjny i edukacyjny.
-      <strong>Nie stanowi</strong> rekomendacji inwestycyjnej w rozumieniu Rozporządzenia Parlamentu Europejskiego i Rady (UE) nr 596/2014 (MAR),
-      ani porady inwestycyjnej, podatkowej lub prawnej. Dane rynkowe pochodzą ze źródeł uznanych za wiarygodne, ale ich poprawność, kompletność
-      ani aktualność nie jest gwarantowana. Inwestowanie w instrumenty finansowe wiąże się z ryzykiem utraty części lub całości zainwestowanego kapitału.
-      Decyzje inwestycyjne należy podejmować na podstawie własnej analizy oraz po konsultacji z licencjonowanym doradcą.
-      Autor nie ponosi odpowiedzialności za decyzje podjęte na podstawie niniejszego materiału.
+      <strong>Nie stanowi</strong> rekomendacji inwestycyjnej w rozumieniu Rozporządzenia (UE) nr 596/2014 (MAR),
+      ani porady inwestycyjnej, podatkowej lub prawnej. Inwestowanie w instrumenty finansowe wiąże się z ryzykiem
+      utraty części lub całości zainwestowanego kapitału. Decyzje inwestycyjne podejmuj na podstawie własnej analizy.
     </div>
   </div>
-
   <div style="max-width:1440px;margin:24px auto 0;padding:0 28px;display:flex;justify-content:space-between;align-items:center;color:var(--fg-4);font-size:11px;font-family:'JetBrains Mono',monospace">
-    <div>© 2026 MarketScope · Daily Analiza · build 2026-05-14</div>
-    <div>v1.0 · internal edition</div>
+    <div>&copy; 2026 MarketScope &middot; Daily Analiza &middot; build 2026-05-14</div>
+    <div>v1.0 &middot; auto-generated</div>
   </div>
 </footer>
 
 <script>
-  // simple live clock (CET)
   (function(){
     const el = document.getElementById('clock');
     if (!el) return;
@@ -1296,17 +977,12 @@
     tick();
     setInterval(tick, 1000);
   })();
-
-  // smooth scroll for nav anchors
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
     a.addEventListener('click', e=>{
       const id = a.getAttribute('href');
       if (id.length>1){
         const target = document.querySelector(id);
-        if (target){
-          e.preventDefault();
-          window.scrollTo({top: target.getBoundingClientRect().top + window.scrollY - 70, behavior:'smooth'});
-        }
+        if (target){ e.preventDefault(); window.scrollTo({top: target.getBoundingClientRect().top + window.scrollY - 70, behavior:'smooth'}); }
       }
     });
   });
