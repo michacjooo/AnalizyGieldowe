@@ -5,15 +5,13 @@ lang: pl
 url: "https://michacjooo.github.io"
 baseurl: "/AnalizyGieldowe"
 
-minima:
-  skin: dark
-
-header_pages:
-  - README.md
-
 exclude:
   - CLAUDE.md
   - watchlists/
   - data/
   - .env
-  - .env.example
+  - .claude/skills/
+  - Gemfile
+  - Gemfile.lock
+
+header_pages: []
