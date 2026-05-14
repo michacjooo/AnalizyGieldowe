@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Analizy Giełdowe — MarketScope</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:        #0a0e17;
+    --bg-1:     #0f1420;
+    --bg-2:     #131a28;
+    --bg-3:     #1a2334;
+    --line:     #232d44;
+    --line-2:   #2c3953;
+    --fg:        #e6ebf5;
+    --fg-2:     #aab4cc;
+    --fg-3:     #6b7791;
+    --fg-4:     #4a546b;
+    --pos:        #19c37d;
+    --pos-bg:   rgba(25,195,125,.10);
+    --pos-line: rgba(25,195,125,.32);
+    --neg:        #ff5d5d;
+    --neg-bg:   rgba(255,93,93,.10);
+    --neg-line: rgba(255,93,93,.32);
+    --amber:    #f5a524;
+    --amber-bg: rgba(245,165,36,.10);
+    --amber-line: rgba(245,165,36,.32);
+    --info:        #4f9dff;
+    --info-bg:    rgba(79,157,255,.10);
+    --info-line:rgba(79,157,255,.32);
+    --shadow-1: 0 1px 0 rgba(255,255,255,.02) inset, 0 1px 2px rgba(0,0,0,.4);
+    --shadow-2: 0 1px 0 rgba(255,255,255,.03) inset, 0 8px 24px -8px rgba(0,0,0,.5);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg);color:var(--fg);
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    font-size:14px;line-height:1.55;
+    font-feature-settings:"ss01","cv11","tnum";
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+  /* ========= NAV ========= */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(10,14,23,.85);backdrop-filter:saturate(140%) blur(8px);-webkit-backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:1440px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:24px}
+  .brand{display:flex;align-items:center;gap:12px;min-width:0}
+  .brand-mark{width:28px;height:28px;border:1px solid var(--line-2);border-radius:4px;background:var(--bg-2);display:grid;place-items:center;color:var(--pos);font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px}
+  .brand-title{font-weight:600;letter-spacing:-.01em;font-size:14px;white-space:nowrap}
+  .brand-sub{color:var(--fg-3);font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em;text-transform:uppercase}
+  .nav-menu{display:flex;align-items:center;gap:4px;margin-left:24px;flex:1;min-width:0;overflow:hidden}
+  .nav-menu a{color:var(--fg-2);text-decoration:none;font-size:12px;padding:6px 10px;border-radius:3px;letter-spacing:.02em;white-space:nowrap}
+  .nav-menu a:hover{color:var(--fg);background:var(--bg-2)}
+  .nav-menu a.active{color:var(--fg);background:var(--bg-2)}
+  .nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0}
+  .nav-date{display:flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:3px;background:var(--bg-1);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--fg-2)}
+  .live-dot{width:6px;height:6px;border-radius:50%;background:var(--pos);box-shadow:0 0 0 3px rgba(25,195,125,.18);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .nav-clock{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--fg-3)}
+
+  /* ========= LAYOUT ========= */
+  .wrap{max-width:1440px;margin:0 auto;padding:28px}
+  .section{margin:40px 0}
+  .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+  .section-title{margin:0;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--fg-2);display:flex;align-items:center;gap:10px}
+  .section-title::before{content:"";display:inline-block;width:6px;height:6px;background:var(--pos);border-radius:1px}
+  .section-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg-3);letter-spacing:.04em}
+
+  /* ========= HERO ========= */
+  .hero{padding:40px 0 8px}
+  .hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--pos);letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .hero h1{margin:0 0 14px;font-size:56px;font-weight:700;letter-spacing:-.03em;line-height:1.02;text-wrap:balance}
+  .hero h1 .accent{color:var(--fg-3);font-weight:400}
+  .hero-lead{color:var(--fg-2);font-size:16px;max-width:760px;text-wrap:pretty;line-height:1.55}
+
+  /* schedule strip */
+  .schedule{
+    margin-top:30px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;
+  }
+  .sch-cell{background:var(--bg-1);padding:16px 18px}
+  .sch-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--fg-3);letter-spacing:.14em;text-transform:uppercase}
+  .sch-value{font-size:18px;font-weight:600;margin-top:8px;letter-spacing:-.005em;display:flex;align-items:baseline;gap:8px}
+  .sch-value .mono{font-family:'JetBrains Mono',monospace}
+  .sch-meta{font-size:12px;color:var(--fg-3);margin-top:4px;font-family:'JetBrains Mono',monospace}
+
+  /* ========= FEATURED LATEST ========= */
+  .latest{
+    display:grid;grid-template-columns:1.4fr 1fr;gap:1px;
+    background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;
+    box-shadow:var(--shadow-2);
+  }
+  .latest-main{background:var(--bg-1);padding:28px 30px;position:relative}
+  .latest-aside{background:var(--bg-1);padding:24px 26px;display:flex;flex-direction:column;gap:16px}
+  .latest-tag{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--pos);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+  .latest h2{margin:0 0 10px;font-size:30px;font-weight:600;letter-spacing:-.02em;line-height:1.15;text-wrap:balance}
+  .latest h2 a{color:inherit;text-decoration:none}
+  .latest h2 a:hover{color:var(--pos)}
+  .latest-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg-3);letter-spacing:.04em;display:flex;flex-wrap:wrap;gap:12px;margin-bottom:18px}
+  .latest-meta .sep{width:3px;height:3px;background:var(--fg-4);border-radius:50%;align-self:center}
+  .latest-summary{color:var(--fg-2);font-size:14px;line-height:1.65;max-width:60ch}
+  .latest-cta{margin-top:22px;display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border:1px solid var(--pos-line);background:var(--pos-bg);color:var(--pos);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.06em;text-decoration:none;border-radius:3px;text-transform:uppercase;transition:all .15s}
+  .latest-cta:hover{background:rgba(25,195,125,.18);border-color:var(--pos)}
+  .latest-cta::after{content:"→";font-size:14px}
+
+  .key-list{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-top:4px}
+  .key-row{background:var(--bg-1);padding:11px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .key-name{font-size:12px;color:var(--fg-2);font-weight:500}
+  .key-val{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;display:flex;align-items:center;gap:8px}
+  .delta-up{color:var(--pos)}
+  .delta-down{color:var(--neg)}
+  .delta-flat{color:var(--amber)}
+
+  .aside-heading{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--fg-3);letter-spacing:.14em;text-transform:uppercase}
+
+  /* ========= REPORT GRID ========= */
+  .reports{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:flex-start}
+  .report-block{border:1px solid var(--line);background:var(--bg-1);border-radius:6px;overflow:hidden}
+  .rb-head{padding:14px 18px;border-bottom:1px solid var(--line);background:var(--bg-2);display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .rb-head h3{margin:0;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--fg);display:flex;align-items:center;gap:10px}
+  .rb-head h3 .pill{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--fg-3);background:var(--bg-3);border:1px solid var(--line-2);padding:2px 7px;border-radius:3px;letter-spacing:.06em}
+  .rb-count{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg-3)}
+  .rb-body{padding:0}
+
+  table.tbl{width:100%;border-collapse:collapse;font-size:13px}
+  table.tbl th{text-align:left;background:var(--bg-2);color:var(--fg-3);font-weight:500;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;padding:10px 16px;border-bottom:1px solid var(--line);white-space:nowrap}
+  table.tbl td{padding:13px 16px;border-bottom:1px solid var(--line);color:var(--fg-2);vertical-align:middle}
+  table.tbl tr:last-child td{border-bottom:none}
+  table.tbl tr.report-row{cursor:pointer;transition:background .12s}
+  table.tbl tr.report-row:hover td{background:var(--bg-2)}
+  table.tbl td.t-date{font-family:'JetBrains Mono',monospace;color:var(--fg);font-weight:500;white-space:nowrap;width:120px}
+  table.tbl td.t-title a{color:var(--fg);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:8px}
+  table.tbl td.t-title a:hover{color:var(--pos)}
+  table.tbl td.t-title a::after{content:"↗";color:var(--fg-3);font-size:11px;opacity:0;transition:opacity .12s;font-family:'JetBrains Mono',monospace}
+  table.tbl tr.report-row:hover td.t-title a::after{opacity:1}
+  table.tbl td.t-status{text-align:right;width:130px;white-space:nowrap}
+
+  /* badges */
+  .badge{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border-radius:3px;font-size:11px;font-weight:500;letter-spacing:.04em;font-family:'JetBrains Mono',monospace;border:1px solid transparent;white-space:nowrap}
+  .badge-pos{color:var(--pos);background:var(--pos-bg);border-color:var(--pos-line)}
+  .badge-neg{color:var(--neg);background:var(--neg-bg);border-color:var(--neg-line)}
+  .badge-amber{color:var(--amber);background:var(--amber-bg);border-color:var(--amber-line)}
+  .badge-info{color:var(--info);background:var(--info-bg);border-color:var(--info-line)}
+  .badge-neutral{color:var(--fg-3);background:var(--bg-2);border-color:var(--line)}
+  .badge-dot::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor}
+
+  /* ========= INFO STRIP ========= */
+  .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:24px}
+  .info-card{border:1px solid var(--line);border-radius:6px;background:var(--bg-1);padding:22px 22px 20px}
+  .info-card-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg-3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+  .info-card-num .ico{width:14px;height:14px;color:var(--pos)}
+  .info-card h4{margin:0 0 6px;font-size:16px;font-weight:600;letter-spacing:-.01em}
+  .info-card p{margin:0;font-size:13px;color:var(--fg-2);line-height:1.6}
+
+  /* ========= EMPTY STATE row ========= */
+  .empty-row td{color:var(--fg-3);font-style:normal;text-align:center;padding:22px 16px;font-family:'JetBrains Mono',monospace;font-size:12px}
+
+  /* ========= FOOTER ========= */
+  .foot{margin-top:64px;padding:32px 0 48px;border-top:1px solid var(--line)}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;max-width:1440px;margin:0 auto;padding:0 28px}
+  .foot h4{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--fg-3);margin:0 0 12px;font-family:'JetBrains Mono',monospace}
+  .foot p,.foot li{font-size:12px;color:var(--fg-3);line-height:1.6}
+  .foot ul{padding:0;margin:0;list-style:none}
+  .foot li{padding:3px 0}
+  .foot a{color:var(--fg-3);text-decoration:none}
+  .foot a:hover{color:var(--fg)}
+  .disclaimer{margin-top:28px;padding:16px;border:1px dashed var(--line-2);border-radius:4px;background:var(--bg-1);color:var(--fg-3);font-size:11.5px;line-height:1.6;font-family:'JetBrains Mono',monospace}
+  .disclaimer strong{color:var(--amber);font-weight:600}
+
+  /* icons */
+  .ico path,.ico circle,.ico rect,.ico line,.ico polyline,.ico polygon{stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+  /* responsive */
+  @media (max-width:1100px){
+    .hero h1{font-size:40px}
+    .latest{grid-template-columns:1fr}
+    .reports{grid-template-columns:1fr}
+    .schedule{grid-template-columns:repeat(2,1fr)}
+    .info-grid{grid-template-columns:1fr}
+    .nav-menu{display:none}
+  }
+  @media (max-width:640px){
+    .hero h1{font-size:30px}
+    .latest h2{font-size:22px}
+    .wrap{padding:18px}
+    .nav-inner{padding:10px 16px;gap:10px}
+    .nav-date span:not(.live-dot){display:none}
+    .latest-main,.latest-aside{padding:20px}
+    table.tbl th,table.tbl td{padding:10px 12px}
+    table.tbl td.t-status{width:auto}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="brand-mark">M</div>
+      <div>
+        <div class="brand-title">MarketScope <span style="color:var(--fg-3);font-weight:400">/ Analizy Giełdowe</span></div>
+        <div class="brand-sub">Archive · auto-generated</div>
+      </div>
+    </div>
+    <div class="nav-menu">
+      <a href="#" class="active">Strona główna</a>
+      <a href="#daily">Raporty dzienne</a>
+      <a href="#weekly">Raporty tygodniowe</a>
+      <a href="#schedule">Harmonogram</a>
+      <a href="#about">O serwisie</a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-clock mono" id="clock">14:32:08 CET</div>
+      <div class="nav-date">
+        <span class="live-dot"></span>
+        <span id="today-pill">LIVE · 2026-05-14</span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-eyebrow">
+      <span class="live-dot"></span> Daily &amp; Weekly Market Briefs
+    </div>
+    <h1>
+      Analizy Giełdowe.<br>
+      <span class="accent">Automatyczne raporty rynkowe — codziennie o 7:00 i w niedziele.</span>
+    </h1>
+    <p class="hero-lead">
+      Wewnętrzny serwis kuratoruje najważniejsze newsy z USA, Europy i GPW, kalendarz makro,
+      przepływy instytucjonalne oraz watchlistę. Każdy raport jest generowany automatycznie ze sprawdzonych źródeł
+      i archiwizowany w jednym miejscu.
+    </p>
+
+    <div class="schedule" id="schedule">
+      <div class="sch-cell">
+        <div class="sch-label">Raporty dzienne</div>
+        <div class="sch-value"><span class="mono">07:00</span> <span style="font-size:12px;color:var(--fg-3);font-weight:400">CET · pn–pt</span></div>
+        <div class="sch-meta">Pre-market briefing</div>
+      </div>
+      <div class="sch-cell">
+        <div class="sch-label">Raport tygodniowy</div>
+        <div class="sch-value"><span>Niedziela</span></div>
+        <div class="sch-meta">Tygodniowe podsumowanie</div>
+      </div>
+      <div class="sch-cell">
+        <div class="sch-label">Najnowsze wydanie</div>
+        <div class="sch-value"><span class="mono">2026-05-14</span></div>
+        <div class="sch-meta" style="color:var(--pos)">● Świeże · 0 min temu</div>
+      </div>
+      <div class="sch-cell">
+        <div class="sch-label">Następne wydanie</div>
+        <div class="sch-value"><span class="mono">2026-05-15 · 07:00</span></div>
+        <div class="sch-meta">za ~16h 28min</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURED LATEST ============ -->
+  <section class="section" id="featured">
+    <div class="section-head">
+      <h2 class="section-title">Najnowszy raport</h2>
+      <div class="section-meta">FEATURED · 2026-05-14</div>
+    </div>
+
+    <div class="latest">
+      <!-- Main -->
+      <div class="latest-main">
+        <div class="latest-tag"><span class="live-dot"></span> Wydanie 2026-05-14 · Czwartek</div>
+        <h2><a href="reports/2026-05-14.html">Inflacja 3,8% i ropa 106 USD ciążą Fedowi. Wyniki sezonowe biją rekordy — WIG na ATH, Cisco +15%.</a></h2>
+        <div class="latest-meta">
+          <span>2026-05-14</span><span class="sep"></span>
+          <span>7 newsów</span><span class="sep"></span>
+          <span>Kalendarz · 8 wydarzeń</span><span class="sep"></span>
+          <span>Watchlist · 12 spółek</span>
+        </div>
+        <p class="latest-summary">
+          Rynki amerykańskie wzrosły mimo gorącego odczytu CPI dzięki rekordowemu sezonowi wyników
+          (+27,7% r/r EPS, 84% beatów). Szczyt Trump–Xi przyniósł 90-dniowy rozejm celny i nowy „Board of Trade",
+          lecz Cieśnina Ormuz pozostaje zamknięta. GPW notuje historyczny szczyt WIG przed dniem raportowym
+          pięciu blue chipów.
+        </p>
+        <a class="latest-cta" href="reports/2026-05-14.html">Czytaj pełną analizę</a>
+      </div>
+
+      <!-- Aside: live tape -->
+      <div class="latest-aside">
+        <div class="aside-heading">Migawka sesji · 14:32 CET</div>
+        <div class="key-list">
+          <div class="key-row"><span class="key-name">S&amp;P 500</span><span class="key-val mono">7 446 <span class="delta-up">▲ +0,61%</span></span></div>
+          <div class="key-row"><span class="key-name">Nasdaq</span><span class="key-val mono">26 407 <span class="delta-up">▲ +1,22%</span></span></div>
+          <div class="key-row"><span class="key-name">Dow Jones</span><span class="key-val mono">49 614 <span class="delta-down">▼ −0,30%</span></span></div>
+          <div class="key-row"><span class="key-name">WIG <span style="color:var(--pos);font-size:10px">ATH</span></span><span class="key-val mono">127 301 <span class="delta-up">▲ +46,6% r/r</span></span></div>
+          <div class="key-row"><span class="key-name">WIG20</span><span class="key-val mono">3 557 <span class="delta-up">▲ +1,08%</span></span></div>
+          <div class="key-row"><span class="key-name">DAX</span><span class="key-val mono">23 975 <span class="delta-up">▲ +1,30%</span></span></div>
+          <div class="key-row"><span class="key-name">Brent</span><span class="key-val mono">106,10 <span class="delta-up">▲ +7,5%</span></span></div>
+          <div class="key-row"><span class="key-name">10Y UST</span><span class="key-val mono">4,49% <span class="delta-up">▲ +3 pb</span></span></div>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--fg-4);margin-top:auto">
+          Dane z najnowszego raportu — nie odświeżane w czasie rzeczywistym.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REPORTS ============ -->
+  <section class="section" id="reports">
+
+    <div class="reports">
+      <!-- DAILY -->
+      <div class="report-block" id="daily">
+        <div class="rb-head">
+          <h3>
+            <span style="color:var(--pos)">●</span> Raporty dzienne
+            <span class="pill">codziennie · 07:00 CET</span>
+          </h3>
+          <span class="rb-count">01 wydanie</span>
+        </div>
+        <div class="rb-body">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Raport</th>
+                <th style="text-align:right">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="report-row" onclick="window.location='reports/2026-05-14.html'">
+                <td class="t-date">2026-05-14</td>
+                <td class="t-title">
+                  <a href="reports/2026-05-14.html">Analiza 2026-05-14</a>
+                  <div style="margin-top:4px;font-size:11px;color:var(--fg-3);font-family:'JetBrains Mono',monospace">CPI 3,8% · Brent 106 · WIG ATH · CSCO +15%</div>
+                </td>
+                <td class="t-status"><span class="badge badge-pos badge-dot">Świeży</span></td>
+              </tr>
+              <tr class="empty-row">
+                <td colspan="3">— Wcześniejsze wydania pojawią się tu po publikacji —</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- WEEKLY -->
+      <div class="report-block" id="weekly">
+        <div class="rb-head">
+          <h3>
+            <span style="color:var(--info)">●</span> Raporty tygodniowe
+            <span class="pill">co niedzielę</span>
+          </h3>
+          <span class="rb-count">01 wydanie</span>
+        </div>
+        <div class="rb-body">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Tydzień</th>
+                <th>Raport</th>
+                <th style="text-align:right">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="report-row" onclick="window.location='reports/weekly/2026-W20.md'">
+                <td class="t-date">2026-W20</td>
+                <td class="t-title">
+                  <a href="reports/weekly/2026-W20.md">Analiza 2026-W20</a>
+                  <div style="margin-top:4px;font-size:11px;color:var(--fg-3);font-family:'JetBrains Mono',monospace">11.05 – 17.05 · podsumowanie tygodnia</div>
+                </td>
+                <td class="t-status"><span class="badge badge-info badge-dot">Aktualny</span></td>
+              </tr>
+              <tr class="empty-row">
+                <td colspan="3">— Archiwum tygodniowe rośnie z każdą niedzielą —</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT / INFO STRIP ============ -->
+  <section class="section" id="about">
+    <div class="section-head">
+      <h2 class="section-title">Jak to działa</h2>
+      <div class="section-meta">PIPELINE · METODOLOGIA</div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-num">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <polyline points="12 7 12 12 15 14"></polyline>
+          </svg>
+          01 · Harmonogram
+        </div>
+        <h4>Codziennie o 07:00 CET</h4>
+        <p>Raport dzienny przygotowywany przed otwarciem sesji w Warszawie. Obejmuje zamknięcie USA z poprzedniego dnia, pre-market i pełną agendę makro.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-num">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 7h18"></path><path d="M3 12h18"></path><path d="M3 17h12"></path>
+            <circle cx="19" cy="17" r="2"></circle>
+          </svg>
+          02 · Źródła
+        </div>
+        <h4>BLS · Bloomberg · Reuters · Stooq</h4>
+        <p>Dane łączymy z BLS, CNBC, Bloomberg, Yahoo Finance, Strefa Inwestorów, Bankier.pl, SEC 13F filings oraz analiz Morgan Stanley.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-num">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+            <line x1="3" y1="9" x2="21" y2="9"></line>
+            <line x1="9" y1="14" x2="15" y2="14"></line>
+          </svg>
+          03 · Format
+        </div>
+        <h4>7 newsów + kalendarz + watchlist</h4>
+        <p>Każdy raport: top 7 wydarzeń z callout-em „Wpływ rynkowy", kalendarz makro 3 dni, smart money flows, watchlista, ryzyka &amp; okazje.</p>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /wrap -->
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="foot-grid">
+    <div>
+      <h4>O serwisie</h4>
+      <p>MarketScope · Analizy Giełdowe — wewnętrzny pipeline kuratorski. Raporty makro, big-tech, GPW, smart money. Generowane automatycznie ze zweryfikowanych źródeł i ręcznie przeglądane.</p>
+    </div>
+    <div>
+      <h4>Sekcje</h4>
+      <ul>
+        <li><a href="#featured">→ Najnowszy raport</a></li>
+        <li><a href="#daily">→ Raporty dzienne</a></li>
+        <li><a href="#weekly">→ Raporty tygodniowe</a></li>
+        <li><a href="#schedule">→ Harmonogram</a></li>
+        <li><a href="#about">→ Jak to działa</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Subskrypcja</h4>
+      <ul>
+        <li>RSS feed — wkrótce</li>
+        <li>E-mail · 07:00 CET — wkrótce</li>
+        <li>API · JSON archive — wkrótce</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot-grid" style="margin-top:24px">
+    <div class="disclaimer" style="grid-column:1/-1">
+      <strong>Disclaimer.</strong> Raporty mają charakter wyłącznie informacyjny i edukacyjny.
+      <strong>Nie stanowią</strong> rekomendacji inwestycyjnej w rozumieniu Rozporządzenia Parlamentu Europejskiego i Rady (UE) nr 596/2014 (MAR),
+      ani porady inwestycyjnej, podatkowej lub prawnej. Dane pochodzą ze źródeł uznanych za wiarygodne, ale ich poprawność, kompletność i aktualność
+      nie jest gwarantowana. Inwestowanie w instrumenty finansowe wiąże się z ryzykiem utraty części lub całości zainwestowanego kapitału.
+      Decyzje inwestycyjne należy podejmować na podstawie własnej analizy oraz po konsultacji z licencjonowanym doradcą.
+    </div>
+  </div>
+
+  <div style="max-width:1440px;margin:24px auto 0;padding:0 28px;display:flex;justify-content:space-between;align-items:center;color:var(--fg-4);font-size:11px;font-family:'JetBrains Mono',monospace">
+    <div>© 2026 MarketScope · Analizy Giełdowe · build 2026-05-14</div>
+    <div>v1.0 · internal edition</div>
+  </div>
+</footer>
+
+<script>
+  // live clock (Warsaw)
+  (function(){
+    const el = document.getElementById('clock');
+    if (!el) return;
+    function tick(){
+      const d = new Date();
+      const fmt = new Intl.DateTimeFormat('en-GB', {
+        timeZone:'Europe/Warsaw',
+        hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false
+      });
+      el.textContent = fmt.format(d) + ' CET';
+    }
+    tick(); setInterval(tick, 1000);
+  })();
+
+  // smooth scroll for in-page anchors
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href');
+      if (id.length>1){
+        const target = document.querySelector(id);
+        if (target){
+          e.preventDefault();
+          window.scrollTo({top: target.getBoundingClientRect().top + window.scrollY - 70, behavior:'smooth'});
+        }
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
