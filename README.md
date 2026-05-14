@@ -13,6 +13,7 @@ Automatyczne raporty rynkowe generowane codziennie o 7:00 i w niedziele.
 
 | Tydzień | Raport |
 |---------|--------|
+| 2026-W20 | [Analiza 2026-W20](reports/weekly/2026-W20.md) |
 <!-- WEEKLY_REPORTS_TABLE -->
 
 ---
