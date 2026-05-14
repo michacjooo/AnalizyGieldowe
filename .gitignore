@@ -44,5 +44,10 @@ Music/
 Pictures/
 Public/
 
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
 # Data i raporty lokalne (opcjonalnie odkomentuj jeśli nie chcesz pushować)
 # data/
