@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Codzienna Analiza Rynkowa — {{DATE}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:        #0a0e17;
+    --bg-1:     #0f1420;
+    --bg-2:     #131a28;
+    --bg-3:     #1a2334;
+    --line:     #232d44;
+    --line-2:   #2c3953;
+    --fg:        #e6ebf5;
+    --fg-2:     #aab4cc;
+    --fg-3:     #6b7791;
+    --fg-4:     #4a546b;
+    --pos:        #19c37d;
+    --pos-bg:   rgba(25,195,125,.10);
+    --pos-line: rgba(25,195,125,.32);
+    --neg:        #ff5d5d;
+    --neg-bg:   rgba(255,93,93,.10);
+    --neg-line: rgba(255,93,93,.32);
+    --amber:    #f5a524;
+    --amber-bg: rgba(245,165,36,.10);
+    --amber-line: rgba(245,165,36,.32);
+    --info:        #4f9dff;
+    --info-bg:    rgba(79,157,255,.10);
+    --info-line:rgba(79,157,255,.32);
+    --radius:   4px;
+    --shadow-1: 0 1px 0 rgba(255,255,255,.02) inset, 0 1px 2px rgba(0,0,0,.4);
+    --shadow-2: 0 1px 0 rgba(255,255,255,.03) inset, 0 8px 24px -8px rgba(0,0,0,.5);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.55;font-feature-settings:"ss01","cv11","tnum";-webkit-font-smoothing:antialiased;}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+  .nav{position:sticky;top:0;z-index:50;background:rgba(10,14,23,.85);backdrop-filter:saturate(140%) blur(8px);-webkit-backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:1440px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:24px;}
+  .brand{display:flex;align-items:center;gap:12px;min-width:0}
+  .brand-mark{width:28px;height:28px;border:1px solid var(--line-2);border-radius:4px;background:var(--bg-2);display:grid;place-items:center;color:var(--pos);font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;}
+  .brand-title{font-weight:600;letter-spacing:-.01em;font-size:14px;white-space:nowrap}
+  .brand-sub{color:var(--fg-3);font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em;text-transform:uppercase}
+  .nav-menu{display:flex;align-items:center;gap:4px;margin-left:24px;flex:1;min-width:0;overflow:hidden}
+  .nav-menu a{color:var(--fg-2);text-decoration:none;font-size:12px;padding:6px 10px;border-radius:3px;letter-spacing:.02em;white-space:nowrap;}
+  .nav-menu a:hover{color:var(--fg);background:var(--bg-2)}
+  .nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0}
+  .nav-date{display:flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:3px;background:var(--bg-1);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--fg-2);}
+  .live-dot{width:6px;height:6px;border-radius:50%;background:var(--pos);box-shadow:0 0 0 3px rgba(25,195,125,.18);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .nav-clock{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--fg-3)}
+  .wrap{max-width:1440px;margin:0 auto;padding:28px}
+  .section{margin:48px 0}
+  .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--line);}
+  .section-title{margin:0;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--fg-2);display:flex;align-items:center;gap:10px;}
+  .section-title::before{content:"";display:inline-block;width:6px;height:6px;background:var(--pos);border-radius:1px;}
+  .section-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg-3);letter-spacing:.04em}
+  .hero{padding:40px 0 8px;}
+  .hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--pos);letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+  .hero h1{margin:0 0 14px;font-size:44px;font-weight:700;letter-spacing:-.025em;line-height:1.05;text-wrap:balance;}
+  .hero h1 .accent{color:var(--fg-3);font-weight:400}
+  .hero-lead{color:var(--fg-2);font-size:16px;max-width:760px;text-wrap:pretty;line-height:1.55;}
+  .hero-stats{margin-top:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:4px;overflow:hidden;}
+  .hero-stat{background:var(--bg-1);padding:16px 18px}
+  .hero-stat-label{font-size:11px;color:var(--fg-3);text-transform:uppercase;letter-spacing:.1em;font-family:'JetBrains Mono',monospace}
+  .hero-stat-value{font-size:22px;font-weight:600;margin-top:6px;letter-spacing:-.01em}
+  .hero-stat-delta{font-size:12px;margin-top:4px;font-family:'JetBrains Mono',monospace}
+  .dash{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--bg-1);box-shadow:var(--shadow-2);}
+  .dash-head{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:var(--bg-2);border-bottom:1px solid var(--line);}
+  .dash-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg-2);letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+  .dash-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);}
+  .dash-cell{background:var(--bg-1);padding:14px 18px;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--line);}
+  .dash-cell:nth-last-child(-n+4){border-bottom:none}
+  .dash-ticker{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
+  .dash-name{font-size:12px;color:var(--fg-2);font-weight:500;letter-spacing:.02em}
+  .dash-trend{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--fg-3);letter-spacing:.08em;text-transform:uppercase}
+  .dash-price{font-size:20px;font-weight:600;letter-spacing:-.01em;font-family:'JetBrains Mono',monospace}
+  .dash-delta{font-family:'JetBrains Mono',monospace;font-size:12px;display:inline-flex;align-items:center;gap:6px;font-weight:500}
+  .delta-up{color:var(--pos)}.delta-down{color:var(--neg)}.delta-flat{color:var(--amber)}
+  .badge{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border-radius:3px;font-size:11px;font-weight:500;letter-spacing:.04em;font-family:'JetBrains Mono',monospace;border:1px solid transparent;white-space:nowrap;}
+  .badge-pos{color:var(--pos);background:var(--pos-bg);border-color:var(--pos-line)}
+  .badge-neg{color:var(--neg);background:var(--neg-bg);border-color:var(--neg-line)}
+  .badge-amber{color:var(--amber);background:var(--amber-bg);border-color:var(--amber-line)}
+  .badge-info{color:var(--info);background:var(--info-bg);border-color:var(--info-line)}
+  .badge-neutral{color:var(--fg-2);background:var(--bg-2);border-color:var(--line)}
+  .badge-dot::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor;}
+  .ticker-chip{display:inline-flex;align-items:center;padding:2px 7px;border:1px solid var(--line-2);background:var(--bg-2);border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--fg);}
+  .news-grid{display:grid;grid-template-columns:1fr;gap:20px}
+  .news{border:1px solid var(--line);border-radius:6px;background:var(--bg-1);overflow:hidden;box-shadow:var(--shadow-1);}
+  .news-head{display:flex;gap:18px;padding:22px 24px 18px;border-bottom:1px solid var(--line);align-items:flex-start;}
+  .news-icon{flex-shrink:0;width:44px;height:44px;border-radius:4px;background:var(--bg-3);border:1px solid var(--line-2);display:grid;place-items:center;color:var(--fg);}
+  .news-icon svg{width:22px;height:22px}
+  .news-num{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg-3);letter-spacing:.12em;margin-bottom:6px;}
+  .news-headline{margin:0;font-size:20px;font-weight:600;letter-spacing:-.015em;line-height:1.3;text-wrap:balance;}
+  .news-meta{margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg-3);}
+  .news-meta-sep{width:3px;height:3px;background:var(--fg-4);border-radius:50%}
+  .news-body{padding:20px 24px;color:var(--fg-2);font-size:14px;line-height:1.65}
+  .news-body p{margin:0 0 12px}.news-body p:last-child{margin-bottom:0}
+  .news-body strong{color:var(--fg);font-weight:600}
+  .news-body .data{font-family:'JetBrains Mono',monospace;color:var(--fg);font-weight:500;background:var(--bg-2);padding:0 4px;border-radius:2px;}
+  .impact{margin:0 24px 22px;border:1px solid var(--info-line);background:var(--info-bg);border-radius:4px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start;position:relative;}
+  .impact::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--info);}
+  .impact-label{flex-shrink:0;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--info);letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding-top:2px;min-width:130px;}
+  .impact-body{font-size:13.5px;color:var(--fg);line-height:1.6}
+  .impact-body strong{color:#fff;font-weight:600}
+  .news-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;padding:0 24px;}
+  .tbl-wrap{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--bg-1);}
+  table.tbl{width:100%;border-collapse:collapse;font-size:13px;}
+  table.tbl th{text-align:left;background:var(--bg-2);color:var(--fg-3);font-weight:500;font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.08em;padding:11px 14px;border-bottom:1px solid var(--line);white-space:nowrap;}
+  table.tbl td{padding:13px 14px;border-bottom:1px solid var(--line);color:var(--fg-2);vertical-align:middle;}
+  table.tbl tr:last-child td{border-bottom:none}
+  table.tbl tr:hover td{background:var(--bg-2)}
+  table.tbl td.num{font-family:'JetBrains Mono',monospace;color:var(--fg);text-align:right;white-space:nowrap}
+  table.tbl td.t-ticker{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--fg);letter-spacing:.04em}
+  table.tbl td strong{color:var(--fg);font-weight:600}
+  .flag{font-size:13px;margin-right:4px}
+  .trend{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500}
+  .trend-down{color:var(--neg)}.trend-up{color:var(--pos)}.trend-flat{color:var(--amber)}
+  .arrow{font-size:14px;line-height:1}
+  .ro-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .ro-col{border:1px solid var(--line);border-radius:6px;background:var(--bg-1);overflow:hidden;}
+  .ro-head{padding:14px 18px;border-bottom:1px solid var(--line);background:var(--bg-2);display:flex;align-items:center;justify-content:space-between;}
+  .ro-head h3{margin:0;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:10px;}
+  .ro-risks .ro-head{border-top:2px solid var(--neg)}.ro-risks h3{color:var(--neg)}
+  .ro-opps  .ro-head{border-top:2px solid var(--pos)}.ro-opps  h3{color:var(--pos)}
+  .ro-count{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg-3)}
+  .ro-list{margin:0;padding:8px 0;list-style:none}
+  .ro-item{padding:14px 18px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:flex-start;}
+  .ro-list .ro-item:last-child{border-bottom:none}
+  .ro-bullet{flex-shrink:0;width:18px;height:18px;border-radius:3px;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;margin-top:2px;}
+  .ro-risks .ro-bullet{background:var(--neg-bg);color:var(--neg);border:1px solid var(--neg-line)}
+  .ro-opps  .ro-bullet{background:var(--pos-bg);color:var(--pos);border:1px solid var(--pos-line)}
+  .ro-item h4{margin:0 0 4px;font-size:13.5px;font-weight:600;color:var(--fg);letter-spacing:-.005em}
+  .ro-item p{margin:0;font-size:13px;color:var(--fg-2);line-height:1.55}
+  .foot{margin-top:64px;padding:32px 0 48px;border-top:1px solid var(--line);}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;max-width:1440px;margin:0 auto;padding:0 28px}
+  .foot h4{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--fg-3);margin:0 0 12px;font-family:'JetBrains Mono',monospace}
+  .foot p,.foot li{font-size:12px;color:var(--fg-3);line-height:1.6}
+  .foot ul{padding:0;margin:0;list-style:none}.foot li{padding:3px 0}
+  .disclaimer{margin-top:28px;padding:16px;border:1px dashed var(--line-2);border-radius:4px;background:var(--bg-1);color:var(--fg-3);font-size:11.5px;line-height:1.6;font-family:'JetBrains Mono',monospace;}
+  .disclaimer strong{color:var(--amber);font-weight:600}
+  @media (max-width:1000px){.hero h1{font-size:32px}.hero-stats{grid-template-columns:repeat(2,1fr)}.dash-cols{grid-template-columns:repeat(2,1fr)}.dash-cell{border-bottom:1px solid var(--line)!important}.ro-grid{grid-template-columns:1fr}.foot-grid{grid-template-columns:1fr}.nav-menu{display:none}.wrap{padding:20px}.news-head{flex-direction:column;gap:14px}.impact{flex-direction:column;gap:6px}.impact-label{min-width:0}}
+  @media (max-width:640px){.hero h1{font-size:26px}.hero-stats{grid-template-columns:1fr 1fr}.dash-cols{grid-template-columns:1fr}table.tbl{font-size:12px}table.tbl th,table.tbl td{padding:10px 10px}.wrap{padding:16px}.nav-inner{padding:10px 16px;gap:10px}.nav-date span:not(.live-dot){display:none}.ro-item{grid-template-columns:1fr}}
+  .scroll-x{overflow-x:auto}.scroll-x table.tbl{min-width:680px}
+  .ico path,.ico circle,.ico rect,.ico line,.ico polyline,.ico polygon{stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="brand-mark">M</div>
+      <div>
+        <div class="brand-title">MarketScope <span style="color:var(--fg-3);font-weight:400">/ Daily Analiza</span></div>
+        <div class="brand-sub">Edition · {{DATE}}</div>
+      </div>
+    </div>
+    <div class="nav-menu">
+      <a href="#newsy">Newsy</a>
+      <a href="#kalendarz">Kalendarz</a>
+      <a href="#watchlist">Watchlist</a>
+      <a href="#flows">Smart Money</a>
+      <a href="#risks">Ryzyka</a>
+      <a href="#podsumowanie">Podsumowanie</a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-clock mono" id="clock"></div>
+      <div class="nav-date">
+        <span class="live-dot"></span>
+        <span>LIVE · {{DATE}}</span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO
+       {{DATE_DAYOFWEEK}} = dzień tygodnia po polsku (np. Czwartek)
+       Wypełnij h1 głównym headline dnia (1-2 zdania, najważniejszy temat).
+       Wypełnij hero-lead (2-3 zdania z kluczowym kontekstem dnia).
+       Hero-stats: 4 komórki — np. S&P 500, Nasdaq, WIG/ATH, Brent lub inna kluczowa metryka.
+  -->
+  <section class="hero">
+    <div class="hero-eyebrow">
+      <span class="live-dot"></span> Daily Briefing · {{DATE_DAYOFWEEK}}
+    </div>
+    <h1>
+      {{HERO_HEADLINE_LINE1}}<br>
+      <span class="accent">{{HERO_HEADLINE_LINE2}}</span>
+    </h1>
+    <p class="hero-lead">{{HERO_LEAD}}</p>
+    <div class="hero-stats">
+      <!-- 4 komórki: użyj delta-up/delta-down/delta-flat -->
+      <div class="hero-stat">
+        <div class="hero-stat-label">{{STAT1_LABEL}}</div>
+        <div class="hero-stat-value mono">{{STAT1_VALUE}}</div>
+        <div class="hero-stat-delta {{STAT1_CLASS}}">{{STAT1_DELTA}}</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">{{STAT2_LABEL}}</div>
+        <div class="hero-stat-value mono">{{STAT2_VALUE}}</div>
+        <div class="hero-stat-delta {{STAT2_CLASS}}">{{STAT2_DELTA}}</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">{{STAT3_LABEL}}</div>
+        <div class="hero-stat-value mono">{{STAT3_VALUE}}</div>
+        <div class="hero-stat-delta {{STAT3_CLASS}}">{{STAT3_DELTA}}</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">{{STAT4_LABEL}}</div>
+        <div class="hero-stat-value mono">{{STAT4_VALUE}}</div>
+        <div class="hero-stat-delta {{STAT4_CLASS}}">{{STAT4_DELTA}}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKET DASHBOARD
+       12 komórek dash-cell: S&P 500 / Nasdaq / Dow Jones / WIG
+       WIG20 / DAX / CAC 40 / Brent
+       WTI / Złoto / 10Y UST / 30Y UST·DXY
+       Każda komórka: dash-name, badge-pos/neg/amber badge-dot, dash-price, dash-delta delta-up/down/flat
+  -->
+  <section class="section" id="podsumowanie">
+    <div class="section-head">
+      <h2 class="section-title">Podsumowanie rynkowe</h2>
+      <div class="section-meta">SESSION {{DATE}}</div>
+    </div>
+    <div class="dash">
+      <div class="dash-head">
+        <div class="dash-title"><span class="live-dot"></span> GLOBAL TAPE · INDICES · COMMODITIES · RATES</div>
+        <div class="dash-trend">SESSION {{DATE}}</div>
+      </div>
+      <div class="dash-cols">
+        <!-- WSTAW 12 div.dash-cell z danymi dnia -->
+        <!-- Przykład:
+        <div class="dash-cell">
+          <div class="dash-ticker"><span class="dash-name">S&P 500</span><span class="badge badge-pos badge-dot">Wzrostowy</span></div>
+          <div class="dash-price">7 446</div>
+          <div class="dash-delta delta-up">▲ +0,61%</div>
+        </div>
+        -->
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS SECTION
+       Min. 5 artykułów. Każdy: article.news z:
+       - div.news-head: div.news-icon (SVG), div z news-num (nr + kategoria), h3.news-headline, div.news-meta (data + źródła + badge)
+       - div.news-body: paragrafy, <strong> dla kluczowych danych, <span class="data"> dla wartości liczbowych
+       - div.news-tags: span.badge.badge-neutral z kluczowymi metrykami
+       - div.impact: impact-label "Wpływ rynkowy" + impact-body
+       Kolory ikon: neg=czerwony, pos=zielony, amber=żółty, info=niebieski
+  -->
+  <section class="section" id="newsy">
+    <div class="section-head">
+      <h2 class="section-title">Najważniejsze newsy</h2>
+      <div class="section-meta">{{NEWS_COUNT}} POZYCJI · KURATOROWANE</div>
+    </div>
+    <div class="news-grid">
+      <!-- WSTAW MIN. 5 article.news -->
+    </div>
+  </section>
+
+  <!-- MACRO CALENDAR
+       table.tbl z kolumnami: Data / Kraj (z flagą) / Wydarzenie (z ticker-chip jeśli spółka) / Wpływ (badge) / Poprz. / Prognoza
+       badge-neg=🔴 wysoki, badge-amber=🟡 średni, badge-pos=🟢 niski
+  -->
+  <section class="section" id="kalendarz">
+    <div class="section-head">
+      <h2 class="section-title">Kalendarz makro · najbliższe 3 dni</h2>
+      <div class="section-meta">{{CAL_COUNT}} WYDARZEŃ</div>
+    </div>
+    <div class="tbl-wrap scroll-x">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th style="width:120px">Data</th>
+            <th style="width:130px">Kraj</th>
+            <th>Wydarzenie</th>
+            <th style="width:130px">Wpływ</th>
+            <th style="width:140px">Poprz.</th>
+            <th style="width:140px">Prognoza</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- WSTAW WIERSZE -->
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:10px;font-size:11px;color:var(--fg-3);font-family:'JetBrains Mono',monospace">
+      Źródło: Investing.com · Zacks · Strefa Inwestorów — dane orientacyjne.
+    </div>
+  </section>
+
+  <!-- INSTITUTIONAL FLOWS
+       table.tbl: Spółka / Ownership instytucjonalny / Trend / Ocena
+       Trend: span.trend.trend-down/up/flat > span.arrow (↘↗→) + tekst
+  -->
+  <section class="section" id="flows">
+    <div class="section-head">
+      <h2 class="section-title">Przepływy instytucjonalne · Smart Money</h2>
+      <div class="section-meta">SEC 13F · Q4'25 / Q1'26</div>
+    </div>
+    <div class="tbl-wrap scroll-x">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th style="width:110px">Spółka</th>
+            <th>Ownership instytucjonalny</th>
+            <th style="width:160px">Trend</th>
+            <th>Ocena</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- WSTAW WIERSZE dla NVDA, MSFT, META, AMZN -->
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:10px;font-size:11px;color:var(--fg-3);font-family:'JetBrains Mono',monospace">
+      Źródło: SEC 13F filings (dane kwartalne, opóźnienie ~45 dni).
+    </div>
+  </section>
+
+  <!-- WATCHLIST
+       table.tbl: Ticker (ticker-chip) / Rynek / Sytuacja / Status (badge)
+       Wszystkie 12 pozycji: PKN CDR PKO DNP ALE | NVDA MSFT AMZN META | VWO VXUS CSPX
+       ATH → dodaj badge-pos "🔔 ATH" obok ceny w kolumnie Sytuacja
+  -->
+  <section class="section" id="watchlist">
+    <div class="section-head">
+      <h2 class="section-title">Watchlist · spółki pod obserwacją</h2>
+      <div class="section-meta">12 POZYCJI · GPW · USA · ETF</div>
+    </div>
+    <div class="tbl-wrap scroll-x">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th style="width:100px">Ticker</th>
+            <th style="width:90px">Rynek</th>
+            <th>Sytuacja</th>
+            <th style="width:160px">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- WSTAW 12 WIERSZY -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- RISKS & OPPORTUNITIES
+       div.ro-grid: lewa kolumna ro-risks (R1–R6), prawa ro-opps (O1–O7)
+       Każdy element: li.ro-item > span.ro-bullet + div > h4 + p
+  -->
+  <section class="section" id="risks">
+    <div class="section-head">
+      <h2 class="section-title">Ryzyka &amp; Okazje · na co zwrócić uwagę</h2>
+      <div class="section-meta">{{RISK_COUNT}} RYZYK · {{OPP_COUNT}} OKAZJI</div>
+    </div>
+    <div class="ro-grid">
+      <div class="ro-col ro-risks">
+        <div class="ro-head">
+          <h3><span style="color:var(--neg)">🔴</span> Ryzyka</h3>
+          <span class="ro-count">{{RISK_COUNT}} pozycji</span>
+        </div>
+        <ul class="ro-list">
+          <!-- WSTAW li.ro-item z ro-bullet R1, R2 ... -->
+        </ul>
+      </div>
+      <div class="ro-col ro-opps">
+        <div class="ro-head">
+          <h3><span style="color:var(--pos)">🟢</span> Okazje</h3>
+          <span class="ro-count">{{OPP_COUNT}} pozycji</span>
+        </div>
+        <ul class="ro-list">
+          <!-- WSTAW li.ro-item z ro-bullet O1, O2 ... -->
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="foot-grid">
+    <div>
+      <h4>O raporcie</h4>
+      <p>Codzienna Analiza Rynkowa — wydanie {{DATE}}. Automatyczny brief: makro, big tech, GPW, smart money. Dane wg zamknięcia sesji EU oraz pre-market USA.</p>
+    </div>
+    <div>
+      <h4>Źródła</h4>
+      <ul>
+        <!-- WSTAW użyte źródła -->
+        <li>CNBC · Bloomberg · Reuters</li>
+        <li>Strefa Inwestorów · Bankier.pl · Stooq</li>
+        <li>SEC 13F filings · IEA</li>
+        <li>FMP API · BLS</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Sekcje</h4>
+      <ul>
+        <li><a href="#newsy" style="color:var(--fg-3);text-decoration:none">→ Najważniejsze newsy</a></li>
+        <li><a href="#kalendarz" style="color:var(--fg-3);text-decoration:none">→ Kalendarz makro</a></li>
+        <li><a href="#flows" style="color:var(--fg-3);text-decoration:none">→ Przepływy instytucjonalne</a></li>
+        <li><a href="#watchlist" style="color:var(--fg-3);text-decoration:none">→ Watchlist</a></li>
+        <li><a href="#risks" style="color:var(--fg-3);text-decoration:none">→ Ryzyka i okazje</a></li>
+        <li><a href="#podsumowanie" style="color:var(--fg-3);text-decoration:none">→ Podsumowanie</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-grid" style="margin-top:24px">
+    <div class="disclaimer" style="grid-column:1/-1">
+      <strong>Disclaimer.</strong> Niniejszy materiał ma charakter wyłącznie informacyjny i edukacyjny.
+      <strong>Nie stanowi</strong> rekomendacji inwestycyjnej w rozumieniu Rozporządzenia (UE) nr 596/2014 (MAR),
+      ani porady inwestycyjnej, podatkowej lub prawnej. Inwestowanie w instrumenty finansowe wiąże się z ryzykiem
+      utraty części lub całości zainwestowanego kapitału. Decyzje inwestycyjne podejmuj na podstawie własnej analizy.
+    </div>
+  </div>
+  <div style="max-width:1440px;margin:24px auto 0;padding:0 28px;display:flex;justify-content:space-between;align-items:center;color:var(--fg-4);font-size:11px;font-family:'JetBrains Mono',monospace">
+    <div>© 2026 MarketScope · Daily Analiza · build {{DATE}}</div>
+    <div>v1.0 · auto-generated</div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    const el = document.getElementById('clock');
+    if (!el) return;
+    function tick(){
+      const d = new Date();
+      const fmt = new Intl.DateTimeFormat('en-GB', {
+        timeZone:'Europe/Warsaw',
+        hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false
+      });
+      el.textContent = fmt.format(d) + ' CET';
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const id = a.getAttribute('href');
+      if (id.length>1){
+        const target = document.querySelector(id);
+        if (target){ e.preventDefault(); window.scrollTo({top: target.getBoundingClientRect().top + window.scrollY - 70, behavior:'smooth'}); }
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
