@@ -1,1 +1,48 @@
+# Secrets
 .env
+
+# macOS
+.DS_Store
+.CFUserTextEncoding
+
+# Claude internal (nie commituj)
+.claude/history.jsonl
+.claude/sessions/
+.claude/cache/
+.claude/backups/
+.claude/paste-cache/
+.claude/shell-snapshots/
+.claude/file-history/
+.claude/projects/
+.claude/plugins/
+.claude/worktrees/
+.claude/scheduled-tasks/
+.claude/skills-repo-copy/
+.claude/.last-cleanup
+.claude/mcp-needs-auth-cache.json
+.claude/settings.json
+.claude/settings.local.json
+.claude.json
+.claude.json.backup
+
+# System (nie commituj)
+.config/
+.local/
+.npm/
+.ssh/
+.zprofile
+.zsh_history
+.zsh_sessions/
+.gitconfig
+Applications/
+Desktop/
+Documents/
+Downloads/
+Library/
+Movies/
+Music/
+Pictures/
+Public/
+
+# Data i raporty lokalne (opcjonalnie odkomentuj jeśli nie chcesz pushować)
+# data/
