@@ -3,7 +3,17 @@ title: Analizy Giełdowe
 description: Codzienne i tygodniowe raporty rynkowe — GPW, USA, Europa
 lang: pl
 url: "https://michacjooo.github.io"
-baseurl: "/Inwestycje"
+baseurl: "/AnalizyGieldowe"
 
 minima:
   skin: dark
+
+header_pages:
+  - README.md
+
+exclude:
+  - CLAUDE.md
+  - watchlists/
+  - data/
+  - .env
+  - .env.example
