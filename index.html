@@ -58,7 +58,7 @@
   .nav-menu a.active{color:var(--fg);background:var(--bg-2)}
   .nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0}
   .nav-date{display:flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:3px;background:var(--bg-1);font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--fg-2)}
-  .live-dot{width:6px;height:6px;border-radius:50%;background:var(--pos);box-shadow:0 0 0 3px rgba(25,195,125,.18);animation:pulse 2s infinite}
+  .live-dot{width:6px;height:6px;border-radius:50%;background:var(--pos);box-shadow:0 0 0 3px rgba(25,195,125,.18);animation:pulse 2s infinite;display:inline-block;flex-shrink:0}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
   .nav-clock{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--fg-3)}
 
@@ -125,7 +125,6 @@
   .rb-head h3{margin:0;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--fg);display:flex;align-items:center;gap:10px}
   .rb-head h3 .pill{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--fg-3);background:var(--bg-3);border:1px solid var(--line-2);padding:2px 7px;border-radius:3px;letter-spacing:.06em}
   .rb-count{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--fg-3)}
-  .rb-body{padding:0}
 
   table.tbl{width:100%;border-collapse:collapse;font-size:13px}
   table.tbl th{text-align:left;background:var(--bg-2);color:var(--fg-3);font-weight:500;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;padding:10px 16px;border-bottom:1px solid var(--line);white-space:nowrap}
@@ -148,6 +147,10 @@
   .badge-info{color:var(--info);background:var(--info-bg);border-color:var(--info-line)}
   .badge-neutral{color:var(--fg-3);background:var(--bg-2);border-color:var(--line)}
   .badge-dot::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor}
+
+  /* ========= SKELETON ========= */
+  .skel{background:var(--bg-3);border-radius:3px;animation:shimmer 1.6s infinite}
+  @keyframes shimmer{0%,100%{opacity:.4}50%{opacity:.9}}
 
   /* ========= INFO STRIP ========= */
   .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:24px}
@@ -216,10 +219,10 @@
       <a href="#about">O serwisie</a>
     </div>
     <div class="nav-right">
-      <div class="nav-clock mono" id="clock">14:32:08 CET</div>
+      <div class="nav-clock mono" id="clock">--:--:-- CET</div>
       <div class="nav-date">
         <span class="live-dot"></span>
-        <span id="today-pill">LIVE · 2026-05-14</span>
+        <span id="today-pill">LIVE · …</span>
       </div>
     </div>
   </div>
@@ -253,15 +256,15 @@
         <div class="sch-value"><span>Niedziela</span></div>
         <div class="sch-meta">Tygodniowe podsumowanie</div>
       </div>
-      <div class="sch-cell">
+      <div class="sch-cell" id="sch-latest">
         <div class="sch-label">Najnowsze wydanie</div>
-        <div class="sch-value"><span class="mono">2026-05-14</span></div>
-        <div class="sch-meta" style="color:var(--pos)">● Świeże · 0 min temu</div>
+        <div class="sch-value"><span class="mono skel" id="sch-latest-date" style="width:120px;height:22px;display:inline-block">&nbsp;</span></div>
+        <div class="sch-meta" id="sch-latest-age" style="color:var(--pos)">…</div>
       </div>
-      <div class="sch-cell">
+      <div class="sch-cell" id="sch-next">
         <div class="sch-label">Następne wydanie</div>
-        <div class="sch-value"><span class="mono">2026-05-15 · 07:00</span></div>
-        <div class="sch-meta">za ~16h 28min</div>
+        <div class="sch-value"><span class="mono" id="sch-next-date">…</span></div>
+        <div class="sch-meta" id="sch-next-countdown">…</div>
       </div>
     </div>
   </section>
@@ -270,41 +273,23 @@
   <section class="section" id="featured">
     <div class="section-head">
       <h2 class="section-title">Najnowszy raport</h2>
-      <div class="section-meta">FEATURED · 2026-05-14</div>
+      <div class="section-meta" id="featured-meta">FEATURED · …</div>
     </div>
 
-    <div class="latest">
-      <!-- Main -->
+    <div class="latest" id="featured-main">
+      <!-- populated by JS -->
       <div class="latest-main">
-        <div class="latest-tag"><span class="live-dot"></span> Wydanie 2026-05-14 · Czwartek</div>
-        <h2><a href="reports/2026-05-14.html">Inflacja 3,8% i ropa 106 USD ciążą Fedowi. Wyniki sezonowe biją rekordy — WIG na ATH, Cisco +15%.</a></h2>
-        <div class="latest-meta">
-          <span>2026-05-14</span><span class="sep"></span>
-          <span>7 newsów</span><span class="sep"></span>
-          <span>Kalendarz · 8 wydarzeń</span><span class="sep"></span>
-          <span>Watchlist · 12 spółek</span>
-        </div>
-        <p class="latest-summary">
-          Rynki amerykańskie wzrosły mimo gorącego odczytu CPI dzięki rekordowemu sezonowi wyników
-          (+27,7% r/r EPS, 84% beatów). Szczyt Trump–Xi przyniósł 90-dniowy rozejm celny i nowy „Board of Trade",
-          lecz Cieśnina Ormuz pozostaje zamknięta. GPW notuje historyczny szczyt WIG przed dniem raportowym
-          pięciu blue chipów.
-        </p>
-        <a class="latest-cta" href="reports/2026-05-14.html">Czytaj pełną analizę</a>
+        <div class="latest-tag"><span class="live-dot"></span> <span class="skel" style="width:180px;height:13px;display:inline-block">&nbsp;</span></div>
+        <h2><span class="skel" style="width:90%;height:28px;display:block;margin-bottom:8px">&nbsp;</span><span class="skel" style="width:60%;height:28px;display:block">&nbsp;</span></h2>
+        <div class="latest-meta"><span class="skel" style="width:240px;height:12px;display:inline-block">&nbsp;</span></div>
+        <p class="latest-summary"><span class="skel" style="width:100%;height:14px;display:block;margin-bottom:6px">&nbsp;</span><span class="skel" style="width:85%;height:14px;display:block">&nbsp;</span></p>
       </div>
-
-      <!-- Aside: live tape -->
       <div class="latest-aside">
-        <div class="aside-heading">Migawka sesji · 14:32 CET</div>
-        <div class="key-list">
-          <div class="key-row"><span class="key-name">S&amp;P 500</span><span class="key-val mono">7 446 <span class="delta-up">▲ +0,61%</span></span></div>
-          <div class="key-row"><span class="key-name">Nasdaq</span><span class="key-val mono">26 407 <span class="delta-up">▲ +1,22%</span></span></div>
-          <div class="key-row"><span class="key-name">Dow Jones</span><span class="key-val mono">49 614 <span class="delta-down">▼ −0,30%</span></span></div>
-          <div class="key-row"><span class="key-name">WIG <span style="color:var(--pos);font-size:10px">ATH</span></span><span class="key-val mono">127 301 <span class="delta-up">▲ +46,6% r/r</span></span></div>
-          <div class="key-row"><span class="key-name">WIG20</span><span class="key-val mono">3 557 <span class="delta-up">▲ +1,08%</span></span></div>
-          <div class="key-row"><span class="key-name">DAX</span><span class="key-val mono">23 975 <span class="delta-up">▲ +1,30%</span></span></div>
-          <div class="key-row"><span class="key-name">Brent</span><span class="key-val mono">106,10 <span class="delta-up">▲ +7,5%</span></span></div>
-          <div class="key-row"><span class="key-name">10Y UST</span><span class="key-val mono">4,49% <span class="delta-up">▲ +3 pb</span></span></div>
+        <div class="aside-heading">Migawka sesji</div>
+        <div class="key-list" id="featured-tape">
+          <div class="key-row"><span class="skel" style="width:80px;height:13px;display:inline-block">&nbsp;</span><span class="skel" style="width:80px;height:13px;display:inline-block">&nbsp;</span></div>
+          <div class="key-row"><span class="skel" style="width:60px;height:13px;display:inline-block">&nbsp;</span><span class="skel" style="width:90px;height:13px;display:inline-block">&nbsp;</span></div>
+          <div class="key-row"><span class="skel" style="width:70px;height:13px;display:inline-block">&nbsp;</span><span class="skel" style="width:80px;height:13px;display:inline-block">&nbsp;</span></div>
         </div>
         <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--fg-4);margin-top:auto">
           Dane z najnowszego raportu — nie odświeżane w czasie rzeczywistym.
@@ -315,7 +300,6 @@
 
   <!-- ============ REPORTS ============ -->
   <section class="section" id="reports">
-
     <div class="reports">
       <!-- DAILY -->
       <div class="report-block" id="daily">
@@ -324,7 +308,7 @@
             <span style="color:var(--pos)">●</span> Raporty dzienne
             <span class="pill">codziennie · 07:00 CET</span>
           </h3>
-          <span class="rb-count">01 wydanie</span>
+          <span class="rb-count" id="daily-count">…</span>
         </div>
         <div class="rb-body">
           <table class="tbl">
@@ -335,18 +319,8 @@
                 <th style="text-align:right">Status</th>
               </tr>
             </thead>
-            <tbody>
-              <tr class="report-row" onclick="window.location='reports/2026-05-14.html'">
-                <td class="t-date">2026-05-14</td>
-                <td class="t-title">
-                  <a href="reports/2026-05-14.html">Analiza 2026-05-14</a>
-                  <div style="margin-top:4px;font-size:11px;color:var(--fg-3);font-family:'JetBrains Mono',monospace">CPI 3,8% · Brent 106 · WIG ATH · CSCO +15%</div>
-                </td>
-                <td class="t-status"><span class="badge badge-pos badge-dot">Świeży</span></td>
-              </tr>
-              <tr class="empty-row">
-                <td colspan="3">— Wcześniejsze wydania pojawią się tu po publikacji —</td>
-              </tr>
+            <tbody id="daily-tbody">
+              <tr class="empty-row"><td colspan="3">Ładowanie…</td></tr>
             </tbody>
           </table>
         </div>
@@ -359,7 +333,7 @@
             <span style="color:var(--info)">●</span> Raporty tygodniowe
             <span class="pill">co niedzielę</span>
           </h3>
-          <span class="rb-count">01 wydanie</span>
+          <span class="rb-count" id="weekly-count">…</span>
         </div>
         <div class="rb-body">
           <table class="tbl">
@@ -370,18 +344,8 @@
                 <th style="text-align:right">Status</th>
               </tr>
             </thead>
-            <tbody>
-              <tr class="report-row" onclick="window.location='reports/weekly/2026-W20.md'">
-                <td class="t-date">2026-W20</td>
-                <td class="t-title">
-                  <a href="reports/weekly/2026-W20.md">Analiza 2026-W20</a>
-                  <div style="margin-top:4px;font-size:11px;color:var(--fg-3);font-family:'JetBrains Mono',monospace">11.05 – 17.05 · podsumowanie tygodnia</div>
-                </td>
-                <td class="t-status"><span class="badge badge-info badge-dot">Aktualny</span></td>
-              </tr>
-              <tr class="empty-row">
-                <td colspan="3">— Archiwum tygodniowe rośnie z każdą niedzielą —</td>
-              </tr>
+            <tbody id="weekly-tbody">
+              <tr class="empty-row"><td colspan="3">Ładowanie…</td></tr>
             </tbody>
           </table>
         </div>
@@ -475,39 +439,203 @@
 
   <div style="max-width:1440px;margin:24px auto 0;padding:0 28px;display:flex;justify-content:space-between;align-items:center;color:var(--fg-4);font-size:11px;font-family:'JetBrains Mono',monospace">
     <div>© 2026 MarketScope · Analizy Giełdowe · build 2026-05-14</div>
-    <div>v1.0 · internal edition</div>
+    <div>v1.1 · dynamic</div>
   </div>
 </footer>
 
 <script>
-  // live clock (Warsaw)
-  (function(){
-    const el = document.getElementById('clock');
-    if (!el) return;
-    function tick(){
-      const d = new Date();
-      const fmt = new Intl.DateTimeFormat('en-GB', {
-        timeZone:'Europe/Warsaw',
-        hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false
-      });
-      el.textContent = fmt.format(d) + ' CET';
-    }
-    tick(); setInterval(tick, 1000);
-  })();
+// ── live clock (Warsaw) ──────────────────────────────────────────
+(function(){
+  const el = document.getElementById('clock');
+  const pill = document.getElementById('today-pill');
+  const fmt = new Intl.DateTimeFormat('en-GB', {timeZone:'Europe/Warsaw', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false});
+  const dateFmt = new Intl.DateTimeFormat('sv-SE', {timeZone:'Europe/Warsaw'});
+  function tick(){
+    const d = new Date();
+    if (el) el.textContent = fmt.format(d) + ' CET';
+    if (pill) pill.textContent = 'LIVE · ' + dateFmt.format(d);
+  }
+  tick(); setInterval(tick, 1000);
+})();
 
-  // smooth scroll for in-page anchors
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', e=>{
-      const id = a.getAttribute('href');
-      if (id.length>1){
-        const target = document.querySelector(id);
-        if (target){
-          e.preventDefault();
-          window.scrollTo({top: target.getBoundingClientRect().top + window.scrollY - 70, behavior:'smooth'});
-        }
-      }
-    });
+// ── smooth scroll ────────────────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', e=>{
+    const id = a.getAttribute('href');
+    if (id.length > 1){
+      const t = document.querySelector(id);
+      if (t){ e.preventDefault(); window.scrollTo({top: t.getBoundingClientRect().top + window.scrollY - 70, behavior:'smooth'}); }
+    }
   });
+});
+
+// ── helpers ──────────────────────────────────────────────────────
+function ageLabel(dateStr){
+  const now = new Date();
+  const then = new Date(dateStr + 'T07:00:00+02:00');
+  const diffMs = now - then;
+  if (diffMs < 0) return 'Zaplanowane';
+  const h = Math.floor(diffMs / 3600000);
+  if (h < 1) return '● Świeże · < 1h temu';
+  if (h < 24) return '● Świeże · ' + h + 'h temu';
+  const d = Math.floor(h / 24);
+  return d === 1 ? '● 1 dzień temu' : '● ' + d + ' dni temu';
+}
+
+function nextReportStr(latestDate){
+  const parts = latestDate.split('-').map(Number);
+  const latest = new Date(Date.UTC(parts[0], parts[1]-1, parts[2]));
+  const warsawNow = new Date(new Date().toLocaleString('en-US', {timeZone:'Europe/Warsaw'}));
+  const today = new Date(Date.UTC(warsawNow.getFullYear(), warsawNow.getMonth(), warsawNow.getDate()));
+  let next = new Date(Math.max(latest.getTime() + 86400000, today.getTime()));
+  // skip weekends
+  while (next.getUTCDay() === 0 || next.getUTCDay() === 6) next = new Date(next.getTime() + 86400000);
+  const y = next.getUTCFullYear();
+  const m = String(next.getUTCMonth()+1).padStart(2,'0');
+  const d = String(next.getUTCDate()).padStart(2,'0');
+  return `${y}-${m}-${d} · 07:00`;
+}
+
+function nextCountdown(latestDate){
+  const parts = latestDate.split('-').map(Number);
+  const latest = new Date(Date.UTC(parts[0], parts[1]-1, parts[2]));
+  const warsawNow = new Date(new Date().toLocaleString('en-US', {timeZone:'Europe/Warsaw'}));
+  const today = new Date(Date.UTC(warsawNow.getFullYear(), warsawNow.getMonth(), warsawNow.getDate()));
+  let next = new Date(Math.max(latest.getTime() + 86400000, today.getTime()));
+  while (next.getUTCDay() === 0 || next.getUTCDay() === 6) next = new Date(next.getTime() + 86400000);
+  // next report at 07:00 Warsaw = 05:00 UTC (approx, ignoring DST edge)
+  const nextTs = Date.UTC(next.getUTCFullYear(), next.getUTCMonth(), next.getUTCDate(), 5, 0, 0);
+  const diffMs = nextTs - Date.now();
+  if (diffMs <= 0) return 'lada chwila';
+  const h = Math.floor(diffMs / 3600000);
+  const m = Math.floor((diffMs % 3600000) / 60000);
+  return `za ~${h}h ${m}min`;
+}
+
+function statusBadge(status){
+  if (status === 'fresh')   return '<span class="badge badge-pos badge-dot">Świeży</span>';
+  if (status === 'current') return '<span class="badge badge-info badge-dot">Aktualny</span>';
+  return '<span class="badge badge-neutral badge-dot">Archiwum</span>';
+}
+
+// ── render featured panel ────────────────────────────────────────
+function renderFeatured(entry){
+  // schedule strip
+  const latestDateEl = document.getElementById('sch-latest-date');
+  const latestAgeEl  = document.getElementById('sch-latest-age');
+  const nextDateEl   = document.getElementById('sch-next-date');
+  const nextCdEl     = document.getElementById('sch-next-countdown');
+  if (latestDateEl){ latestDateEl.className='mono'; latestDateEl.textContent = entry.date; }
+  if (latestAgeEl)  latestAgeEl.textContent = ageLabel(entry.date);
+  if (nextDateEl)   nextDateEl.textContent   = nextReportStr(entry.date);
+  if (nextCdEl)     nextCdEl.textContent     = nextCountdown(entry.date);
+
+  // section meta
+  const meta = document.getElementById('featured-meta');
+  if (meta) meta.textContent = 'FEATURED · ' + entry.date;
+
+  // main panel
+  const main = document.getElementById('featured-main');
+  if (!main) return;
+  main.innerHTML = `
+    <div class="latest-main">
+      <div class="latest-tag"><span class="live-dot"></span> Wydanie ${entry.date} · ${entry.dayofweek || ''}</div>
+      <h2><a href="${entry.url}">${entry.headline}</a></h2>
+      <div class="latest-meta">
+        <span>${entry.date}</span>
+      </div>
+      <p class="latest-summary">${entry.summary}</p>
+      <a class="latest-cta" href="${entry.url}">Czytaj pełną analizę</a>
+    </div>
+    <div class="latest-aside">
+      <div class="aside-heading">Migawka sesji · ${entry.date}</div>
+      <div class="key-list" id="featured-tape"></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--fg-4);margin-top:auto">
+        Dane z najnowszego raportu — nie odświeżane w czasie rzeczywistym.
+      </div>
+    </div>`;
+
+  // tape rows
+  const tape = document.getElementById('featured-tape');
+  if (tape && Array.isArray(entry.tape)){
+    tape.innerHTML = entry.tape.map(t => {
+      const cls = t.dir === 'up' ? 'delta-up' : t.dir === 'down' ? 'delta-down' : 'delta-flat';
+      return `<div class="key-row"><span class="key-name">${t.name}</span><span class="key-val mono">${t.value} <span class="${cls}">${t.delta}</span></span></div>`;
+    }).join('');
+  }
+}
+
+// ── render daily table ───────────────────────────────────────────
+function renderDaily(entries){
+  const tbody = document.getElementById('daily-tbody');
+  const count = document.getElementById('daily-count');
+  if (!tbody) return;
+  if (!entries || entries.length === 0){
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="3">— Brak raportów —</td></tr>';
+    if (count) count.textContent = '0 wydań';
+    return;
+  }
+  if (count) count.textContent = String(entries.length).padStart(2,'0') + (entries.length === 1 ? ' wydanie' : ' wydań');
+  tbody.innerHTML = entries.map(e => `
+    <tr class="report-row" onclick="window.location='${e.url}'">
+      <td class="t-date">${e.date}</td>
+      <td class="t-title">
+        <a href="${e.url}">${e.headline || ('Analiza ' + e.date)}</a>
+        ${e.tags ? `<div style="margin-top:4px;font-size:11px;color:var(--fg-3);font-family:'JetBrains Mono',monospace">${e.tags}</div>` : ''}
+      </td>
+      <td class="t-status">${statusBadge(e.status)}</td>
+    </tr>`).join('') + '<tr class="empty-row"><td colspan="3">— Wcześniejsze wydania pojawią się tu po publikacji —</td></tr>';
+}
+
+// ── render weekly table ──────────────────────────────────────────
+function renderWeekly(entries){
+  const tbody = document.getElementById('weekly-tbody');
+  const count = document.getElementById('weekly-count');
+  if (!tbody) return;
+  if (!entries || entries.length === 0){
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="3">— Brak raportów —</td></tr>';
+    if (count) count.textContent = '0 wydań';
+    return;
+  }
+  if (count) count.textContent = String(entries.length).padStart(2,'0') + (entries.length === 1 ? ' wydanie' : ' wydań');
+  tbody.innerHTML = entries.map(e => `
+    <tr class="report-row" onclick="window.location='${e.url}'">
+      <td class="t-date">${e.week || e.date || ''}</td>
+      <td class="t-title">
+        <a href="${e.url}">${e.title || e.headline || ''}</a>
+        ${e.summary ? `<div style="margin-top:4px;font-size:11px;color:var(--fg-3);font-family:'JetBrains Mono',monospace">${e.summary}</div>` : ''}
+      </td>
+      <td class="t-status">${statusBadge(e.status)}</td>
+    </tr>`).join('') + '<tr class="empty-row"><td colspan="3">— Archiwum tygodniowe rośnie z każdą niedzielą —</td></tr>';
+}
+
+// ── main init ────────────────────────────────────────────────────
+async function init(){
+  try {
+    const res = await fetch('reports/index.json?v=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+
+    if (data.daily && data.daily.length > 0) renderFeatured(data.daily[0]);
+    renderDaily(data.daily || []);
+    renderWeekly(data.weekly || []);
+  } catch(err) {
+    console.warn('index.json fetch failed:', err);
+    // graceful fallback — leave skeleton as error state
+    const main = document.getElementById('featured-main');
+    if (main) main.innerHTML = `
+      <div class="latest-main" style="grid-column:1/-1;text-align:center;padding:48px 24px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--fg-3)">
+          Nie można załadować danych raportu.<br>
+          <a href="reports/" style="color:var(--info)">Przejdź do archiwum →</a>
+        </div>
+      </div>`;
+    document.getElementById('daily-tbody').innerHTML  = '<tr class="empty-row"><td colspan="3">— Błąd ładowania danych —</td></tr>';
+    document.getElementById('weekly-tbody').innerHTML = '<tr class="empty-row"><td colspan="3">— Błąd ładowania danych —</td></tr>';
+  }
+}
+
+init();
 </script>
 
 </body>
