@@ -1,0 +1,9 @@
+theme: minima
+title: Analizy Giełdowe
+description: Codzienne i tygodniowe raporty rynkowe — GPW, USA, Europa
+lang: pl
+url: "https://michacjooo.github.io"
+baseurl: "/Inwestycje"
+
+minima:
+  skin: dark
