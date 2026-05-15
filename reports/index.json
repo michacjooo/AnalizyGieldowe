@@ -1,6 +1,25 @@
 {
-  "updated": "2026-05-14",
+  "updated": "2026-05-15",
   "daily": [
+    {
+      "date": "2026-05-15",
+      "dayofweek": "Piątek",
+      "headline": "S&P 500 i Nasdaq ATH — Cisco AI +13%, H200 do Chin, WIG historycznie najwyżej 134 384",
+      "summary": "Blowoutowe wyniki Cisco (AI orders 3× r/r) i zatwierdzone dostawy H200 do Chin wypchnęły S&P 500 na 7 501 pkt i Nasdaq na 26 635 pkt — nowe rekordy wszech czasów. GPW: WIG ATH 134 384 (+1,51%), Allegro +5,54%, CD Projekt +3,12%. Ropa Brent utrzymuje się powyżej $106 po irańskich atakach na niszczyciele USA w Cieśninie Ormuz. Fed bez zmian (3,50–3,75%), 1 cięcie prognozowane w 2026.",
+      "tags": "CSCO +13% · NVDA +4,4% · WIG ATH 134 384 · Brent 106,89 · 10Y 4,49%",
+      "url": "reports/2026-05-15.html",
+      "status": "fresh",
+      "tape": [
+        { "name": "S&P 500",   "value": "7 501",   "delta": "▲ +0,80%",    "dir": "up" },
+        { "name": "Nasdaq",    "value": "26 635",   "delta": "▲ +0,90%",    "dir": "up" },
+        { "name": "WIG · ATH", "value": "134 385",  "delta": "▲ +1,51%",    "dir": "up" },
+        { "name": "WIG20",     "value": "3 643",    "delta": "▲ +1,40%",    "dir": "up" },
+        { "name": "DAX",       "value": "24 420",   "delta": "▲ +1,18%",    "dir": "up" },
+        { "name": "Brent",     "value": "106,89",   "delta": "▲ +1,11%",    "dir": "up" },
+        { "name": "10Y UST",   "value": "4,49%",    "delta": "▲ +4 pb",     "dir": "up" },
+        { "name": "Złoto",     "value": "4 660",    "delta": "▼ −0,74%",    "dir": "down" }
+      ]
+    },
     {
       "date": "2026-05-14",
       "dayofweek": "Czwartek",
@@ -8,7 +27,7 @@
       "summary": "Rynki amerykańskie wzrosły mimo gorącego odczytu CPI dzięki rekordowemu sezonowi wyników (+27,7% r/r EPS, 84% beatów). Szczyt Trump–Xi przyniósł 90-dniowy rozejm celny i nowy „Board of Trade", lecz Cieśnina Ormuz pozostaje zamknięta. GPW notuje historyczny szczyt WIG przed dniem raportowym pięciu blue chipów.",
       "tags": "CPI 3,8% · Brent 106 · WIG ATH · CSCO +15%",
       "url": "reports/2026-05-14.html",
-      "status": "fresh",
+      "status": "archive",
       "tape": [
         { "name": "S&P 500",   "value": "7 446",   "delta": "▲ +0,61%",    "dir": "up" },
         { "name": "Nasdaq",    "value": "26 407",   "delta": "▲ +1,22%",    "dir": "up" },
