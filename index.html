@@ -444,6 +444,9 @@
 </footer>
 
 <script>
+// ── embedded fallback — updated by CCR routine each day ─────────
+const FALLBACK = {"updated":"2026-05-14","daily":[{"date":"2026-05-14","dayofweek":"Czwartek","headline":"Inflacja 3,8% i ropa 106 USD ciążą Fedowi. Wyniki sezonowe biją rekordy — WIG na ATH, Cisco +15%.","summary":"Rynki amerykańskie wzrosły mimo gorącego odczytu CPI dzięki rekordowemu sezonowi wyników (+27,7% r/r EPS, 84% beatów). Szczyt Trump–Xi przyniósł 90-dniowy rozejm celny i nowy „Board of Trade”, lecz Cieśnina Ormuz pozostaje zamknięta. GPW notuje historyczny szczyt WIG przed dniem raportowym pięciu blue chipów.","tags":"CPI 3,8% · Brent 106 · WIG ATH · CSCO +15%","url":"reports/2026-05-14.html","status":"fresh","tape":[{"name":"S&P 500","value":"7 446","delta":"▲ +0,61%","dir":"up"},{"name":"Nasdaq","value":"26 407","delta":"▲ +1,22%","dir":"up"},{"name":"Dow Jones","value":"49 614","delta":"▼ −0,30%","dir":"down"},{"name":"WIG · ATH","value":"127 301","delta":"▲ +46,6% r/r","dir":"up"},{"name":"WIG20","value":"3 557","delta":"▲ +1,08%","dir":"up"},{"name":"DAX","value":"23 975","delta":"▲ +1,30%","dir":"up"},{"name":"Brent","value":"106,10","delta":"▲ +7,5%","dir":"up"},{"name":"10Y UST","value":"4,49%","delta":"▲ +3 pb","dir":"up"}]}],"weekly":[{"week":"2026-W20","title":"Analiza 2026-W20","summary":"11.05 – 17.05 · podsumowanie tygodnia","url":"reports/weekly/2026-W20.md","status":"current"}]};
+
 // ── live clock (Warsaw) ──────────────────────────────────────────
 (function(){
   const el = document.getElementById('clock');
@@ -610,28 +613,24 @@ function renderWeekly(entries){
 }
 
 // ── main init ────────────────────────────────────────────────────
+function render(data){
+  if (data.daily && data.daily.length > 0) renderFeatured(data.daily[0]);
+  renderDaily(data.daily || []);
+  renderWeekly(data.weekly || []);
+}
+
 async function init(){
+  // render fallback immediately so links are always clickable
+  render(FALLBACK);
+
+  // then try to fetch fresh data and re-render if newer
   try {
     const res = await fetch('reports/index.json?v=' + Date.now());
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
-
-    if (data.daily && data.daily.length > 0) renderFeatured(data.daily[0]);
-    renderDaily(data.daily || []);
-    renderWeekly(data.weekly || []);
+    if (data.updated >= FALLBACK.updated) render(data);
   } catch(err) {
-    console.warn('index.json fetch failed:', err);
-    // graceful fallback — leave skeleton as error state
-    const main = document.getElementById('featured-main');
-    if (main) main.innerHTML = `
-      <div class="latest-main" style="grid-column:1/-1;text-align:center;padding:48px 24px">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--fg-3)">
-          Nie można załadować danych raportu.<br>
-          <a href="reports/" style="color:var(--info)">Przejdź do archiwum →</a>
-        </div>
-      </div>`;
-    document.getElementById('daily-tbody').innerHTML  = '<tr class="empty-row"><td colspan="3">— Błąd ładowania danych —</td></tr>';
-    document.getElementById('weekly-tbody').innerHTML = '<tr class="empty-row"><td colspan="3">— Błąd ładowania danych —</td></tr>';
+    console.warn('index.json fetch failed, using fallback:', err);
   }
 }
 
