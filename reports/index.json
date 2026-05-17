@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-16",
+  "updated": "2026-05-17",
   "daily": [
     {
       "date": "2026-05-16",
@@ -62,8 +62,8 @@
   "weekly": [
     {
       "week": "2026-W20",
-      "title": "Analiza 2026-W20",
-      "summary": "11.05 – 17.05 · podsumowanie tygodnia",
+      "title": "W20: Korekta po ATH — Iran, 30Y UST 5,12%, NVDA earnings w środę",
+      "summary": "11–17.05 · S&P -1,2% · Brent +11% · WIG20 -1,7% · CPI 3,8% · Broadening: RSP>SPY, IWM>SPY",
       "url": "reports/weekly/2026-W20.md",
       "status": "current"
     }
