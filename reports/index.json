@@ -2,13 +2,32 @@
   "updated": "2026-05-17",
   "daily": [
     {
+      "date": "2026-05-17",
+      "dayofweek": "Niedziela",
+      "headline": "Inflacja wraca z impetem — Wall Street koryguje, ropa przy $109; Powell kończy kadencję",
+      "summary": "Sesja piątkowa (15 maja) zamknęła tydzień pod znakiem stagflacyjnych lęków: PPI +6,0% r/r (najwyżej od 2022), CPI +3,8% r/r. 10Y UST osiągnął 4,60% — roczny szczyt. Brent +8,1% tygodniowo z powodu kryzysu Cieśniny Hormuz (USA–Iran). S&P 500 −1,24%, WIG20 −2,37%. Jaśniejszy punkt: Dino Polska +8,95% (wyniki Q1, przychody +10,2% r/r). Powell formalnie kończy kadencję Prezesa Fed.",
+      "tags": "PPI +6,0% · Brent $109 · WIG20 −2,37% · Dino +8,95% · 10Y 4,60% · Powell odchodzi",
+      "url": "reports/2026-05-17.html",
+      "status": "fresh",
+      "tape": [
+        { "name": "S&P 500",   "value": "7 408",    "delta": "▼ −1,24%",      "dir": "down" },
+        { "name": "Nasdaq",    "value": "26 225",   "delta": "▼ −1,54%",      "dir": "down" },
+        { "name": "WIG20",     "value": "3 545",    "delta": "▼ −2,37%",      "dir": "down" },
+        { "name": "DAX",       "value": "23 950",   "delta": "▼ −2,07%",      "dir": "down" },
+        { "name": "Brent",     "value": "109,43",   "delta": "▲ +8,1% tyg.",  "dir": "up" },
+        { "name": "10Y UST",   "value": "4,60%",    "delta": "▲ +10 pb",      "dir": "up" },
+        { "name": "Złoto",     "value": "4 530",    "delta": "▼ −1,83%",      "dir": "down" },
+        { "name": "DXY",       "value": "99,10",    "delta": "▶ flat",        "dir": "flat" }
+      ]
+    },
+    {
       "date": "2026-05-16",
       "dayofweek": "Sobota",
       "headline": "Warsh przejął Fed, Iran blokuje Ormuz — globalna korekta; 30Y Treasuries na 5,12% (najwyżej od 2007)",
       "summary": "Piątek 15 maja 2026 przyniósł gwałtowną korektę po tygodniu rekordów — S&P 500 −1,24% do 7 408, WIG20 −2,37% do 3 545. Kevin Warsh oficjalnie przejął Fed po Powellu; 30Y UST osiągnął 5,121% — poziom niewidziany od 2007 roku. Brent przekroczył $107 wskutek kryzysu Cieśniny Ormuz (+7,5% tygodniowo). Wyjątki: NVDA +4,4% (ATH, H200 do Chin) i Dino Polska +16,5% (Q1 zysk 316 mln PLN, +8,6% vs konsensus).",
       "tags": "Warsh Fed · Brent $107 · WIG20 −2,37% · NVDA ATH · Dino +16,5% · 30Y 5,12%",
       "url": "reports/2026-05-16.html",
-      "status": "fresh",
+      "status": "archive",
       "tape": [
         { "name": "S&P 500",   "value": "7 408",    "delta": "▼ −1,24%",    "dir": "down" },
         { "name": "Nasdaq",    "value": "26 225",   "delta": "▼ −1,54%",    "dir": "down" },
