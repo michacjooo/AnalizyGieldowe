@@ -1,6 +1,25 @@
 {
-  "updated": "2026-05-18",
+  "updated": "2026-05-19",
   "daily": [
+    {
+      "date": "2026-05-19",
+      "dayofweek": "Wtorek",
+      "headline": "NVIDIA przed wynikami jutro — rynki w trybie wyczekiwania · Iran de-eskalacja obniża ropę · GPW WIG20 +0,59%",
+      "summary": "Giełdy globalne podzielone w oczekiwaniu na kluczowe wyniki NVIDIA (20.05 po sesji US) — konsensus $79,2 mld przychodów i EPS $1,78 przy oczekiwanym ruchu ±8–10%. Sygnały postępu negocjacji USA–Iran pchnęły Brent z $109 do $103, osłabiając dolara (DXY 99). WIG20 wyróżnia się pozytywnie (+0,59%) — PKO BP odreagowuje po sell-the-news, Allegro +0,58%. Minuty FOMC i wyniki NVDA jutro to podwójny katalizator dla nastrojów.",
+      "tags": "NVDA wyniki 20.05 · Brent $103 −5,4% · WIG20 +0,59% · Warsh Fed · 10Y 4,48% · DXY 99",
+      "url": "reports/2026-05-19.html",
+      "status": "fresh",
+      "tape": [
+        { "name": "S&P 500",   "value": "7 383",    "delta": "▼ −0,34%",        "dir": "down" },
+        { "name": "Nasdaq",    "value": "26 091",   "delta": "▼ −0,51%",        "dir": "down" },
+        { "name": "WIG20",     "value": "3 566",    "delta": "▲ +0,59%",        "dir": "up"   },
+        { "name": "DAX",       "value": "24 308",   "delta": "▲ +1,49%",        "dir": "up"   },
+        { "name": "Brent",     "value": "103,50",   "delta": "▼ −5,4% Iran",    "dir": "down" },
+        { "name": "10Y UST",   "value": "4,48%",    "delta": "▼ −15 pb",        "dir": "down" },
+        { "name": "Złoto",     "value": "4 565",    "delta": "▲ +1,22%",        "dir": "up"   },
+        { "name": "DXY",       "value": "99,08",    "delta": "▼ −0,02%",        "dir": "down" }
+      ]
+    },
     {
       "date": "2026-05-18",
       "dayofweek": "Poniedziałek",
@@ -8,7 +27,7 @@
       "summary": "Tygodniowy szczyt wynikowy: Nvidia publikuje Q1 FY27 w środę przy konsensusie EPS $1,78 i $79,2 mld przychodów — wynik nadaje kierunek całemu segmentowi AI. Cieśnina Ormuz zamknięta, Brent >$109. Kevin Warsh przejął Fed po Powellu. GPW: Dino Polska +10% po bijących Q1 (zysk 316 mln PLN, EBIT +9% vs konsensus); PKO BP sell-the-news (−2,78%) mimo rekordu zysku 2,52 mld PLN.",
       "tags": "NVDA earnings 20.05 · Brent $109 · Dino +10% · PKO −2,78% · Warsh Fed · 10Y 4,63%",
       "url": "reports/2026-05-18.html",
-      "status": "fresh",
+      "status": "archive",
       "tape": [
         { "name": "S&P 500",   "value": "7 408",    "delta": "▼ −1,24% (pt.)",  "dir": "down" },
         { "name": "Nasdaq",    "value": "26 225",   "delta": "▼ −1,54% (pt.)",  "dir": "down" },
