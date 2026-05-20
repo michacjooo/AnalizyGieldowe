@@ -1,6 +1,65 @@
 {
-  "updated": "2026-05-19",
+  "updated": "2026-05-20",
   "daily": [
+    {
+      "date": "2026-05-20",
+      "dayofweek": "Środa",
+      "headline": "NVDA wyniki po zamknięciu — AI mega-event; 30Y UST 5,20% (18-letni szczyt) · Moody's Aa1 · WIG20 −1,47%",
+      "summary": "Kluczowy dzień wynikowy sezonu — Nvidia raportuje po zamknięciu przy oczekiwaniach $43,2 mld przychodu i EPS $1,76 (+80%/+120% r/r). Obligacje USA na wieloletnich szczytach: 10Y UST 4,70%, 30Y UST 5,20% po obniżce ratingu USA przez Moody's (Aaa→Aa1 z 16.05). S&P 500 −0,67%, WIG20 cofa się do 3 557 pkt; Brent przy $110 napędzany konfliktem USA–Iran i zamkniętą Cieśniną Hormuz. Minutki FOMC publikowane dziś.",
+      "tags": "NVDA wyniki dziś · 30Y UST 5,20% · Moody's Aa1 · Brent $110,08 · WIG20 3 557 · 10Y 4,70%",
+      "url": "reports/2026-05-20.html",
+      "status": "fresh",
+      "tape": [
+        {
+          "name": "S&P 500",
+          "value": "7 353",
+          "delta": "▼ −0,67%",
+          "dir": "down"
+        },
+        {
+          "name": "Nasdaq",
+          "value": "25 870",
+          "delta": "▼ −0,84%",
+          "dir": "down"
+        },
+        {
+          "name": "WIG20",
+          "value": "3 557",
+          "delta": "▼ −1,47%",
+          "dir": "down"
+        },
+        {
+          "name": "DAX",
+          "value": "24 100",
+          "delta": "▲ +0,51%",
+          "dir": "up"
+        },
+        {
+          "name": "Brent",
+          "value": "110,08",
+          "delta": "▲ +3,2% Iran",
+          "dir": "up"
+        },
+        {
+          "name": "10Y UST",
+          "value": "4,70%",
+          "delta": "▲ +22 pb",
+          "dir": "up"
+        },
+        {
+          "name": "Złoto",
+          "value": "4 570",
+          "delta": "▼ −0,5%",
+          "dir": "down"
+        },
+        {
+          "name": "DXY",
+          "value": "99,08",
+          "delta": "▶ flat",
+          "dir": "flat"
+        }
+      ]
+    },
     {
       "date": "2026-05-19",
       "dayofweek": "Wtorek",
@@ -8,16 +67,56 @@
       "summary": "Giełdy globalne podzielone w oczekiwaniu na kluczowe wyniki NVIDIA (20.05 po sesji US) — konsensus $79,2 mld przychodów i EPS $1,78 przy oczekiwanym ruchu ±8–10%. Sygnały postępu negocjacji USA–Iran pchnęły Brent z $109 do $103, osłabiając dolara (DXY 99). WIG20 wyróżnia się pozytywnie (+0,59%) — PKO BP odreagowuje po sell-the-news, Allegro +0,58%. Minuty FOMC i wyniki NVDA jutro to podwójny katalizator dla nastrojów.",
       "tags": "NVDA wyniki 20.05 · Brent $103 −5,4% · WIG20 +0,59% · Warsh Fed · 10Y 4,48% · DXY 99",
       "url": "reports/2026-05-19.html",
-      "status": "fresh",
+      "status": "archive",
       "tape": [
-        { "name": "S&P 500",   "value": "7 383",    "delta": "▼ −0,34%",        "dir": "down" },
-        { "name": "Nasdaq",    "value": "26 091",   "delta": "▼ −0,51%",        "dir": "down" },
-        { "name": "WIG20",     "value": "3 566",    "delta": "▲ +0,59%",        "dir": "up"   },
-        { "name": "DAX",       "value": "24 308",   "delta": "▲ +1,49%",        "dir": "up"   },
-        { "name": "Brent",     "value": "103,50",   "delta": "▼ −5,4% Iran",    "dir": "down" },
-        { "name": "10Y UST",   "value": "4,48%",    "delta": "▼ −15 pb",        "dir": "down" },
-        { "name": "Złoto",     "value": "4 565",    "delta": "▲ +1,22%",        "dir": "up"   },
-        { "name": "DXY",       "value": "99,08",    "delta": "▼ −0,02%",        "dir": "down" }
+        {
+          "name": "S&P 500",
+          "value": "7 383",
+          "delta": "▼ −0,34%",
+          "dir": "down"
+        },
+        {
+          "name": "Nasdaq",
+          "value": "26 091",
+          "delta": "▼ −0,51%",
+          "dir": "down"
+        },
+        {
+          "name": "WIG20",
+          "value": "3 566",
+          "delta": "▲ +0,59%",
+          "dir": "up"
+        },
+        {
+          "name": "DAX",
+          "value": "24 308",
+          "delta": "▲ +1,49%",
+          "dir": "up"
+        },
+        {
+          "name": "Brent",
+          "value": "103,50",
+          "delta": "▼ −5,4% Iran",
+          "dir": "down"
+        },
+        {
+          "name": "10Y UST",
+          "value": "4,48%",
+          "delta": "▼ −15 pb",
+          "dir": "down"
+        },
+        {
+          "name": "Złoto",
+          "value": "4 565",
+          "delta": "▲ +1,22%",
+          "dir": "up"
+        },
+        {
+          "name": "DXY",
+          "value": "99,08",
+          "delta": "▼ −0,02%",
+          "dir": "down"
+        }
       ]
     },
     {
@@ -29,14 +128,54 @@
       "url": "reports/2026-05-18.html",
       "status": "archive",
       "tape": [
-        { "name": "S&P 500",   "value": "7 408",    "delta": "▼ −1,24% (pt.)",  "dir": "down" },
-        { "name": "Nasdaq",    "value": "26 225",   "delta": "▼ −1,54% (pt.)",  "dir": "down" },
-        { "name": "WIG20",     "value": "3 530",    "delta": "▼ sesja mieszana", "dir": "down" },
-        { "name": "DAX",       "value": "23 951",   "delta": "▼ −2,07% (pt.)",  "dir": "down" },
-        { "name": "Brent",     "value": "109,43",   "delta": "▲ +8,1% tyg.",    "dir": "up"   },
-        { "name": "10Y UST",   "value": "4,63%",    "delta": "▲ +3 pb",         "dir": "up"   },
-        { "name": "Złoto",     "value": "4 510",    "delta": "▼ −0,66%",        "dir": "down" },
-        { "name": "DXY",       "value": "99,10",    "delta": "▼ −0,17%",        "dir": "down" }
+        {
+          "name": "S&P 500",
+          "value": "7 408",
+          "delta": "▼ −1,24% (pt.)",
+          "dir": "down"
+        },
+        {
+          "name": "Nasdaq",
+          "value": "26 225",
+          "delta": "▼ −1,54% (pt.)",
+          "dir": "down"
+        },
+        {
+          "name": "WIG20",
+          "value": "3 530",
+          "delta": "▼ sesja mieszana",
+          "dir": "down"
+        },
+        {
+          "name": "DAX",
+          "value": "23 951",
+          "delta": "▼ −2,07% (pt.)",
+          "dir": "down"
+        },
+        {
+          "name": "Brent",
+          "value": "109,43",
+          "delta": "▲ +8,1% tyg.",
+          "dir": "up"
+        },
+        {
+          "name": "10Y UST",
+          "value": "4,63%",
+          "delta": "▲ +3 pb",
+          "dir": "up"
+        },
+        {
+          "name": "Złoto",
+          "value": "4 510",
+          "delta": "▼ −0,66%",
+          "dir": "down"
+        },
+        {
+          "name": "DXY",
+          "value": "99,10",
+          "delta": "▼ −0,17%",
+          "dir": "down"
+        }
       ]
     },
     {
@@ -48,14 +187,54 @@
       "url": "reports/2026-05-17.html",
       "status": "archive",
       "tape": [
-        { "name": "S&P 500",   "value": "7 408",    "delta": "▼ −1,24%",      "dir": "down" },
-        { "name": "Nasdaq",    "value": "26 225",   "delta": "▼ −1,54%",      "dir": "down" },
-        { "name": "WIG20",     "value": "3 545",    "delta": "▼ −2,37%",      "dir": "down" },
-        { "name": "DAX",       "value": "23 950",   "delta": "▼ −2,07%",      "dir": "down" },
-        { "name": "Brent",     "value": "109,43",   "delta": "▲ +8,1% tyg.",  "dir": "up" },
-        { "name": "10Y UST",   "value": "4,60%",    "delta": "▲ +10 pb",      "dir": "up" },
-        { "name": "Złoto",     "value": "4 530",    "delta": "▼ −1,83%",      "dir": "down" },
-        { "name": "DXY",       "value": "99,10",    "delta": "▶ flat",        "dir": "flat" }
+        {
+          "name": "S&P 500",
+          "value": "7 408",
+          "delta": "▼ −1,24%",
+          "dir": "down"
+        },
+        {
+          "name": "Nasdaq",
+          "value": "26 225",
+          "delta": "▼ −1,54%",
+          "dir": "down"
+        },
+        {
+          "name": "WIG20",
+          "value": "3 545",
+          "delta": "▼ −2,37%",
+          "dir": "down"
+        },
+        {
+          "name": "DAX",
+          "value": "23 950",
+          "delta": "▼ −2,07%",
+          "dir": "down"
+        },
+        {
+          "name": "Brent",
+          "value": "109,43",
+          "delta": "▲ +8,1% tyg.",
+          "dir": "up"
+        },
+        {
+          "name": "10Y UST",
+          "value": "4,60%",
+          "delta": "▲ +10 pb",
+          "dir": "up"
+        },
+        {
+          "name": "Złoto",
+          "value": "4 530",
+          "delta": "▼ −1,83%",
+          "dir": "down"
+        },
+        {
+          "name": "DXY",
+          "value": "99,10",
+          "delta": "▶ flat",
+          "dir": "flat"
+        }
       ]
     },
     {
@@ -67,14 +246,54 @@
       "url": "reports/2026-05-16.html",
       "status": "archive",
       "tape": [
-        { "name": "S&P 500",   "value": "7 408",    "delta": "▼ −1,24%",    "dir": "down" },
-        { "name": "Nasdaq",    "value": "26 225",   "delta": "▼ −1,54%",    "dir": "down" },
-        { "name": "WIG20",     "value": "3 545",    "delta": "▼ −2,37%",    "dir": "down" },
-        { "name": "DAX",       "value": "23 951",   "delta": "▼ −2,10%",    "dir": "down" },
-        { "name": "Brent",     "value": "107,82",   "delta": "▲ +6,9% tydz.","dir": "up" },
-        { "name": "10Y UST",   "value": "4,590%",   "delta": "▲ +9 pb",     "dir": "up" },
-        { "name": "Złoto",     "value": "4 564",    "delta": "▼ −1,83%",    "dir": "down" },
-        { "name": "DXY",       "value": "99,27",    "delta": "▲ +0,46%",    "dir": "up" }
+        {
+          "name": "S&P 500",
+          "value": "7 408",
+          "delta": "▼ −1,24%",
+          "dir": "down"
+        },
+        {
+          "name": "Nasdaq",
+          "value": "26 225",
+          "delta": "▼ −1,54%",
+          "dir": "down"
+        },
+        {
+          "name": "WIG20",
+          "value": "3 545",
+          "delta": "▼ −2,37%",
+          "dir": "down"
+        },
+        {
+          "name": "DAX",
+          "value": "23 951",
+          "delta": "▼ −2,10%",
+          "dir": "down"
+        },
+        {
+          "name": "Brent",
+          "value": "107,82",
+          "delta": "▲ +6,9% tydz.",
+          "dir": "up"
+        },
+        {
+          "name": "10Y UST",
+          "value": "4,590%",
+          "delta": "▲ +9 pb",
+          "dir": "up"
+        },
+        {
+          "name": "Złoto",
+          "value": "4 564",
+          "delta": "▼ −1,83%",
+          "dir": "down"
+        },
+        {
+          "name": "DXY",
+          "value": "99,27",
+          "delta": "▲ +0,46%",
+          "dir": "up"
+        }
       ]
     },
     {
@@ -86,33 +305,113 @@
       "url": "reports/2026-05-15.html",
       "status": "archive",
       "tape": [
-        { "name": "S&P 500",   "value": "7 501",   "delta": "▲ +0,80%",    "dir": "up" },
-        { "name": "Nasdaq",    "value": "26 635",   "delta": "▲ +0,90%",    "dir": "up" },
-        { "name": "WIG · ATH", "value": "134 385",  "delta": "▲ +1,51%",    "dir": "up" },
-        { "name": "WIG20",     "value": "3 643",    "delta": "▲ +1,40%",    "dir": "up" },
-        { "name": "DAX",       "value": "24 420",   "delta": "▲ +1,18%",    "dir": "up" },
-        { "name": "Brent",     "value": "106,89",   "delta": "▲ +1,11%",    "dir": "up" },
-        { "name": "10Y UST",   "value": "4,49%",    "delta": "▲ +4 pb",     "dir": "up" },
-        { "name": "Złoto",     "value": "4 660",    "delta": "▼ −0,74%",    "dir": "down" }
+        {
+          "name": "S&P 500",
+          "value": "7 501",
+          "delta": "▲ +0,80%",
+          "dir": "up"
+        },
+        {
+          "name": "Nasdaq",
+          "value": "26 635",
+          "delta": "▲ +0,90%",
+          "dir": "up"
+        },
+        {
+          "name": "WIG · ATH",
+          "value": "134 385",
+          "delta": "▲ +1,51%",
+          "dir": "up"
+        },
+        {
+          "name": "WIG20",
+          "value": "3 643",
+          "delta": "▲ +1,40%",
+          "dir": "up"
+        },
+        {
+          "name": "DAX",
+          "value": "24 420",
+          "delta": "▲ +1,18%",
+          "dir": "up"
+        },
+        {
+          "name": "Brent",
+          "value": "106,89",
+          "delta": "▲ +1,11%",
+          "dir": "up"
+        },
+        {
+          "name": "10Y UST",
+          "value": "4,49%",
+          "delta": "▲ +4 pb",
+          "dir": "up"
+        },
+        {
+          "name": "Złoto",
+          "value": "4 660",
+          "delta": "▼ −0,74%",
+          "dir": "down"
+        }
       ]
     },
     {
       "date": "2026-05-14",
       "dayofweek": "Czwartek",
       "headline": "Inflacja 3,8% i ropa 106 USD ciążą Fedowi. Wyniki sezonowe biją rekordy — WIG na ATH, Cisco +15%.",
-      "summary": "Rynki amerykańskie wzrosły mimo gorącego odczytu CPI dzięki rekordowemu sezonowi wyników (+27,7% r/r EPS, 84% beatów). Szczyt Trump–Xi przyniósł 90-dniowy rozejm celny i nowy „Board of Trade", lecz Cieśnina Ormuz pozostaje zamknięta. GPW notuje historyczny szczyt WIG przed dniem raportowym pięciu blue chipów.",
+      "summary": "Rynki amerykańskie wzrosły mimo gorącego odczytu CPI dzięki rekordowemu sezonowi wyników (+27,7% r/r EPS, 84% beatów). Szczyt Trump–Xi przyniósł 90-dniowy rozejm celny i nowy „Board of Trade”, lecz Cieśnina Ormuz pozostaje zamknięta. GPW notuje historyczny szczyt WIG przed dniem raportowym pięciu blue chipów.",
       "tags": "CPI 3,8% · Brent 106 · WIG ATH · CSCO +15%",
       "url": "reports/2026-05-14.html",
       "status": "archive",
       "tape": [
-        { "name": "S&P 500",   "value": "7 446",   "delta": "▲ +0,61%",    "dir": "up" },
-        { "name": "Nasdaq",    "value": "26 407",   "delta": "▲ +1,22%",    "dir": "up" },
-        { "name": "Dow Jones", "value": "49 614",   "delta": "▼ −0,30%",    "dir": "down" },
-        { "name": "WIG · ATH", "value": "127 301",  "delta": "▲ +46,6% r/r","dir": "up" },
-        { "name": "WIG20",     "value": "3 557",    "delta": "▲ +1,08%",    "dir": "up" },
-        { "name": "DAX",       "value": "23 975",   "delta": "▲ +1,30%",    "dir": "up" },
-        { "name": "Brent",     "value": "106,10",   "delta": "▲ +7,5%",     "dir": "up" },
-        { "name": "10Y UST",   "value": "4,49%",    "delta": "▲ +3 pb",     "dir": "up" }
+        {
+          "name": "S&P 500",
+          "value": "7 446",
+          "delta": "▲ +0,61%",
+          "dir": "up"
+        },
+        {
+          "name": "Nasdaq",
+          "value": "26 407",
+          "delta": "▲ +1,22%",
+          "dir": "up"
+        },
+        {
+          "name": "Dow Jones",
+          "value": "49 614",
+          "delta": "▼ −0,30%",
+          "dir": "down"
+        },
+        {
+          "name": "WIG · ATH",
+          "value": "127 301",
+          "delta": "▲ +46,6% r/r",
+          "dir": "up"
+        },
+        {
+          "name": "WIG20",
+          "value": "3 557",
+          "delta": "▲ +1,08%",
+          "dir": "up"
+        },
+        {
+          "name": "DAX",
+          "value": "23 975",
+          "delta": "▲ +1,30%",
+          "dir": "up"
+        },
+        {
+          "name": "Brent",
+          "value": "106,10",
+          "delta": "▲ +7,5%",
+          "dir": "up"
+        },
+        {
+          "name": "10Y UST",
+          "value": "4,49%",
+          "delta": "▲ +3 pb",
+          "dir": "up"
+        }
       ]
     }
   ],
