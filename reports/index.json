@@ -2,13 +2,72 @@
   "updated": "2026-05-24",
   "daily": [
     {
+      "date": "2026-05-24",
+      "dayofweek": "Niedziela",
+      "headline": "DJIA i WIG na historycznych rekordach — NVDA −2% sell-the-news mimo rev. $81,6B · Brent $104 · Ormuz 5%",
+      "summary": "Dow Jones ustanawia rekord wszech czasów (50 580 pkt), S&P 500 kończy 8. tydzień wzrostów z rzędu, a szeroki WIG przebija ATH powyżej 130 000 pkt. Nvidia miażdży oczekiwania Q1 FY27 (przychody $81,6 mld +85% r/r, EPS $1,87 vs est $1,78), ale akcja traci −1,86% w klasycznym sell-the-news — już czwarty kwartał z rzędu. Cieśnina Ormuz na 5% normalnej przepustowości utrzymuje Brent powyżej $103. 30Y UST przekracza 5,08% — presja na wyceny spółek wzrostowych. Allegro +3,15%, PKN Orlen przy ATH 145 PLN.",
+      "tags": "DJIA ATH 50 580 · WIG ATH 130 000+ · NVDA $215 −1,86% · Brent $103,94 · WIG20 3 641 · 10Y 4,56% · CDR wyniki 28.05",
+      "url": "reports/2026-05-24.html",
+      "status": "fresh",
+      "tape": [
+        {
+          "name": "S&P 500",
+          "value": "7 473",
+          "delta": "▲ +0,40%",
+          "dir": "up"
+        },
+        {
+          "name": "Nasdaq",
+          "value": "26 344",
+          "delta": "▲ +0,19%",
+          "dir": "up"
+        },
+        {
+          "name": "Dow Jones",
+          "value": "50 580",
+          "delta": "▲ +0,58% 🔔ATH",
+          "dir": "up"
+        },
+        {
+          "name": "WIG20",
+          "value": "3 641",
+          "delta": "▲ +1,43%",
+          "dir": "up"
+        },
+        {
+          "name": "DAX",
+          "value": "24 889",
+          "delta": "▲ +1,20%",
+          "dir": "up"
+        },
+        {
+          "name": "Brent",
+          "value": "103,94",
+          "delta": "▲ +1,33%",
+          "dir": "up"
+        },
+        {
+          "name": "10Y UST",
+          "value": "4,56%",
+          "delta": "▼ −6 pb",
+          "dir": "down"
+        },
+        {
+          "name": "Złoto",
+          "value": "4 520",
+          "delta": "▼ −0,51%",
+          "dir": "down"
+        }
+      ]
+    },
+    {
       "date": "2026-05-23",
       "dayofweek": "Sobota",
       "headline": "Dow Jones ATH 50 580 pkt · Nvidia $81,6 mld sell-the-news −1,9% · Brent $104 — Hormuz 5% · GPW: PKN +3,6%",
       "summary": "Dow Jones ustanawia nowy rekord wszech czasów (50 580 pkt), S&P 500 z 8. tygodniem wzrostów. Nvidia bije rekordy przychodu Q1 FY27 ($81,6 mld, +85% r/r), ale akcje tracą 1,9% w klasycznym sell-the-news — rynek sprzedaje na faktach po ogromnym run-up. GPW: PKN Orlen strzela +3,6% na wysokich cenach ropy, WIG blisko 52-tygodniowego szczytu (135 468 pkt). Iran/Hormuz nadal ogranicza przepływ ropy do 5% — kluczowe ryzyko geopolityczne tygodnia.",
       "tags": "Dow ATH 50 580 · NVDA $81,6B · Brent $104 · PKN +3,6% · WIG 134 500 · 10Y 4,54% · CDR wyniki 28.05",
       "url": "reports/2026-05-23.html",
-      "status": "fresh",
+      "status": "archive",
       "tape": [
         {
           "name": "S&P 500",
@@ -477,7 +536,7 @@
       "date": "2026-05-14",
       "dayofweek": "Czwartek",
       "headline": "Inflacja 3,8% i ropa 106 USD ciążą Fedowi. Wyniki sezonowe biją rekordy — WIG na ATH, Cisco +15%.",
-      "summary": "Rynki amerykańskie wzrosły mimo gorącego odczytu CPI dzięki rekordowemu sezonowi wyników (+27,7% r/r EPS, 84% beatów). Szczyt Trump–Xi przyniósł 90-dniowy rozejm celny i nowy „Board of Trade”, lecz Cieśnina Ormuz pozostaje zamknięta. GPW notuje historyczny szczyt WIG przed dniem raportowym pięciu blue chipów.",
+      "summary": "Rynki amerykańskie wzrosły mimo gorącego odczytu CPI dzięki rekordowemu sezonowi wyników (+27,7% r/r EPS, 84% beatów). Szczyt Trump–Xi przyniósł 90-dniowy rozejm celny i nowy „Board of Trade", lecz Cieśnina Ormuz pozostaje zamknięta. GPW notuje historyczny szczyt WIG przed dniem raportowym pięciu blue chipów.",
       "tags": "CPI 3,8% · Brent 106 · WIG ATH · CSCO +15%",
       "url": "reports/2026-05-14.html",
       "status": "archive",
