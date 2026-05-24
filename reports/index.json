@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-23",
+  "updated": "2026-05-24",
   "daily": [
     {
       "date": "2026-05-23",
@@ -535,11 +535,18 @@
   ],
   "weekly": [
     {
+      "week": "2026-W21",
+      "title": "W21: Dow Jones ATH 50 580 · NVDA sell-the-news · GPW mWIG40 ATH · Broadening kontynuacja",
+      "summary": "18–24.05 · S&P +0,4% (8. tydzień) · Dow ATH · WIG20 +1,4% · Brent $104 · PCE & GDP w środę 28.05",
+      "url": "reports/weekly/2026-W21.md",
+      "status": "current"
+    },
+    {
       "week": "2026-W20",
       "title": "W20: Korekta po ATH — Iran, 30Y UST 5,12%, NVDA earnings w środę",
       "summary": "11–17.05 · S&P -1,2% · Brent +11% · WIG20 -1,7% · CPI 3,8% · Broadening: RSP>SPY, IWM>SPY",
       "url": "reports/weekly/2026-W20.md",
-      "status": "current"
+      "status": "archive"
     }
   ]
 }
