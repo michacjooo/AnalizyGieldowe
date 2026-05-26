@@ -1,6 +1,65 @@
 {
-  "updated": "2026-05-25",
+  "updated": "2026-05-26",
   "daily": [
+    {
+      "date": "2026-05-26",
+      "dayofweek": "Wtorek",
+      "headline": "Brent spada do $97 — Iran-USA negocjują Ormuz · GPW ATH 135 126 · NVDA sell-the-news $81,6 mld",
+      "summary": "Ropa Brent w okolicach $97/bbl (spadek >8% w tygodniu) na sygnałach o możliwym porozumieniu Iran-USA ws. Cieśniny Ormuz. Wall Street wraca po Memorial Day z 8-tygodniową serią wzrostów (S&P 500 7 473, DJIA ATH 50 580). GPW kontynuuje hossę — WIG powyżej 135 000 pkt (ATH). Kluczowy katalizator tygodnia: wyniki PKN Orlen i CD Projekt w czwartek 28.05 oraz dane PCE (29.05).",
+      "tags": "Brent $97 −8% · WIG ATH 135 126 · NVDA $215 sell-the-news · DJIA ATH 50 580 · Fed 0 cięć 2026 · PKN wyniki 28.05 · AMZN Appaloosa ×2",
+      "url": "reports/2026-05-26.html",
+      "status": "fresh",
+      "tape": [
+        {
+          "name": "S&P 500",
+          "value": "7 473",
+          "delta": "▲ +0,37%",
+          "dir": "up"
+        },
+        {
+          "name": "Nasdaq",
+          "value": "26 344",
+          "delta": "▲ +0,19%",
+          "dir": "up"
+        },
+        {
+          "name": "WIG20",
+          "value": "3 641",
+          "delta": "▲ +1,43%",
+          "dir": "up"
+        },
+        {
+          "name": "DAX",
+          "value": "24 889",
+          "delta": "▲ +3,92% tyg.",
+          "dir": "up"
+        },
+        {
+          "name": "Brent",
+          "value": "97,10",
+          "delta": "▼ −7,8% tyg.",
+          "dir": "down"
+        },
+        {
+          "name": "10Y UST",
+          "value": "4,57%",
+          "delta": "≈ +2 pb",
+          "dir": "flat"
+        },
+        {
+          "name": "Złoto",
+          "value": "4 557",
+          "delta": "▲ +0,87%",
+          "dir": "up"
+        },
+        {
+          "name": "DXY",
+          "value": "98,96",
+          "delta": "▼ −0,28%",
+          "dir": "down"
+        }
+      ]
+    },
     {
       "date": "2026-05-25",
       "dayofweek": "Poniedziałek",
@@ -8,7 +67,7 @@
       "summary": "Dow Jones Industrial Average zamknął piątek na historycznym rekordzie 50 579,70 pkt (+0,58%), kończąc 8. tydzień wzrostów S&P 500. Dziś (Memorial Day USA + Pfingstmontag DE/UK) Wall Street i LSE mają przerwę — GPW handluje samotnie. Nvidia traci na sell-the-news po miażdżących wynikach Q1 FY27 ($81,6B, +85%); Brent utrzymuje się powyżej $105 (Ormuz 5% przepustowości); mWIG40 i WIG biją historyczne rekordy. Dane o polskiej sprzedaży detalicznej (kwiecień) i PCE USA (śr. 27.05) kluczowe dla tygodnia.",
       "tags": "DJIA ATH 50 580 · WIG ATH 135 126 · mWIG40 ATH · NVDA $215 −1,86% · Brent $105 · ALE +3,1% (8 sesji) · CDR wyniki 28.05",
       "url": "reports/2026-05-25.html",
-      "status": "fresh",
+      "status": "archive",
       "tape": [
         {
           "name": "S&P 500",
