@@ -1,6 +1,65 @@
 {
-  "updated": "2026-05-26",
+  "updated": "2026-05-27",
   "daily": [
+    {
+      "date": "2026-05-27",
+      "dayofweek": "Środa",
+      "headline": "Micron +25% po potrójnej podwyżce UBS · S&P 500 ATH 7 519 · Iran-USA negocjują pokój · Brent poniżej $100",
+      "summary": "Micron Technology wystrzelił o 25% po potrójnej podwyżce celu UBS do $1 625 — przekraczając $1 bilion kapitalizacji. S&P 500 po raz pierwszy powyżej 7 500 pkt (nowe ATH), Nasdaq bije rekord. Iran-USA negocjuje pokój — Brent spada poniżej $100. Na GPW WIG20 +0,14% i Allegro +12,9% tygodniowo, jutro wyniki CDR i PKN Orlen.",
+      "tags": "MU +25% · S&P 500 ATH 7 519 · Nasdaq ATH 26 656 · Brent $99 · WIG20 3 714 · CDR/PKN wyniki 28.05",
+      "url": "reports/2026-05-27.html",
+      "status": "fresh",
+      "tape": [
+        {
+          "name": "S&P 500",
+          "value": "7 519",
+          "delta": "▲ +0,61%",
+          "dir": "up"
+        },
+        {
+          "name": "Nasdaq",
+          "value": "26 656",
+          "delta": "▲ +1,19%",
+          "dir": "up"
+        },
+        {
+          "name": "WIG20",
+          "value": "3 714",
+          "delta": "▲ +0,14%",
+          "dir": "up"
+        },
+        {
+          "name": "DAX",
+          "value": "25 151",
+          "delta": "▼ −0,94%",
+          "dir": "down"
+        },
+        {
+          "name": "Brent",
+          "value": "$99,18",
+          "delta": "▼ Iran deal",
+          "dir": "down"
+        },
+        {
+          "name": "10Y UST",
+          "value": "4,57%",
+          "delta": "→ stabilny",
+          "dir": "flat"
+        },
+        {
+          "name": "Złoto",
+          "value": "$4 490",
+          "delta": "▼ −0,9%",
+          "dir": "down"
+        },
+        {
+          "name": "DXY",
+          "value": "99,34",
+          "delta": "▼ słabszy",
+          "dir": "down"
+        }
+      ]
+    },
     {
       "date": "2026-05-26",
       "dayofweek": "Wtorek",
@@ -8,7 +67,7 @@
       "summary": "Ropa Brent w okolicach $97/bbl (spadek >8% w tygodniu) na sygnałach o możliwym porozumieniu Iran-USA ws. Cieśniny Ormuz. Wall Street wraca po Memorial Day z 8-tygodniową serią wzrostów (S&P 500 7 473, DJIA ATH 50 580). GPW kontynuuje hossę — WIG powyżej 135 000 pkt (ATH). Kluczowy katalizator tygodnia: wyniki PKN Orlen i CD Projekt w czwartek 28.05 oraz dane PCE (29.05).",
       "tags": "Brent $97 −8% · WIG ATH 135 126 · NVDA $215 sell-the-news · DJIA ATH 50 580 · Fed 0 cięć 2026 · PKN wyniki 28.05 · AMZN Appaloosa ×2",
       "url": "reports/2026-05-26.html",
-      "status": "fresh",
+      "status": "archive",
       "tape": [
         {
           "name": "S&P 500",
