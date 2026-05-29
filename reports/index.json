@@ -1,6 +1,65 @@
 {
-  "updated": "2026-05-28",
+  "updated": "2026-05-29",
   "daily": [
+    {
+      "date": "2026-05-29",
+      "dayofweek": "Piątek",
+      "headline": "S&P 500 i Nasdaq na ATH mimo PCE 3,8% · Snowflake +38% · PKN Orlen Q1: zysk 8,1 mld PLN · Iran-USA MOU 60d",
+      "summary": "S&P 500 (7 519) i Nasdaq (26 656) biją historyczne rekordy mimo PCE za kwiecień na poziomie 3,8% r/r — najwyżej od prawie 3 lat. Snowflake wystrzelił +37,6% po spectacular wynikach Q1 FY2027 (rev +33%, NRR 126%). Na GPW PKN Orlen raportuje historycznie mocne Q1 (zysk netto 8,1 mld PLN, EBITDA LIFO 14,1 mld), CDR pod presją po opóźnieniu DLC do 2027 r. Brent spada do $93,71 na sygnałach 60-dniowego zawieszenia broni Iran-USA.",
+      "tags": "SNOW +38% · PCE 3,8% ATH · S&P 500 ATH 7 519 · Nasdaq ATH 26 656 · PKN Q1 8,1 mld PLN · Brent $93,71 · WIG20 3 684",
+      "url": "reports/2026-05-29.html",
+      "status": "fresh",
+      "tape": [
+        {
+          "name": "S&P 500",
+          "value": "7 519",
+          "delta": "▲ +0,55%",
+          "dir": "up"
+        },
+        {
+          "name": "Nasdaq",
+          "value": "26 656",
+          "delta": "▲ +0,84%",
+          "dir": "up"
+        },
+        {
+          "name": "WIG20",
+          "value": "3 684",
+          "delta": "▲ +0,06%",
+          "dir": "up"
+        },
+        {
+          "name": "DAX",
+          "value": "25 092",
+          "delta": "▼ −0,34%",
+          "dir": "down"
+        },
+        {
+          "name": "Brent",
+          "value": "$93,71",
+          "delta": "▼ −2,67%",
+          "dir": "down"
+        },
+        {
+          "name": "10Y UST",
+          "value": "4,48%",
+          "delta": "▼ −2 pb",
+          "dir": "down"
+        },
+        {
+          "name": "Złoto",
+          "value": "$4 502",
+          "delta": "▲ +1,03%",
+          "dir": "up"
+        },
+        {
+          "name": "DXY",
+          "value": "99,00",
+          "delta": "▼ −0,03%",
+          "dir": "down"
+        }
+      ]
+    },
     {
       "date": "2026-05-28",
       "dayofweek": "Czwartek",
@@ -8,16 +67,56 @@
       "summary": "Micron Technology przekroczył 1 bln USD wyceny po skoku +18,6% na blowout wynikach (EPS $12,20 vs $9,21 est) — HBM wyprzedany do końca 2026 r. Na GPW CD Projekt traci 7,5% przed wynikami Q1 2026 dziś o 17:30 CEST, a PKN Orlen także raportuje. Brent na $96,30 (+2,13%) przy Cieśninie Ormuz wciąż na 5% przepustowości. S&P 500 konsoliduje przy 7 519, Nasdaq silny +1,19% na AI tailwindzie.",
       "tags": "MU $1T · CDR −7,54% wyniki · PKN −1,99% wyniki · Brent $96,30 · WIG20 3 684 · WIG 136 056",
       "url": "reports/2026-05-28.html",
-      "status": "fresh",
+      "status": "archive",
       "tape": [
-        {"name": "S&P 500",  "value": "7 519",   "delta": "▲ +0,61%",  "dir": "up"},
-        {"name": "Nasdaq",   "value": "26 656",  "delta": "▲ +1,19%",  "dir": "up"},
-        {"name": "WIG20",    "value": "3 684",   "delta": "▲ +0,06%",  "dir": "up"},
-        {"name": "DAX",      "value": "23 850",  "delta": "▼ −0,40%",  "dir": "down"},
-        {"name": "Brent",    "value": "$96,30",  "delta": "▲ +2,13%",  "dir": "up"},
-        {"name": "10Y UST",  "value": "4,48%",   "delta": "▼ −2 pb",   "dir": "down"},
-        {"name": "Złoto",    "value": "$4 457",  "delta": "▲ +0,02%",  "dir": "up"},
-        {"name": "DXY",      "value": "99,10",   "delta": "▼ −0,07%",  "dir": "down"}
+        {
+          "name": "S&P 500",
+          "value": "7 519",
+          "delta": "▲ +0,61%",
+          "dir": "up"
+        },
+        {
+          "name": "Nasdaq",
+          "value": "26 656",
+          "delta": "▲ +1,19%",
+          "dir": "up"
+        },
+        {
+          "name": "WIG20",
+          "value": "3 684",
+          "delta": "▲ +0,06%",
+          "dir": "up"
+        },
+        {
+          "name": "DAX",
+          "value": "23 850",
+          "delta": "▼ −0,40%",
+          "dir": "down"
+        },
+        {
+          "name": "Brent",
+          "value": "$96,30",
+          "delta": "▲ +2,13%",
+          "dir": "up"
+        },
+        {
+          "name": "10Y UST",
+          "value": "4,48%",
+          "delta": "▼ −2 pb",
+          "dir": "down"
+        },
+        {
+          "name": "Złoto",
+          "value": "$4 457",
+          "delta": "▲ +0,02%",
+          "dir": "up"
+        },
+        {
+          "name": "DXY",
+          "value": "99,10",
+          "delta": "▼ −0,07%",
+          "dir": "down"
+        }
       ]
     },
     {
