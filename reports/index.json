@@ -1,6 +1,65 @@
 {
-  "updated": "2026-05-29",
+  "updated": "2026-05-30",
   "daily": [
+    {
+      "date": "2026-05-30",
+      "dayofweek": "Sobota",
+      "headline": "Dow Jones na ATH 51 000 pkt · Dell +32% na fali AI (backlog $51 mld) · PCE 3,3% — Fed bez ruchu do 2027 · Brent −1,4% przy rozejmie USA-Iran",
+      "summary": "Piątek 29 maja przyniósł historyczny szczyt Dow Jonesa powyżej 51 000 pkt (+0,72%), a S&P 500 odnotował 9. kolejny tydzień wzrostów. Dell Technology skoczył +32% po wynikach pokazujących 757% wzrost przychodów z serwerów AI i backlog $51,3 mld USD. Core PCE kwiecień 3,3% r/r — rynki wyceniają Fed bez zmian stóp przez całe 2026. Brent cofnął się do 91,37 USD na doniesienia o wstępnym porozumieniu USA-Iran. GPW: WIG +0,61%, WIG20 +0,50%, CDR lider +1,93%.",
+      "tags": "Dow ATH 51 069 · Dell +32% AI · S&P 9 tygodni · PCE 3,3% · Brent 91,37 · CDR +1,93% · WIG20 3 689",
+      "url": "reports/2026-05-30.html",
+      "status": "fresh",
+      "tape": [
+        {
+          "name": "S&P 500",
+          "value": "7 580",
+          "delta": "▲ +0,22%",
+          "dir": "up"
+        },
+        {
+          "name": "Nasdaq",
+          "value": "26 972",
+          "delta": "▲ +0,26%",
+          "dir": "up"
+        },
+        {
+          "name": "WIG20",
+          "value": "3 689",
+          "delta": "▲ +0,50%",
+          "dir": "up"
+        },
+        {
+          "name": "DAX",
+          "value": "25 104",
+          "delta": "▲ +0,05%",
+          "dir": "up"
+        },
+        {
+          "name": "Brent",
+          "value": "91,37 USD",
+          "delta": "▼ −1,43%",
+          "dir": "down"
+        },
+        {
+          "name": "10Y UST",
+          "value": "4,59%",
+          "delta": "▲ +2 pb",
+          "dir": "up"
+        },
+        {
+          "name": "Złoto",
+          "value": "4 539 USD",
+          "delta": "▲ +0,97%",
+          "dir": "up"
+        },
+        {
+          "name": "DXY",
+          "value": "99,12",
+          "delta": "▼ −0,30%",
+          "dir": "down"
+        }
+      ]
+    },
     {
       "date": "2026-05-29",
       "dayofweek": "Piątek",
@@ -8,7 +67,7 @@
       "summary": "S&P 500 (7 519) i Nasdaq (26 656) biją historyczne rekordy mimo PCE za kwiecień na poziomie 3,8% r/r — najwyżej od prawie 3 lat. Snowflake wystrzelił +37,6% po spectacular wynikach Q1 FY2027 (rev +33%, NRR 126%). Na GPW PKN Orlen raportuje historycznie mocne Q1 (zysk netto 8,1 mld PLN, EBITDA LIFO 14,1 mld), CDR pod presją po opóźnieniu DLC do 2027 r. Brent spada do $93,71 na sygnałach 60-dniowego zawieszenia broni Iran-USA.",
       "tags": "SNOW +38% · PCE 3,8% ATH · S&P 500 ATH 7 519 · Nasdaq ATH 26 656 · PKN Q1 8,1 mld PLN · Brent $93,71 · WIG20 3 684",
       "url": "reports/2026-05-29.html",
-      "status": "fresh",
+      "status": "archive",
       "tape": [
         {
           "name": "S&P 500",
