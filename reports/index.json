@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-30",
+  "updated": "2026-05-31",
   "daily": [
     {
       "date": "2026-05-30",
@@ -356,5 +356,13 @@
       ]
     }
   ],
-  "weekly": []
+  "weekly": [
+    {
+      "week": "2026-W22",
+      "title": "W22: Iran MOU — Brent −13% · S&P 500 9. tydzień wzrostów · Dow ATH 51 069 · Dell +32% AI backlog $51B",
+      "summary": "25–31.05 · S&P +0,2% (9. tydzień) · Dow ATH 51 069 · WIG20 3 689 · Brent $91 (−13%) · Iran-USA MOU 60d · Dell +32% · SNOW +38% · PKN Q1 8,1 mld PLN · NFP 5.06",
+      "url": "reports/weekly/2026-W22.md",
+      "status": "current"
+    }
+  ]
 }
