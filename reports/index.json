@@ -2,13 +2,72 @@
   "updated": "2026-05-31",
   "daily": [
     {
+      "date": "2026-05-31",
+      "dayofweek": "Niedziela",
+      "headline": "sWIG80 na historycznym ATH (32 329 pkt) · S&P 500 &amp; Nasdaq na rekordach · Ropa −2% na US-Iran deal",
+      "summary": "Sesja piątkowa 29 maja domknęła maj serią rekordów: sWIG80 osiągnął nowe ATH (32 329 pkt, +1,33%), ciągnięty przez Comp i Creotech Quantum. S&P 500 zamknął się na 7 580 pkt (kolejny rekord), Nasdaq na 26 972. Brent stracił 2% do 91,20 USD po doniesieniach o wstępnym porozumieniu USA-Iran dot. tranzytu przez Cieśninę Ormuz — maj kończy się spadkiem ropy o 16,2%. Złoto utrzymuje poziom $4 541/oz. ECB oczekiwany na podwyżkę +25pb 11 czerwca. Na GPW CD Projekt +1,93% po wynikach Q1, PKN Orlen +1,85% — lider blue chipów.",
+      "tags": "sWIG80 ATH 32 169 · S&P 500 ATH 7 580 · Brent 91,20 −2% · Złoto $4 541 · CDR +1,93% · PKN +1,85% · ECB +25pb 11.06",
+      "url": "reports/2026-05-31.html",
+      "status": "fresh",
+      "tape": [
+        {
+          "name": "S&P 500",
+          "value": "7 580",
+          "delta": "▲ +0,22%",
+          "dir": "up"
+        },
+        {
+          "name": "Nasdaq",
+          "value": "26 972",
+          "delta": "▲ +0,20%",
+          "dir": "up"
+        },
+        {
+          "name": "WIG20",
+          "value": "3 687",
+          "delta": "▲ +0,45%",
+          "dir": "up"
+        },
+        {
+          "name": "DAX",
+          "value": "25 104",
+          "delta": "▲ +0,05%",
+          "dir": "up"
+        },
+        {
+          "name": "Brent",
+          "value": "91,20 USD",
+          "delta": "▼ −2,0%",
+          "dir": "down"
+        },
+        {
+          "name": "10Y UST",
+          "value": "4,44%",
+          "delta": "▼ −2 pb",
+          "dir": "down"
+        },
+        {
+          "name": "Złoto",
+          "value": "4 541 USD",
+          "delta": "▲ +1,02%",
+          "dir": "up"
+        },
+        {
+          "name": "DXY",
+          "value": "99,8",
+          "delta": "▼ −0,4%",
+          "dir": "down"
+        }
+      ]
+    },
+    {
       "date": "2026-05-30",
       "dayofweek": "Sobota",
       "headline": "Dow Jones na ATH 51 000 pkt · Dell +32% na fali AI (backlog $51 mld) · PCE 3,3% — Fed bez ruchu do 2027 · Brent −1,4% przy rozejmie USA-Iran",
       "summary": "Piątek 29 maja przyniósł historyczny szczyt Dow Jonesa powyżej 51 000 pkt (+0,72%), a S&P 500 odnotował 9. kolejny tydzień wzrostów. Dell Technology skoczył +32% po wynikach pokazujących 757% wzrost przychodów z serwerów AI i backlog $51,3 mld USD. Core PCE kwiecień 3,3% r/r — rynki wyceniają Fed bez zmian stóp przez całe 2026. Brent cofnął się do 91,37 USD na doniesienia o wstępnym porozumieniu USA-Iran. GPW: WIG +0,61%, WIG20 +0,50%, CDR lider +1,93%.",
       "tags": "Dow ATH 51 069 · Dell +32% AI · S&P 9 tygodni · PCE 3,3% · Brent 91,37 · CDR +1,93% · WIG20 3 689",
       "url": "reports/2026-05-30.html",
-      "status": "fresh",
+      "status": "archive",
       "tape": [
         {
           "name": "S&P 500",
