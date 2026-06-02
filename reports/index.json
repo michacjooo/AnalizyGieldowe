@@ -1,6 +1,65 @@
 {
-  "updated": "2026-06-01",
+  "updated": "2026-06-02",
   "daily": [
+    {
+      "date": "2026-06-02",
+      "dayofweek": "Wtorek",
+      "headline": "NVDA RTX Spark wchodzi na rynek PC (+6,2%) · S&P 500 i Nasdaq na ATH · GPW korekta WIG20 −1,39%",
+      "summary": "Nvidia zaskoczyła rynek wejściem w rynek laptopów z chipem RTX Spark (Computex 2026) — NVDA skoczył +6,24% do ~224 USD, Dell +10%, HP +8%. S&P 500 zamknął się na nowym rekordzie 7 600 pkt, Nasdaq na 27 087 pkt. GPW rozczarowała: WIG20 traci −1,39% do 3 636 pkt w korekcie po rekordowym maju. Brent spada do 94,58 USD (−0,4%) przy postępie 60-dniowego rozejmu Iran-USA. ECB +25pb oczekiwane 11 czerwca, Fed hold FOMC 16–17 VI.",
+      "tags": "NVDA +6,2% RTX Spark · S&P 500 ATH 7 600 · Nasdaq ATH 27 087 · WIG20 3 636 −1,39% · Brent 94,58 · AMZN −3,48% · ALE +1,64% EBI",
+      "url": "reports/2026-06-02.html",
+      "status": "fresh",
+      "tape": [
+        {
+          "name": "S&P 500",
+          "value": "7 600",
+          "delta": "▲ +0,26% ATH",
+          "dir": "up"
+        },
+        {
+          "name": "Nasdaq",
+          "value": "27 087",
+          "delta": "▲ +0,42% ATH",
+          "dir": "up"
+        },
+        {
+          "name": "WIG20",
+          "value": "3 636",
+          "delta": "▼ −1,39%",
+          "dir": "down"
+        },
+        {
+          "name": "DAX",
+          "value": "24 990",
+          "delta": "→ −0,02%",
+          "dir": "flat"
+        },
+        {
+          "name": "Brent",
+          "value": "94,58",
+          "delta": "▼ −0,42%",
+          "dir": "down"
+        },
+        {
+          "name": "10Y UST",
+          "value": "4,46%",
+          "delta": "▼ −2 pb",
+          "dir": "down"
+        },
+        {
+          "name": "Złoto",
+          "value": "4 484",
+          "delta": "▼ −1,19%",
+          "dir": "down"
+        },
+        {
+          "name": "NVDA",
+          "value": "~224 USD",
+          "delta": "▲ +6,24%",
+          "dir": "up"
+        }
+      ]
+    },
     {
       "date": "2026-06-01",
       "dayofweek": "Poniedziałek",
@@ -8,7 +67,7 @@
       "summary": "Wall Street zamknęła maj z Dow Jones powyżej 51 000 pkt i S&P 500 na 7 580 (ATH). sWIG80 ustanowił rekord historyczny 32 329 pkt na GPW. ECB sygnalizuje podwyżkę +25pb na 11 czerwca; Brent tracił −2% na sygnałach porozumienia USA–Iran. NVIDIA potwierdziła AI boom wynikami Q1 ($81,6B, +85%). CD Projekt Q1 z zyskiem 106,2M PLN powyżej konsensusu.",
       "tags": "DJIA ATH 51 032 · S&P 7 580 · sWIG80 ATH 32 329 · Brent 91,20 −2% · ECB +25pb 11.06 · NVDA $211 · CDR +1,93%",
       "url": "reports/2026-06-01.html",
-      "status": "fresh",
+      "status": "archive",
       "tape": [
         {
           "name": "S&P 500",
